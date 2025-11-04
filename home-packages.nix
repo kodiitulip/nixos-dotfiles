@@ -1,0 +1,32 @@
+{
+  pkgs,
+  system,
+  inputs,
+  ...
+}:
+with pkgs;
+[
+  gh
+  ripgrep
+  nil
+  nixpkgs-fmt
+  nixfmt-rfc-style
+  statix
+  nodejs
+  gcc
+  rustup
+  godotPackages_4_5.godot
+  tree-sitter
+  python3
+  uv
+  lua
+  luarocks-nix
+  luajitPackages.lua-lsp
+  temurin-bin
+  obs-studio
+  inputs.zen-browser.packages."${system}".default
+  vesktop
+  easyeffects
+  inputs.playit-nixos-module.packages."${system}".default
+  protonup-qt
+]
