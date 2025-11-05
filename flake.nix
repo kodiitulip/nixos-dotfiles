@@ -10,6 +10,7 @@
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
+    nvf.url = "github:notashelf/nvf";
   };
 
   outputs =
@@ -18,6 +19,7 @@
       home-manager,
       zen-browser,
       playit-nixos-module,
+      nvf,
       ...
     }@inputs:
     {
@@ -33,7 +35,10 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.kodie.imports = [ ./home.nix ];
+              users.kodie.imports = [
+                ./home.nix
+                nvf.homeManagerModules.default
+              ];
               backupFileExtension = "backup";
               extraSpecialArgs = {
                 inherit inputs;
