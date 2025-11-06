@@ -4,27 +4,30 @@
   inputs = {
     # nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixvim.url = "github:nix-community/nixvim";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
-    nvf.url = "github:notashelf/nvf";
   };
 
   outputs =
     {
       nixpkgs,
+      nixvim,
       home-manager,
       zen-browser,
       playit-nixos-module,
-      nvf,
       ...
     }@inputs:
+    let
+      system = "x86_64-linux";
+    in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         specialArgs = { inherit inputs; };
 
         modules = [
@@ -36,13 +39,12 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.kodie.imports = [
+                nixvim.homeModules.nixvim
                 ./home.nix
-                nvf.homeManagerModules.default
               ];
               backupFileExtension = "backup";
               extraSpecialArgs = {
-                inherit inputs;
-                system = "x86_64-linux";
+                inherit inputs system;
               };
             };
           }

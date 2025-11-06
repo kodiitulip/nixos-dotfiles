@@ -29,4 +29,5 @@ with pkgs;
   easyeffects
   inputs.playit-nixos-module.packages."${system}".default
   protonup-qt
+  itch
 ]
