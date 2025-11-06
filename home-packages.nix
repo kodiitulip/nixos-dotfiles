@@ -30,4 +30,6 @@ with pkgs;
   inputs.playit-nixos-module.packages."${system}".default
   protonup-qt
   itch
+  inochi-session
+  inochi-creator
 ]

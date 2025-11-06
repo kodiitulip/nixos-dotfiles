@@ -11,4 +11,5 @@ with pkgs;
   firefoxpwa
   gamemode
   wine-wayland
+  winetricks
 ]

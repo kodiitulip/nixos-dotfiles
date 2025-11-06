@@ -30,6 +30,7 @@
     };
     starship = import ./config/starship.nix;
     nixvim.imports = [ ./config/nixvim ];
+    nixvim.enable = true;
     # neovim = {
     #   enable = true;
     #   defaultEditor = true;
@@ -56,10 +57,10 @@
   };
 
   xdg.configFile = {
-    "nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
-      recursive = true;
-    };
+#     "nvim" = {
+#       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
+#       recursive = true;
+#     };
     "kitty" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/kitty/";
       recursive = true;
