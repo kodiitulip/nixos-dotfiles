@@ -29,38 +29,19 @@
       enableNushellIntegration = true;
     };
     starship = import ./config/starship.nix;
-    nixvim.imports = [ ./config/nixvim ];
-    nixvim.enable = true;
-    # neovim = {
-    #   enable = true;
-    #   defaultEditor = true;
-    #
-    #   withNodeJs = true;
-    #   withPython3 = true;
-    #   withRuby = true;
-    #
-    #   extraPackages = with pkgs; [
-    #     doq
-    #     sqlite
-    #     cargo
-    #     clang
-    #     cmake
-    #     gcc
-    #     gnumake
-    #     ninja
-    #     pkg-config
-    #     yarn
-    #   ];
-    #
-    #   extraLuaPackages = ls: with ls; [ luarocks ];
-    # };
+    # nixvim.imports = [ ./config/nixvim ];
+    # nixvim.enable = true;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
   };
 
   xdg.configFile = {
-#     "nvim" = {
-#       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
-#       recursive = true;
-#     };
+    "nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
+      recursive = true;
+    };
     "kitty" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/kitty/";
       recursive = true;

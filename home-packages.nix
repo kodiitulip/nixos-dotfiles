@@ -20,8 +20,6 @@ with pkgs;
   python3
   uv
   lua
-  luarocks-nix
-  luajitPackages.lua-lsp
   temurin-bin
   obs-studio
   inputs.zen-browser.packages."${system}".default
@@ -30,6 +28,15 @@ with pkgs;
   inputs.playit-nixos-module.packages."${system}".default
   protonup-qt
   itch
-  inochi-session
-  inochi-creator
+  vscodium-fhs
+  jetbrains.idea-community
+  kdePackages.kate
+  prismlauncher
+  mindustry
+  blockbench
+  blender
+  heroic
+  # lutris
+  krita
+  direnv
 ]

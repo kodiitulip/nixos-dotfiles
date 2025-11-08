@@ -81,14 +81,6 @@
       "wheel"
     ];
     packages = with pkgs; [
-      kdePackages.kate
-      prismlauncher
-      mindustry
-      blockbench
-      blender
-      heroic
-      lutris
-      krita
     ];
     shell = pkgs.nushell;
   };

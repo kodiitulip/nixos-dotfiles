@@ -2,10 +2,7 @@
   description = "My NixOS Flake";
 
   inputs = {
-    # nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +14,6 @@
   outputs =
     {
       nixpkgs,
-      nixvim,
       home-manager,
       zen-browser,
       playit-nixos-module,
@@ -39,7 +35,6 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.kodie.imports = [
-                nixvim.homeModules.nixvim
                 ./home.nix
               ];
               backupFileExtension = "backup";

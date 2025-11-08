@@ -8,8 +8,12 @@ with pkgs;
   zip
   unzip
   p7zip
+  rar
   firefoxpwa
   gamemode
   wine-wayland
   winetricks
+  lutris
+  glfw3-minecraft
+  libGL
 ]
