@@ -84,28 +84,37 @@ let carapace_completer = {|spans|
   carapace $spans.0 nushell ...$spans | from json
 }
 
-$env.config.buffer_editor = "nvim"
-$env.config.show_banner = false
-$env.config.edit_mode = "vi"
-$env.config.cursor_shape.emacs = "inherit"
-$env.config.cursor_shape.vi_insert = "line"
-$env.config.cursor_shape.vi_normal = "blink_block"
-$env.config.use_kitty_protocol = true
+let direnv_hook_old = { ||
+    if (which direnv | is-empty) {
+        return
+    }
+
+    direnv export json | from json | default {} | load-env
+    # Direnv outputs $PATH as a string, but nushell silently breaks if isn't a list-like table.
+    # The following behemoth of Nu code turns this into nu's format while following the standards of how to handle quotes, use it if you need quote handling instead of the line below it:
+    $env.PATH = $env.PATH | parse --regex ('' + `((?:(?:"(?:(?:\\[\\"])|.)*?")|(?:'.*?')|[^` + (char env_sep) + `]*)*)`) | each {|x| $x.capture0 | parse --regex `(?:"((?:(?:\\"|.))*?)")|(?:'(.*?)')|([^'"]*)` | each {|y| if ($y.capture0 != "") { $y.capture0 | str replace -ar `\\([\\"])` `$1` } else if ($y.capture1 != "") { $y.capture1 } else $y.capture2 } | str join }
+    # $env.PATH = $env.PATH | split row (char env_sep)
+}
 
 $env.config = {
   show_banner: false,
   buffer_editor: "nvim",
   use_kitty_protocol: true,
+  edit_mode: "vi",
+  cursor_shape: {
+    vi_insert: "line",
+    vi_normal: "blink_block",
+  },
   completions: {
-    case_sensitive: false
-    quick: true
-    partial: true
-    algorithm: "fuzzy"
+    case_sensitive: false,
+    quick: true,
+    partial: true,
+    algorithm: "fuzzy",
     external: {
-      enable: true
-      max_results: 100
-      completer: $carapace_completer # check 'carapace_completer' 
-    }
+      enable: true,
+      max_results: 100,
+      completer: $carapace_completer, # check 'carapace_completer' ,
+    },
   }
 }
 
@@ -123,18 +132,41 @@ $env.TRANSIENT_PROMPT_INDICATOR_VI_NORMAL = ""
 $env.TRANSIENT_PROMPT_MULTILINE_INDICATOR = "∙ "
 $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ""
 
-let direnv_hook = { ||
-    if (which direnv | is-empty) {
-        return
-    }
-
-    direnv export json | from json | default {} | load-env
-    # Direnv outputs $PATH as a string, but nushell silently breaks if isn't a list-like table.
-    # The following behemoth of Nu code turns this into nu's format while following the standards of how to handle quotes, use it if you need quote handling instead of the line below it:
-    $env.PATH = $env.PATH | parse --regex ('' + `((?:(?:"(?:(?:\\[\\"])|.)*?")|(?:'.*?')|[^` + (char env_sep) + `]*)*)`) | each {|x| $x.capture0 | parse --regex `(?:"((?:(?:\\"|.))*?)")|(?:'(.*?)')|([^'"]*)` | each {|y| if ($y.capture0 != "") { $y.capture0 | str replace -ar `\\([\\"])` `$1` } else if ($y.capture1 != "") { $y.capture1 } else $y.capture2 } | str join }
-    # $env.PATH = $env.PATH | split row (char env_sep)
+def direnv_hook [] {
+    [
+        {
+            condition: {|before, after| ($before != $after) and ($after | path join .env.yaml | path exists) }
+            code: "
+                open .env.yaml | load-env
+            "
+        }
+        {
+            condition: {|before, after| ($before != $after) and ($after | path join '.env' | path exists) }
+            code: "
+                open .env
+                | lines
+                | parse -r '(?P<k>.+?)=(?P<v>.+)'
+                | reduce -f {} {|x, acc| $acc | upsert $x.k $x.v}
+                | load-env
+            "
+        }
+    ]
 }
 
-$env.config.hooks.env_change.PWD = (
-    $env.config.hooks.env_change.PWD | append direnv_hook
-)
+export-env {
+    $env.config = ( $env.config | upsert hooks.env_change.PWD { |config|
+        let o = ($config | get -o hooks.env_change.PWD)
+        let val = (direnv_hook)
+        if $o == null {
+            $val | append {
+              condition: {|before, after| ($before != $after) and ($after | path join '.envrc' | path exists) }
+              code: direnv_hook_old
+            }
+        } else {
+            $o | append $val | append {
+              condition: {|before, after| ($before != $after) and ($after | path join '.envrc' | path exists) }
+              code: direnv_hook_old
+            }
+        }
+    })
+}
