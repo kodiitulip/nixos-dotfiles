@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 with pkgs;
 [
   kitty
@@ -16,4 +16,5 @@ with pkgs;
   lutris
   glfw3-minecraft
   libGL
+  sops
 ]

@@ -39,4 +39,8 @@ with pkgs;
   # lutris
   krita
   direnv
+  kdePackages.partitionmanager
+  kdePackages.kdialog
+  # lazymc
+  # minecraft-server-hibernation
 ]

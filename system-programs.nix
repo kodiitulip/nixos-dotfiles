@@ -34,4 +34,9 @@
   npm.enable = true;
   lazygit.enable = true;
   xwayland.enable = true;
+
+  neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
 }

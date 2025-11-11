@@ -9,14 +9,18 @@
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
+    nvf.url = "github:notashelf/nvf";
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     {
       nixpkgs,
       home-manager,
-      zen-browser,
+      nvf,
       playit-nixos-module,
+      sops-nix,
       ...
     }@inputs:
     let
@@ -28,13 +32,14 @@
 
         modules = [
           ./configuration.nix
-          # playit-nixos-module.nixosModules.default
+          playit-nixos-module.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               users.kodie.imports = [
+                nvf.homeManagerModules.default
                 ./home.nix
               ];
               backupFileExtension = "backup";

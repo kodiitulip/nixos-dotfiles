@@ -1,12 +1,24 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 
 {
   imports = [
+    inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
   ];
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+
+    age.keyFile = "/home/kodie/.config/sops/age/keys.txt";
+    age.generateKey = true;
+
+    secrets.playitgg = { };
+  };
+
   boot = {
 
     # Bootloader.
@@ -45,6 +57,7 @@
       enable = true;
       autoRepeatDelay = 200;
       autoRepeatInterval = 35;
+      videoDrivers = [ "amdgpu" ];
     };
 
     displayManager.ly.enable = true;
@@ -67,6 +80,15 @@
     };
 
     flatpak.enable = true;
+    openssh.enable = true;
+
+    # playit = {
+    #   enable = true;
+    #   user = "playit";
+    #   group = "playit";
+    #   secretPath = config.age.secrets.playitgg.path;
+    # };
+
   };
 
   xdg.icons.fallbackCursorThemes = [ "breeze_cursors" ];
@@ -80,8 +102,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-    ];
+    packages = [ ];
     shell = pkgs.nushell;
   };
 
@@ -90,7 +111,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = import ./system-packages.nix { inherit pkgs; };
+  environment.systemPackages = import ./system-packages.nix { inherit pkgs inputs; };
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono

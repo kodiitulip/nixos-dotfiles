@@ -29,8 +29,8 @@
       enableNushellIntegration = true;
     };
     starship = import ./config/starship.nix;
-    # nixvim.imports = [ ./config/nixvim ];
-    # nixvim.enable = true;
+    # nvf.enable = true;
+    # nvf.imports = [ ./config/nvf ];
     neovim = {
       enable = true;
       defaultEditor = true;

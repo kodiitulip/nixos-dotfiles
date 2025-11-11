@@ -1,9 +1,8 @@
-$env.VISUAL = '/usr/bin/nvim'
-$env.EDITOR = '/usr/bin/nvim'
+$env.VISUAL = "nvim"
+$env.EDITOR = "nvim"
 $env.RUSTC_WRAPPER = 'sccache'
 $env.PATH ++= ['/home/kodie/.cargo/bin/', '/home/kodie/.nuscripts/']
 $env.PATH = ($env.PATH | split row (char esep) | prepend "/home/kodie/.config/carapace/bin")
-$env.TAPLO_CONFIG = ($env.HOME + "/.config/.taplo.toml")
 
 def --env get-env [name] { $env | get $name }
 def --env set-env [name, value] { load-env { $name: $value } }
@@ -84,18 +83,6 @@ let carapace_completer = {|spans|
   carapace $spans.0 nushell ...$spans | from json
 }
 
-let direnv_hook_old = { ||
-    if (which direnv | is-empty) {
-        return
-    }
-
-    direnv export json | from json | default {} | load-env
-    # Direnv outputs $PATH as a string, but nushell silently breaks if isn't a list-like table.
-    # The following behemoth of Nu code turns this into nu's format while following the standards of how to handle quotes, use it if you need quote handling instead of the line below it:
-    $env.PATH = $env.PATH | parse --regex ('' + `((?:(?:"(?:(?:\\[\\"])|.)*?")|(?:'.*?')|[^` + (char env_sep) + `]*)*)`) | each {|x| $x.capture0 | parse --regex `(?:"((?:(?:\\"|.))*?)")|(?:'(.*?)')|([^'"]*)` | each {|y| if ($y.capture0 != "") { $y.capture0 | str replace -ar `\\([\\"])` `$1` } else if ($y.capture1 != "") { $y.capture1 } else $y.capture2 } | str join }
-    # $env.PATH = $env.PATH | split row (char env_sep)
-}
-
 $env.config = {
   show_banner: false,
   buffer_editor: "nvim",
@@ -132,6 +119,15 @@ $env.TRANSIENT_PROMPT_INDICATOR_VI_NORMAL = ""
 $env.TRANSIENT_PROMPT_MULTILINE_INDICATOR = "∙ "
 $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ""
 
+let direnv_hook_old = { ||
+    if (which direnv | is-empty) {
+        return
+    }
+    direnv export json | from json | default {} | load-env
+    # $env.PATH = $env.PATH | parse --regex ('' + `((?:(?:"(?:(?:\\[\\"])|.)*?")|(?:'.*?')|[^` + (char env_sep) + `]*)*)`) | each {|x| $x.capture0 | parse --regex `(?:"((?:(?:\\"|.))*?)")|(?:'(.*?)')|([^'"]*)` | each {|y| if ($y.capture0 != "") { $y.capture0 | str replace -ar `\\([\\"])` `$1` } else if ($y.capture1 != "") { $y.capture1 } else $y.capture2 } | str join }
+    # $env.PATH = $env.PATH | split row (char env_sep)
+}
+
 def direnv_hook [] {
     [
         {
@@ -150,6 +146,10 @@ def direnv_hook [] {
                 | load-env
             "
         }
+        {
+          condition: {|before, after| ($before != $after) and ($after | path join '.envrc' | path exists) }
+          code: $direnv_hook_old
+        }
     ]
 }
 
@@ -158,15 +158,9 @@ export-env {
         let o = ($config | get -o hooks.env_change.PWD)
         let val = (direnv_hook)
         if $o == null {
-            $val | append {
-              condition: {|before, after| ($before != $after) and ($after | path join '.envrc' | path exists) }
-              code: direnv_hook_old
-            }
+            $val
         } else {
-            $o | append $val | append {
-              condition: {|before, after| ($before != $after) and ($after | path join '.envrc' | path exists) }
-              code: direnv_hook_old
-            }
+            $o | append $val
         }
     })
 }
