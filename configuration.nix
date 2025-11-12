@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
 
@@ -16,7 +17,9 @@
     age.keyFile = "/home/kodie/.config/sops/age/keys.txt";
     age.generateKey = true;
 
-    secrets.playitgg = { };
+    secrets.playitgg = {
+      owner = config.users.users.playit.name;
+    };
   };
 
   boot = {
@@ -82,12 +85,12 @@
     flatpak.enable = true;
     openssh.enable = true;
 
-    # playit = {
-    #   enable = true;
-    #   user = "playit";
-    #   group = "playit";
-    #   secretPath = config.age.secrets.playitgg.path;
-    # };
+    playit = {
+      enable = true;
+      user = "playit";
+      group = "playit";
+      secretPath = config.sops.secrets.playitgg.path;
+    };
 
   };
 
@@ -95,16 +98,27 @@
   console.keyMap = "br-abnt2";
   security.rtkit.enable = true;
 
-  users.users.kodie = {
-    isNormalUser = true;
-    description = "Kodie Sales";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    packages = [ ];
-    shell = pkgs.nushell;
+  users.users = {
+    kodie = {
+      isNormalUser = true;
+      description = "Kodie Sales";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      packages = [ ];
+      shell = pkgs.nushell;
+    };
+
+    playit = {
+      home = "/var/lib/playit";
+      createHome = true;
+      isSystemUser = true;
+      group = "playit";
+    };
   };
+
+  users.groups.playit = { };
 
   programs = import ./system-programs.nix { inherit pkgs; };
 

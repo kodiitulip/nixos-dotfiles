@@ -41,6 +41,5 @@ with pkgs;
   direnv
   kdePackages.partitionmanager
   kdePackages.kdialog
-  # lazymc
-  # minecraft-server-hibernation
+  packwiz
 ]
