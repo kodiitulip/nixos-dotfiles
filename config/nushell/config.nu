@@ -52,7 +52,8 @@ alias .. = z ..
 alias ... = z ../..
 alias 3.. = z ../../..
 alias 4.. = z ../../../..
-alias 5.. = z ../../../../..
+alias 5.. = z ../../../../
+def lazyvim [] {$env.NVIM_APPNAME = "nvim-lazy"; nvim}
 
 def config-nix [] {
   cd ~/nixos-dotfiles/; nvim; cd -

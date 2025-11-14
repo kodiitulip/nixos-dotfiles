@@ -3,6 +3,7 @@
   pkgs,
   system,
   inputs,
+  lib,
   ...
 }:
 
@@ -29,8 +30,8 @@
       enableNushellIntegration = true;
     };
     starship = import ./config/starship.nix;
-    # nvf.enable = true;
-    # nvf.imports = [ ./config/nvf ];
+    nvf.enable = true;
+    nvf.settings = import ./config/nvf { inherit pkgs lib; };
     neovim = {
       enable = true;
       defaultEditor = true;
@@ -42,10 +43,10 @@
       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
       recursive = true;
     };
-    "nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
-      recursive = true;
-    };
+    # "nvim" = {
+    #   source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
+    #   recursive = true;
+    # };
     "kitty" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/kitty/";
       recursive = true;

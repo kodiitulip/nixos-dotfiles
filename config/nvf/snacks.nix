@@ -4,34 +4,44 @@
   vim = {
     utility.snacks-nvim.enable = true;
     utility.snacks-nvim.setupOpts = {
-      explorer = { };
+      bigfile.enabled = true;
+      explorer.enabled = true;
+      indent.enabled = true;
+      input.enabled = true;
+      notifier = {
+        enabled = true;
+        timeout = 3000;
+      };
+      picker.enabled = true;
+      quickfile.enabled = true;
+      scope.enabled = true;
+      scroll.enabled = true;
+      statuscolumn.enabled = true;
+      words.enabled = true;
     };
 
     keymaps = [
       {
-        key = "<leader>fe";
+        key = "<leader>e";
         mode = "n";
-        action = "function() Snacks.explorer({ cwd = LazyVim.root() }) end";
-        desc = "Explorer Snacks (root dir)";
-        lua = true;
-      }
-      {
-        key = "<leader>fE";
-        mode = "n";
-        action = "function() Snacks.explorer() end";
+        action = ''function() Snacks.explorer() end'';
         desc = "Explorer Snacks (cwd)";
         lua = true;
       }
       {
-        key = "<leader>e";
-        action = "<leader>fe";
-        desc = "Explorer Snacks (root dir)";
+        key = "<leader><space>";
+        mode = "n";
+        action = "function() Snacks.picker.smart() end";
+        lua = true;
+        desc = "Smart Find Files";
         noremap = false;
       }
       {
-        key = "<leader>E";
-        action = "<leader>fE";
-        desc = "Explorer Snacks (cwd)";
+        key = "<leader>/";
+        mode = "n";
+        action = ''function() Snacks.picker.grep() end'';
+        lua = true;
+        desc = "Smart Find Files";
         noremap = false;
       }
     ];

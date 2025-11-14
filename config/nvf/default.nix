@@ -16,5 +16,14 @@
     };
 
     statusline.lualine.enable = true;
+
+    keymaps = [
+      {
+        key = "<leader>qq";
+        mode = "n";
+        action = "<cmd>qa<cr>";
+        desc = "Exit all";
+      }
+    ];
   };
 }
