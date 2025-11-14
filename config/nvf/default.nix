@@ -5,6 +5,8 @@
     ./lsp
     ./snacks.nix
     ./blink-cmp.nix
+    ./mini.nix
+    ./dashboard.nix
   ];
   vim = {
     theme = {

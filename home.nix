@@ -38,6 +38,10 @@
   };
 
   xdg.configFile = {
+    "nvim-lazy" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
+      recursive = true;
+    };
     "nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
       recursive = true;

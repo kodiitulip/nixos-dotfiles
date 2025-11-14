@@ -17,4 +17,5 @@ with pkgs;
   glfw3-minecraft
   libGL
   sops
+  fd
 ]

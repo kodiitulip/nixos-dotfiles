@@ -13,18 +13,23 @@
       friendly-snippets.enable = true;
 
       mapings = { };
+      setupOpts = {
+        fuzzy.implementation = "prefer_rust_with_warning";
+        cmdline.keymap.preset = "cmdline";
+        cmdline.keymap = {
+          "<Right>" = false;
+          "<Left>" = false;
+        };
+        keymap = {
+          preset = "enter";
+          "<C-y>" = "select_and_accept";
+        };
+      };
+      sourcePlugins.lspkind.enable = true;
 
-      setupOpts.fuzzy.implementation = "prefer_rust_with_warning";
     };
 
     keymaps = [
-      {
-        key = "<leader>fe";
-        mode = "n";
-        action = "function() Snacks.explorer({ cwd = LazyVim.root() }) end";
-        desc = "Explorer Snacks (root dir)";
-        lua = true;
-      }
     ];
   };
 }

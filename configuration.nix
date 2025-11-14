@@ -132,12 +132,9 @@
     nerd-fonts.fira-code
   ];
 
-  # services.openssh.enable = true;
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
 
   system.stateVersion = "25.05"; # WARN: DO NOT CHANGE! NO NEED TO!
-
 }

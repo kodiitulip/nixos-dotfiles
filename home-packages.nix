@@ -43,5 +43,4 @@ with pkgs;
   kdePackages.partitionmanager
   kdePackages.kdialog
   packwiz
-  stremio
 ]
