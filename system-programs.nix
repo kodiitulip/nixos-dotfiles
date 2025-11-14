@@ -43,4 +43,7 @@
     enable = true;
     defaultEditor = true;
   };
+
+  appimage.enable = true;
+  appimage.binfmt = true;
 }

@@ -7,6 +7,9 @@
   ...
 }:
 
+let 
+  steam-art-manager = import ./custom-packages/steam-art-manager.nix { inherit pkgs; };
+in 
 {
   home = {
     username = "kodie";
