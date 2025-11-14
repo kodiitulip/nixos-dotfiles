@@ -15,7 +15,8 @@ with pkgs;
   nodejs
   gcc
   rustup
-  godotPackages_4_5.godot
+  godot
+  godotPackages.export-template
   tree-sitter
   python3
   uv
@@ -42,4 +43,5 @@ with pkgs;
   kdePackages.partitionmanager
   kdePackages.kdialog
   packwiz
+  stremio
 ]

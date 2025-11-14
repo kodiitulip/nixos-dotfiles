@@ -33,6 +33,10 @@
   yazi.enable = true;
   npm.enable = true;
   lazygit.enable = true;
+  lazygit.settings = {
+    os.openCommand = "sh -c \"xdg-open {{filename}} >/dev/null\"";
+    os.openLink = "sh -c \"xdg-open {{link}} >/dev/null\"";
+  };
   xwayland.enable = true;
 
   neovim = {

@@ -54,6 +54,10 @@ alias 3.. = z ../../..
 alias 4.. = z ../../../..
 alias 5.. = z ../../../../..
 
+def config-nix [] {
+  cd ~/nixos-dotfiles/; nvim; cd -
+}
+
 alias garbage-collect = sudo nix-collect-garbage -d
 alias rebuild = sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos
 
@@ -120,47 +124,45 @@ $env.TRANSIENT_PROMPT_MULTILINE_INDICATOR = "∙ "
 $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ""
 
 let direnv_hook_old = { ||
-    if (which direnv | is-empty) {
-        return
-    }
-    direnv export json | from json | default {} | load-env
-    # $env.PATH = $env.PATH | parse --regex ('' + `((?:(?:"(?:(?:\\[\\"])|.)*?")|(?:'.*?')|[^` + (char env_sep) + `]*)*)`) | each {|x| $x.capture0 | parse --regex `(?:"((?:(?:\\"|.))*?)")|(?:'(.*?)')|([^'"]*)` | each {|y| if ($y.capture0 != "") { $y.capture0 | str replace -ar `\\([\\"])` `$1` } else if ($y.capture1 != "") { $y.capture1 } else $y.capture2 } | str join }
-    # $env.PATH = $env.PATH | split row (char env_sep)
+  if (which direnv | is-empty) {
+      return
+  }
+  direnv export json | from json | default {} | load-env
 }
 
 def direnv_hook [] {
-    [
-        {
-            condition: {|before, after| ($before != $after) and ($after | path join .env.yaml | path exists) }
-            code: "
-                open .env.yaml | load-env
-            "
-        }
-        {
-            condition: {|before, after| ($before != $after) and ($after | path join '.env' | path exists) }
-            code: "
-                open .env
-                | lines
-                | parse -r '(?P<k>.+?)=(?P<v>.+)'
-                | reduce -f {} {|x, acc| $acc | upsert $x.k $x.v}
-                | load-env
-            "
-        }
-        {
-          condition: {|before, after| ($before != $after) and ($after | path join '.envrc' | path exists) }
-          code: $direnv_hook_old
-        }
-    ]
+  [
+    {
+      condition: {|before, after| ($before != $after) and ($after | path join .env.yaml | path exists) }
+      code: "
+      open .env.yaml | load-env
+      "
+    }
+    {
+      condition: {|before, after| ($before != $after) and ($after | path join '.env' | path exists) }
+      code: "
+      open .env
+      | lines
+      | parse -r '(?P<k>.+?)=(?P<v>.+)'
+      | reduce -f {} {|x, acc| $acc | upsert $x.k $x.v}
+      | load-env
+      "
+    }
+    {
+      condition: {|before, after| ($before != $after) and ($after | path join '.envrc' | path exists) }
+      code: $direnv_hook_old
+    }
+  ]
 }
 
 export-env {
-    $env.config = ( $env.config | upsert hooks.env_change.PWD { |config|
-        let o = ($config | get -o hooks.env_change.PWD)
-        let val = (direnv_hook)
-        if $o == null {
-            $val
-        } else {
-            $o | append $val
-        }
-    })
+  $env.config = ( $env.config | upsert hooks.env_change.PWD { |config|
+    let o = ($config | get -o hooks.env_change.PWD)
+    let val = (direnv_hook)
+    if $o == null {
+      $val
+    } else {
+      $o | append $val
+    }
+  })
 }
