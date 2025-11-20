@@ -18,4 +18,5 @@ with pkgs;
   libGL
   sops
   fd
+  cabextract
 ]

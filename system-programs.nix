@@ -46,4 +46,27 @@
 
   appimage.enable = true;
   appimage.binfmt = true;
+
+  nix-ld.enable = true;
+  nix-ld.libraries = with pkgs; [
+    fontconfig
+    wayland
+    libx11
+    libdecor
+    libxcursor
+    libxext
+    libxfixes
+    libxi
+    libxinerama
+    libxkbcommon
+    libxrandr
+    libxrender
+    alsa-lib
+    libGL
+    vulkan-loader
+    fontconfig.lib
+    libpulseaudio
+    speechd-minimal
+    udev
+  ];
 }

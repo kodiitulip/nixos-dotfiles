@@ -43,4 +43,5 @@ with pkgs;
   kdePackages.partitionmanager
   kdePackages.kdialog
   packwiz
+  aseprite
 ]

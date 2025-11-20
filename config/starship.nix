@@ -31,7 +31,7 @@
       disabled = false;
       format = "[](fg:overlay)[ $symbol ]($style)[](fg:overlay) ";
       style = "bg:overlay fg:iris";
-      symbol = "󰧱";
+      symbol = "";
     };
     directory = {
       format = "[](fg:overlay)[ $path ]($style)[](fg:overlay) ";
