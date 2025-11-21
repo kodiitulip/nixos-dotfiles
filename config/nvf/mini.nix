@@ -13,7 +13,6 @@
     icons.enable = true;
     snippets.enable = true;
     surround.enable = true;
-
   };
 
 }

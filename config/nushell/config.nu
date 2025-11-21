@@ -55,8 +55,21 @@ alias 4.. = z ../../../..
 alias 5.. = z ../../../../
 def lazyvim [] {$env.NVIM_APPNAME = "nvim-lazy"; nvim}
 
-def config-nix [] {
-  cd ~/nixos-dotfiles/; nvim; cd -
+def config-nix [--vscodium (-v)] {
+  if $vscodium {
+    cd ~/nixos-dotfiles/; codium .; cd -
+  } else {
+    cd ~/nixos-dotfiles/; nvim; cd -
+  }
+}
+
+def bumpversion-packwiz [version: string] {
+  if (not ('./pack.toml' | path exists)) {
+    print "No pack.toml found"
+    return
+  }
+  mv ./pack.toml ./pack.toml.bak
+  cat ./pack.toml.bak | str replace -r 'version = "(.*)"' $'version = "($version)"' | save ./pack.toml
 }
 
 alias garbage-collect = sudo nix-collect-garbage -d

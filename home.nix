@@ -11,6 +11,10 @@ let
   steam-art-manager = import ./custom-packages/steam-art-manager.nix { inherit pkgs; };
 in 
 {
+  imports = [
+    ./config/lf.nix
+  ];
+
   home = {
     username = "kodie";
     homeDirectory = "/home/kodie";
@@ -46,16 +50,16 @@ in
       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
       recursive = true;
     };
-    # "nvim" = {
-    #   source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
-    #   recursive = true;
-    # };
     "kitty" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/kitty/";
       recursive = true;
     };
     "yazi" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/yazi/";
+      recursive = true;
+    };
+    "bat/themes" = {
+      source = "./bat/themes/";
       recursive = true;
     };
   };

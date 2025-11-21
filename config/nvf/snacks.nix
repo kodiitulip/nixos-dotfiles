@@ -24,7 +24,7 @@
       {
         key = "<leader>e";
         mode = "n";
-        action = ''function() Snacks.explorer() end'';
+        action = "function() Snacks.explorer() end";
         desc = "Explorer Snacks (cwd)";
         lua = true;
       }
@@ -39,9 +39,9 @@
       {
         key = "<leader>/";
         mode = "n";
-        action = ''function() Snacks.picker.grep() end'';
+        action = "function() Snacks.picker.grep() end";
         lua = true;
-        desc = "Smart Find Files";
+        desc = "Smart Find Text";
         noremap = false;
       }
     ];
