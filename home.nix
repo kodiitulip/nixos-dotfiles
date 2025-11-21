@@ -59,7 +59,7 @@ in
       recursive = true;
     };
     "bat/themes" = {
-      source = "./bat/themes/";
+      source = ./config/bat/themes;
       recursive = true;
     };
   };
