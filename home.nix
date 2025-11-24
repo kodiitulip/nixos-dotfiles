@@ -7,9 +7,6 @@
   ...
 }:
 
-let 
-  steam-art-manager = import ./custom-packages/steam-art-manager.nix { inherit pkgs; };
-in 
 {
   imports = [
     ./config/lf.nix

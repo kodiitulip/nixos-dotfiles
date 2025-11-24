@@ -4,6 +4,9 @@
   inputs,
   ...
 }:
+let
+  bun2nix = inputs.bun2nix.packages.${system}.default;
+in
 with pkgs;
 [
   gh
@@ -28,7 +31,7 @@ with pkgs;
   easyeffects
   inputs.playit-nixos-module.packages."${system}".default
   protonup-qt
-  itch
+  # itch
   vscodium-fhs
   jetbrains.idea-community
   kdePackages.kate
@@ -44,4 +47,5 @@ with pkgs;
   kdePackages.kdialog
   packwiz
   aseprite
+  (callPackage ./custom-packages/pngtube-remix.nix {})
 ]

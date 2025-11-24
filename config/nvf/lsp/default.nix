@@ -2,6 +2,9 @@
 
 {
   imports = [
+    ./nix.nix
+    ./rust.nix
+    ./typescript.nix
   ];
   vim.lsp = {
     lspkind.enable = true;
@@ -10,6 +13,8 @@
     trouble.setupOpts = {
       modes.lsp.win.position = "right";
     };
+                lspconfig.enable = true;
+                formatOnSave = true;
   };
 
   vim.keymaps = [

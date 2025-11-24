@@ -19,4 +19,5 @@ with pkgs;
   sops
   fd
   cabextract
+  nixfmt
 ]
