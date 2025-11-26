@@ -25,12 +25,9 @@
       };
     };
   };
-  starship.enable = true;
   kdeconnect.enable = true;
   steam.enable = true;
   steam.protontricks.enable = true;
-  zoxide.enable = true;
-  yazi.enable = true;
   npm.enable = true;
   lazygit.enable = true;
   lazygit.settings = {

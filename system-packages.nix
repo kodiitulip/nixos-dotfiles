@@ -2,7 +2,6 @@
 with pkgs;
 [
   kitty
-  bat
   wl-clipboard-rs
   bun
   zip

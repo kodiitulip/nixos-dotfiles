@@ -1,5 +1,5 @@
 {
-  description = "Rnning Godot prebuitl binaries with this falke and direnv";
+  description = "Running Godot prebuilt binaries with this flake and direnv";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

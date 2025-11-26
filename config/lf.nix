@@ -36,7 +36,7 @@
       "g/" = "/";
 
       ee = "editor-open";
-      V = ''''$${pkgs.bat}/bin/bat --paging=always --theme "Rose-Pine" "$f"'';
+      V = ''''$${pkgs.bat}/bin/bat "$f"'';
 
       D = "trash";
 
@@ -52,43 +52,33 @@
 
     extraConfig =
       let 
-        previewer = 
-          pkgs.writeShellScriptBin "pv.sh" ''
-            file=$1
-            w=$2
-            h=$3
-            x=$4
-            y=$5
-
-            if [[ "$( ${pkgs.file}/bin/file -Lb --mime-type "$file" )" =~ ^image ]]; then
-              ${pkgs.kitty}/bin/kitty +kitten icat --silent --stdin no --transfer-mode file --place "''${w}x''${h}@''${x}x''${y}" "$file" < /dev/null > /dev/tty
-              exit 1
-            fi
-
-            ${pkgs.pistol}/bin/pistol "$file"
-          '';
-          cleaner = pkgs.writeShellScriptBin "clean.sh" ''
-            ${pkgs.kitty}/bin/kitty +kitten icat --clear --stdin no --silent --transfer-mode file < /dev/null > /dev/tty
-          '';
+        cleaner = pkgs.writeShellScriptBin "clean.sh" ''
+          #!/usr/bin/env sh
+          ${pkgs.kitty}/bin/kitty +kitten icat --clear --stdin no --silent --transfer-mode file < /dev/null > /dev/tty
+        '';
       in 
       ''
         set cleaner ${cleaner}/bin/clean.sh
-        set previewer ${previewer}/bin/pv.sh
       '';
 
-    # previewer = {
-    #   keybinding = "i";
-    #   source = pkgs.writeShellScript "pv.sh" ''
-    #     #!/bin/sh
+    previewer = {
+      keybinding = "i";
+      source = pkgs.writeShellScript "pv.sh" ''
+        #!/usr/bin/env sh
 
-    #     case "$1" in
-    #         *.tar*) ${pkgs.gnutar}/bin/tar tf "$1";;
-    #         *.zip) ${pkgs.unzip}/bin/unzip -l "$1";;
-    #         *.rar) ${pkgs.unrar}/bin/unrar l "$1";;
-    #         *.7z) ${pkgs.p7zip}/bin/7z l "$1";;
-    #         *) ${pkgs.bat}/bin/bat --paging=always --theme=rose-pine "$1";;
-    #     esac
-    #   '';
-    # };
+        file=$1
+        w=$2
+        h=$3
+        x=$4
+        y=$5
+
+        if [[ "$( ${pkgs.file}/bin/file -Lb --mime-type "$file" )" =~ ^image ]]; then
+          ${pkgs.kitty}/bin/kitty +kitten icat --silent --stdin no --transfer-mode file --place "''${w}x''${h}@''${x}x''${y}" "$file" < /dev/null > /dev/tty
+          exit 1
+        fi
+
+        ${pkgs.pistol}/bin/pistol "$file"
+      '';
+    };
   };
 }

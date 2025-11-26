@@ -10,6 +10,8 @@
 {
   imports = [
     ./config/lf.nix
+    ./config/starship.nix
+    ./config/nushell.nix
   ];
 
   home = {
@@ -21,19 +23,28 @@
   };
   programs = {
     home-manager.enable = true;
-    nushell = {
+    
+    bat = {
       enable = true;
-      shellAliases = {
-        btw = "echo I use NixOS, btw";
-        vi = "nvim";
+      config = {
+        paging = "always";
+        theme = "Rose-Pine";
       };
-      configFile.source = ./config/nushell/config.nu;
+    };
+    zoxide = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
+    direnv = {
+      enable = true;
+      enableNushellIntegration = true;
+      nix-direnv.enable = true;
     };
     carapace = {
       enable = true;
       enableNushellIntegration = true;
     };
-    starship = import ./config/starship.nix;
+
     nvf.enable = true;
     nvf.settings = import ./config/nvf { inherit pkgs lib; };
     neovim = {
@@ -49,10 +60,6 @@
     };
     "kitty" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/kitty/";
-      recursive = true;
-    };
-    "yazi" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/yazi/";
       recursive = true;
     };
     "bat/themes" = {
