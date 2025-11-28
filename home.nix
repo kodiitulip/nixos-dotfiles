@@ -7,6 +7,10 @@
   ...
 }:
 
+let 
+  godot-templates-version = builtins.replaceStrings [ "-" ] [ "." ] pkgs.godot-export-templates-bin.version;
+  godot-templates-path = ''${pkgs.godot-export-templates-bin}/share/godot/export-templates/${godot-templates-version}'';
+in 
 {
   imports = [
     ./config/lf.nix
@@ -21,7 +25,7 @@
 
     packages = import ./home-packages.nix { inherit pkgs system inputs; };
 
-    file.".local/share/godot/export_templates/${builtins.replaceStrings [ "-" ] [ "." ] pkgs.godot_4-export-templates.version}".source = pkgs.godot_4-export-templates;
+    file.".local/share/godot/export_templates/${godot-templates-version}".source = godot-templates-path;
   };
   programs = {
     home-manager.enable = true;
