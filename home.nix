@@ -7,15 +7,12 @@
   ...
 }:
 
-let 
-  godot-templates-version = builtins.replaceStrings [ "-" ] [ "." ] pkgs.godot-export-templates-bin.version;
-  godot-templates-path = ''${pkgs.godot-export-templates-bin}/share/godot/export-templates/${godot-templates-version}'';
-in 
 {
   imports = [
     ./config/lf.nix
     ./config/starship.nix
     ./config/nushell.nix
+    ./config/obs.nix
   ];
 
   home = {
@@ -25,7 +22,10 @@ in
 
     packages = import ./home-packages.nix { inherit pkgs system inputs; };
 
-    file.".local/share/godot/export_templates/${godot-templates-version}".source = godot-templates-path;
+    file.".local/share/godot/export_templates" = {
+      source = "${pkgs.godot-export-templates-bin}/share/godot/export_templates";
+      recursive = true;
+    };
   };
   programs = {
     home-manager.enable = true;

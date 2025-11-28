@@ -25,7 +25,7 @@ with pkgs;
   uv
   lua
   temurin-bin
-  obs-studio
+  # obs-studio
   inputs.zen-browser.packages."${system}".default
   vesktop
   easyeffects
