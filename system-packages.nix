@@ -19,4 +19,7 @@ with pkgs;
   fd
   cabextract
   nixfmt
+  jellyfin-ffmpeg
+  libinput
+  trashy
 ]

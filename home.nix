@@ -20,6 +20,8 @@
     stateVersion = "25.05";
 
     packages = import ./home-packages.nix { inherit pkgs system inputs; };
+
+    file.".local/share/godot/export_templates/${builtins.replaceStrings [ "-" ] [ "." ] pkgs.godot_4-export-templates.version}".source = pkgs.godot_4-export-templates;
   };
   programs = {
     home-manager.enable = true;

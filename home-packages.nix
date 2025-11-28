@@ -19,7 +19,7 @@ with pkgs;
   gcc
   rustup
   godot
-  godotPackages.export-template
+  # godotPackages.export-template
   tree-sitter
   python3
   uv

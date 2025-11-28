@@ -8,13 +8,39 @@
     enable = true;
 
     commands = {
-      dragon-out = ''%${pkgs.dragon-drop}/bin/xdragon -a -x "$fx"'';
+      z = ''
+        %{{
+          result="$(${pkgs.zoxide}/bin/zoxide query --exclude "$PWD" "$@" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+          lf -remote "send $id cd \"$result\""
+        }}
+      '';
+      zi = ''
+        ''${{
+          result="$(${pkgs.zoxide}/bin/zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+          lf -remote "send $id cd \"$result\""
+        }}
+      '';
+      on-cd = ''
+        &{{
+          fmt="$(STARSHIP_SHELL= ${pkgs.starship}/bin/starship prompt | sed 's/\\/\\\\/g;s/"/\\"/g')"
+          lf -remote "send $id set promptfmt \"$fmt\""
+          ${pkgs.zoxide}/bin/zoxide add "$PWD"
+        }}
+      '';
+      dragon-out = ''%${pkgs.dragon-drop}/bin/dragon-drop -a -x "$fx"'';
       editor-open = ''$$EDITOR $f'';
       mkdir = ''
         ''${{
           printf "Directory Name: "
           read DIR
           mkdir $DIR
+        }}
+      '';
+      trash = ''
+        ''${{
+          echo "Delete Files? [y/N]: "
+          read ans
+          [ $ans == 'y' ] && %${pkgs.trashy}/bin/trashy -- $fx || echo "Deleting canceled"
         }}
       '';
     };
@@ -34,11 +60,15 @@
       "g~" = "cd";
       gh = "cd";
       "g/" = "/";
+      gd = "cd ~/Downloads";
+      gp = "cd ~/Projects";
 
       ee = "editor-open";
       V = ''''$${pkgs.bat}/bin/bat "$f"'';
 
-      D = "trash";
+      d = "";
+      dd = "delete";
+      dD = "trash";
 
     };
 
