@@ -3,7 +3,17 @@
   stdenv,
   fetchFromGitHub,
   godot,
+  godot-export-templates-bin,
   nix-update-script,
+  libglvnd,
+  libXinerama,
+  libXcursor,
+  libXext,
+  libXrandr,
+  libXrender,
+  libX11,
+  libXi,
+  libXfixes,
 }:
 
 let
@@ -20,10 +30,18 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-2E+B8/eM1I2g1sqwA50rxUvqNw/aehYJaNVmPahHqXA=";
   };
 
-  strictDeps = true;
+  nativeBuildInputs = [ godot ];
 
-  nativeBuildInputs = [
-    godot
+  buildInputs = [
+    libglvnd
+    libXinerama
+    libXcursor
+    libXext
+    libXrandr
+    libXrender
+    libX11
+    libXi
+    libXfixes
   ];
 
   preConfigure = ''
@@ -38,11 +56,13 @@ stdenv.mkDerivation (finalAttrs: {
   buildPhase = ''
     runHook preBuild
 
-    export HOME=$(mktemp -d)
-    mkdir -p $HOME/.local/share/godot/
-    ln -s "${godot.export-template}"/share/godot/export_templates "$HOME"/.local/share/godot/
-    mkdir -p build
-    godot4 --headless --export-release "${export_preset}" ./build/pngtube-remix
+    export HOME=$TMPDIR
+    mkdir -vp $HOME/.local/share/godot
+    ln -s "${godot-export-templates-bin}"/share/godot/export_templates "$HOME"/.local/share/godot
+
+    mkdir -vp build
+    godot -v --headless --editor --quit --import ${finalAttrs.src}/project.godot
+    godot -v --headless --export-release "${export_preset}" build/pngtube-remix
 
     runHook postBuild
   '';
@@ -53,7 +73,7 @@ stdenv.mkDerivation (finalAttrs: {
     install -D -m 755 -t $out/libexec ./build/pngtube-remix
     install -D -m 644 -t $out/libexec ./build/pngtube-remix.pck
 
-    cat << EOF > ./pngtube-remix.desktop
+    cat << EOF > ./build/pngtube-remix.desktop
     [Desktop Entry]
     Name=PNGTube-Remix
     GenericName=2D PNG Tuber tool
@@ -68,12 +88,23 @@ stdenv.mkDerivation (finalAttrs: {
     MimeType=image/png;image/jpeg;image/svg+xml;image/psd;application/x-pngremix;application/x-save;
     EOF
 
-    install -D -m 644 -t $out/share/applications ./pngtube-remix.desktop
+    install -D -m 644 -t $out/share/applications ./build/pngtube-remix.desktop
     install -D -m 644 -T ./PicklesSurprised.png $out/share/icons/hicolor/256x256/apps/pngtube-remix.png
     install -d -m 755 $out/bin
     ln -s $out/libexec/pngtube-remix $out/bin/pngtube-remix
 
     runHook postInstall
+  '';
+
+  fixupPhase = ''
+    runHook preFixup
+
+    patchelf \
+      --set-interpreter '${stdenv.cc.bintools.dynamicLinker}' \
+      --set-rpath ${lib.makeLibraryPath finalAttrs.buildInputs} \
+      $out/libexec/pngtube-remix
+
+    runHook postFixup
   '';
 
   passthru.updateScript = nix-update-script { };
@@ -83,12 +114,8 @@ stdenv.mkDerivation (finalAttrs: {
     description = "A PNGTube (PuppeTube/ PaperDoll-Tube) software made using Godot!";
     changelog = "https://github.com/MudkipWorld/PNGTuber-Remix/releases/tag/${finalAttrs.src.rev}";
     license = licenses.mit;
-    platforms = [
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-linux"
-    ];
-    maintainers = [ "kodiitulip" ];
+    platforms = [ "x86_64-linux" ];
+    maintainers = [ ];
     mainProgram = "pngtube-remix";
   };
 })
