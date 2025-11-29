@@ -19,6 +19,7 @@ with pkgs;
   gcc
   rustup
   godot
+  godot-mono
   # godotPackages.export-template
   tree-sitter
   python3
@@ -47,5 +48,4 @@ with pkgs;
   kdePackages.kdialog
   packwiz
   aseprite
-  (callPackage ./custom-packages/pngtube-remix.nix {})
 ]

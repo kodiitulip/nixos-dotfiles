@@ -15,6 +15,7 @@ with pkgs;
   lutris
   glfw3-minecraft
   libGL
+  libuiohook
   sops
   fd
   cabextract
