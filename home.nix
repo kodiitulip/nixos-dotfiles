@@ -57,6 +57,8 @@
       enable = true;
       defaultEditor = true;
     };
+
+    lutris.enable = true;
   };
 
   xdg.configFile = {

@@ -40,7 +40,6 @@
     environmentVariables = {
       VISUAL = "nvim";
       EDITOR = "nvim";
-      RUSTC_WRAPPER = "sccache";
     };
 
     settings = {

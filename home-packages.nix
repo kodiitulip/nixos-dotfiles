@@ -18,6 +18,7 @@ with pkgs;
   nodejs
   gcc
   rustup
+  sccache
   godot
   godot-mono
   # godotPackages.export-template
@@ -48,4 +49,5 @@ with pkgs;
   kdePackages.kdialog
   packwiz
   aseprite
+  libreoffice-qt-fresh
 ]

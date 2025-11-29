@@ -12,7 +12,6 @@ with pkgs;
   gamemode
   wine-wayland
   winetricks
-  lutris
   glfw3-minecraft
   libGL
   libuiohook

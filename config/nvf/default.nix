@@ -36,7 +36,7 @@
       confirm = true;
       cursorline = true;
       expandtab = true;
-      fillchars =''foldopen:;foldclose:;fold:\ ;foldsep:\ ;diff:/;eob: ;'';
+      fillchars =''foldopen:,foldclose:,fold:\ ,foldsep:\ ,diff:/,eob: '';
       foldlevel = 99;
       foldmethod = "indent";
       foldtext = "";
