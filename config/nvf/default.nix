@@ -36,7 +36,7 @@
       confirm = true;
       cursorline = true;
       expandtab = true;
-      fillchars =''foldopen:,foldclose:,fold:\ ,foldsep:\ ,diff:/,eob: '';
+      fillchars =''eob: '';
       foldlevel = 99;
       foldmethod = "indent";
       foldtext = "";
@@ -46,16 +46,16 @@
       relativenumber = true;
       ruler = false;
       scrolloff = 4;
-      sessionoptions = [
-        "buffers"
-        "curdir"
-        "tabpages"
-        "winsize"
-        "help"
-        "globals"
-        "skiprtp"
-        "folds"
-      ];
+      # sessionoptions = [
+      #   "buffers"
+      #   "curdir"
+      #   "tabpages"
+      #   "winsize"
+      #   "help"
+      #   "globals"
+      #   "skiprtp"
+      #   "folds"
+      # ];
       shiftround = true;
       shiftwidth = 2;
       showmode = false;
@@ -64,10 +64,10 @@
       smartcase = true;
       smartindent = true;
       smoothscroll = true;
-      spelllang = [
-        "en"
-        "pt_br"
-      ];
+      # spelllang = [
+      #   "en"
+      #   "pt_br"
+      # ];
       splitbelow = true;
       splitkeep = "screen";
       splitright = true;

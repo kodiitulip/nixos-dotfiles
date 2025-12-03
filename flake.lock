@@ -255,6 +255,7 @@
         "nvf": "nvf",
         "playit-nixos-module": "playit-nixos-module",
         "sops-nix": "sops-nix",
+        "vintagestory-nix": "vintagestory-nix",
         "zen-browser": "zen-browser"
       }
     },
@@ -305,6 +306,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "vintagestory-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1764453677,
+        "narHash": "sha256-qchqp72f1xnronxAug0ncw+d/JlHMVBIqurlzP3FPCw=",
+        "owner": "PierreBorine",
+        "repo": "vintagestory-nix",
+        "rev": "abfa101f23e3d343c0ebcd079c47e27721c9b08c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PierreBorine",
+        "repo": "vintagestory-nix",
         "type": "github"
       }
     },

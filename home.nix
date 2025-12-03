@@ -9,6 +9,7 @@
 
 {
   imports = [
+    inputs.vintagestory-nix.homeModules.default
     ./config/lf.nix
     ./config/starship.nix
     ./config/nushell.nix
@@ -29,7 +30,7 @@
   };
   programs = {
     home-manager.enable = true;
-    
+
     bat = {
       enable = true;
       config = {
@@ -59,6 +60,18 @@
     };
 
     lutris.enable = true;
+
+    vs-launcher = {
+      enable = true;
+      settings.gameVersions = [
+        # pkgs.vintagestoryPackages.latest
+        (pkgs.callPackage ./custom-packages/vintagestory-cracked.nix {
+          version = "1.21.5";
+          hash = "sha256-jsAuu5676DXlO7tRJj5d8At/J2W3/M+zt1rpNLCIJaM=";
+        })
+      ];
+    };
+
   };
 
   xdg.configFile = {

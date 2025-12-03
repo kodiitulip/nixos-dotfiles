@@ -23,6 +23,10 @@
     nvf.url = "github:notashelf/nvf";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    vintagestory-nix = {
+      url = "github:PierreBorine/vintagestory-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -31,7 +35,6 @@
       home-manager,
       nvf,
       playit-nixos-module,
-      sops-nix,
       ...
     }@inputs:
     let

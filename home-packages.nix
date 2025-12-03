@@ -4,36 +4,17 @@
   inputs,
   ...
 }:
-let
-  bun2nix = inputs.bun2nix.packages.${system}.default;
-in
 with pkgs;
 [
   gh
   ripgrep
-  nil
-  nixpkgs-fmt
-  nixfmt-rfc-style
-  statix
-  nodejs
-  gcc
-  rustup
-  sccache
   godot
-  godot-mono
-  # godotPackages.export-template
-  tree-sitter
-  python3
-  uv
-  lua
   temurin-bin
-  # obs-studio
   inputs.zen-browser.packages."${system}".default
   vesktop
   easyeffects
   inputs.playit-nixos-module.packages."${system}".default
   protonup-qt
-  # itch
   vscodium-fhs
   jetbrains.idea-community
   kdePackages.kate
@@ -42,7 +23,6 @@ with pkgs;
   blockbench
   blender
   heroic
-  # lutris
   krita
   direnv
   kdePackages.partitionmanager
@@ -50,4 +30,10 @@ with pkgs;
   packwiz
   aseprite
   libreoffice-qt-fresh
+  hydralauncher
+  youtube-music
+
+  vintagestoryPackages.latest
+  vintagestoryPackages.rustique
+  vintagestoryPackages.vs-launcher
 ]

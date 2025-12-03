@@ -6,6 +6,8 @@
 }:
 
 {
+  nixpkgs.overlays = [ inputs.vintagestory-nix.overlays.default ];
+
   imports = [
     inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
@@ -101,6 +103,7 @@
       secretPath = config.sops.secrets.playitgg.path;
     };
 
+    qbittorrent.enable = true;
   };
 
   xdg.icons.fallbackCursorThemes = [ "breeze_cursors" ];
