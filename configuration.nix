@@ -43,8 +43,6 @@
   };
 
   security.polkit.enable = true;
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -147,10 +145,32 @@
 
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking = {
+    hostName = "nixos"; # Define your hostname.
+    networkmanager.enable = true;
+    nftables.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        80
+        443
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 4000;
+          to = 4007;
+        }
+        {
+          from = 8000;
+          to = 8010;
+        }
+        {
+          from = 25555;
+          to = 25565;
+        }
+      ];
+    };
+  };
 
   system.stateVersion = "25.05"; # WARN: DO NOT CHANGE! NO NEED TO!
 }

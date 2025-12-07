@@ -2,6 +2,7 @@
 with pkgs;
 [
   kitty
+  vlc
   wl-clipboard-rs
   zip
   unzip

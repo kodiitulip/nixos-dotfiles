@@ -64,11 +64,8 @@
     vs-launcher = {
       enable = true;
       settings.gameVersions = [
-        # pkgs.vintagestoryPackages.latest
-        (pkgs.callPackage ./custom-packages/vintagestory-cracked.nix {
-          version = "1.21.5";
-          hash = "sha256-jsAuu5676DXlO7tRJj5d8At/J2W3/M+zt1rpNLCIJaM=";
-        })
+        pkgs.vintagestoryPackages.latest
+        pkgs.vintagestoryPackages.v1-21-6-rc-1
       ];
     };
 
