@@ -3,13 +3,13 @@
   pkgs,
   system,
   inputs,
-  lib,
   ...
 }:
 
 {
   imports = [
     inputs.vintagestory-nix.homeModules.default
+    inputs.nixvim.homeModules.nixvim
     ./config/lf.nix
     ./config/starship.nix
     ./config/nushell.nix
@@ -52,12 +52,16 @@
       enableNushellIntegration = true;
     };
 
-    nvf.enable = true;
-    nvf.settings = import ./config/nvf { inherit pkgs lib; };
-    neovim = {
+    # nvf.enable = true;
+    # nvf.settings = import ./config/nvf { inherit pkgs lib; };
+    nixvim = {
       enable = true;
-      defaultEditor = true;
+      imports = [ ./config/nixvim ];
     };
+    # neovim = {
+    #   enable = true;
+    #   defaultEditor = true;
+    # };
 
     lutris.enable = true;
 

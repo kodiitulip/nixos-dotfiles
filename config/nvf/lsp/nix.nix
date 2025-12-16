@@ -79,14 +79,15 @@
         action = ''function() require("direnv").allow_direnv() end'';
         mode = "n";
         lua = true;
+        desc = "Direnv Allow";
       }
       {
         key = "<leader>Dr";
         action = ''function() require("direnv").check_direnv() end'';
         mode = "n";
         lua = true;
+        desc = "Reload Direnv";
       }
     ];
   };
 }
-

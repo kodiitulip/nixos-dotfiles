@@ -32,8 +32,11 @@ with pkgs;
   libreoffice-qt-fresh
   hydralauncher
   youtube-music
+  rose-pine-cursor
 
-  vintagestoryPackages.latest
+  # vintagestoryPackages.latest
   vintagestoryPackages.rustique
   vintagestoryPackages.vs-launcher
+
+  (callPackage ./custom-packages/steam-art-manager.nix {})
 ]

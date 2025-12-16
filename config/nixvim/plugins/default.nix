@@ -1,0 +1,28 @@
+{
+  imports = [
+    ./lsp
+    ./aerial.nix
+    ./autopairs.nix
+    ./autosave.nix
+    ./blink.nix
+    ./bufferline.nix
+    ./gitsigns.nix
+    ./hlchunk.nix
+    ./lazygit.nix
+    ./lualine.nix
+    ./direnv.nix
+    ./nix-develop.nix
+    ./noice.nix
+    ./neoscroll.nix
+    ./notify.nix
+    ./smear-cursor.nix
+    ./snacks.nix
+    ./toggleterm.nix
+    ./treesitter.nix
+    ./treesj.nix
+    ./ts-comments.nix
+    ./web-devicons.nix
+    ./whichkey.nix
+    ./yanky.nix
+  ];
+}

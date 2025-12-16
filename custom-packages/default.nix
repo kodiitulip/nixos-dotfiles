@@ -1,2 +1,2 @@
-# { pkgs ? import <nixpkgs> {} }:
-# pkgs.callPackage ./steam-art-manager.nix {}
+{ pkgs ? import <nixpkgs> {} }:
+pkgs.callPackage ./steam-art-manager.nix {}
