@@ -3,7 +3,6 @@
     ./lsp
     ./aerial.nix
     ./autopairs.nix
-    ./autosave.nix
     ./blink.nix
     ./bufferline.nix
     ./gitsigns.nix
@@ -15,6 +14,7 @@
     ./noice.nix
     ./neoscroll.nix
     ./notify.nix
+    ./rustaceanvim.nix
     ./smear-cursor.nix
     ./snacks.nix
     ./toggleterm.nix
@@ -24,5 +24,7 @@
     ./web-devicons.nix
     ./whichkey.nix
     ./yanky.nix
+    ./mini.nix
+    ./todo-comments.nix
   ];
 }

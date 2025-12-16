@@ -11,7 +11,7 @@
 
     opts = {
       number = true;
-      colorcolumn = "80";
+      # colorcolumn = "80";
       relativenumber = true;
       shiftwidth = 2;
       tabstop = 2;
@@ -26,6 +26,7 @@
       signcolumn = "yes";
       updatetime = 50;
       foldlevelstart = 99;
+      fillchars = ''eob: '';
     };
     extraPackages = with pkgs; [
       # base

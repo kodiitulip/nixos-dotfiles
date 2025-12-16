@@ -8,7 +8,7 @@ _: {
     {
       key = "<c-s>";
       mode = [ "i" ];
-      action = "<esc><cmd>w<cr>i";
+      action = "<esc><cmd>w<cr>";
     }
     {
       key = "<c-s>";

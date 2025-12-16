@@ -21,6 +21,7 @@
         lua_ls.enable = true;
         nil_ls.enable = true;
         ts_ls.enable = true;
+        rust_analyser.enable = true;
         marksman.enable = true;
         pyright.enable = true;
         jsonls.enable = true;

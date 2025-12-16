@@ -66,7 +66,7 @@
         silent = true;
         noremap = true;
       };
-      desc = "Snacks Explorer";
+      options.desc = "Snacks Explorer";
     }
     {
       key = "<leader>/";
@@ -94,7 +94,7 @@
         silent = true;
         noremap = true;
       };
-      desc = "Buffer Picker";
+      options.desc = "Buffer Picker";
     }
     {
       key = "<leader><leader>";
