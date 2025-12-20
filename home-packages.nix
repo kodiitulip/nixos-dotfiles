@@ -6,37 +6,44 @@
 }:
 with pkgs;
 [
+  # Misc
   gh
   ripgrep
-  godot
   temurin-bin
-  inputs.zen-browser.packages."${system}".default
-  vesktop
-  easyeffects
-  inputs.playit-nixos-module.packages."${system}".default
   protonup-qt
-  vscodium-fhs
-  jetbrains.idea-community
-  kdePackages.kate
-  prismlauncher
-  mindustry
-  blockbench
-  blender
-  heroic
-  krita
   direnv
   kdePackages.partitionmanager
   kdePackages.kdialog
-  packwiz
-  aseprite
-  libreoffice-qt-fresh
-  hydralauncher
-  youtube-music
   rose-pine-cursor
+  (callPackage ./custom-packages/steam-art-manager.nix { })
+  inputs.playit-nixos-module.packages."${system}".default
 
-  # vintagestoryPackages.latest
+  # Editors / IDEs
+  vscodium-fhs
+  jetbrains.idea-community
+  kdePackages.kate
+  poedit
+  godot
+
+  # Art / 3D Modeling
+  krita
+  aseprite
+  blockbench
+  blender
+
+  # Games
+  prismlauncher
+  mindustry
+  heroic
+  hydralauncher
+  rimsort
   vintagestoryPackages.rustique
   vintagestoryPackages.vs-launcher
 
-  (callPackage ./custom-packages/steam-art-manager.nix {})
+  # Daily Utils
+  vesktop
+  easyeffects
+  youtube-music
+  libreoffice-qt-fresh
+  inputs.zen-browser.packages."${system}".default
 ]

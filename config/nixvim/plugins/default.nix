@@ -21,10 +21,10 @@
     ./treesitter.nix
     ./treesj.nix
     ./ts-comments.nix
-    ./web-devicons.nix
     ./whichkey.nix
     ./yanky.nix
     ./mini.nix
     ./todo-comments.nix
+    ./flash.nix
   ];
 }

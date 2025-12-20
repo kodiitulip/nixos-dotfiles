@@ -127,7 +127,7 @@
         };
 
         formatters = {
-          nufmt.command = lib.getExe pkgs.nufmt;
+          nufmt.command = "${lib.getExe pkgs.nufmt}";
           black.command = "${lib.getExe pkgs.black}";
           isort.command = "${lib.getExe pkgs.isort}";
           nixfmt-rfc-style.command = "${lib.getExe pkgs.nixfmt-rfc-style}";

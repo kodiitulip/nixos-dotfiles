@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   plugins = {
     bufferline = {
@@ -6,12 +7,18 @@
         options = {
           diagnostics = "nvim_lsp";
           mode = "buffers";
+          close_command = lib.nixvim.utils.mkRaw ''function(n) Snacks.bufdelete(n) end'';
+          right_mouse_command = lib.nixvim.utils.mkRaw ''function(n) Snacks.bufdelete(n) end'';
+          always_show_bufferline = false;
 
-          close_icon = " ";
-          buffer_close_icon = "󰱝 ";
-          modified_icon = "󰔯 ";
+          close_icon = " ";
+          buffer_close_icon = " ";
+          modified_icon = " ";
 
           offsets = [
+            {
+              filetype = "snacks_layout_box";
+            }
             {
               filetype = "neo-tree";
               text = "Neo-tree";
@@ -67,6 +74,15 @@
       action = "<cmd>bdelete<cr>";
       options = {
         desc = "Delete buffer";
+      };
+    }
+
+    {
+      mode = "n";
+      key = "<leader>br";
+      action = "<cmd>BufferLineCloseRight<cr>";
+      options = {
+        desc = "Delete buffers to the right";
       };
     }
 

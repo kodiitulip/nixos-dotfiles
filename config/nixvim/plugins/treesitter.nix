@@ -1,9 +1,9 @@
-_:
-{
+_: {
   plugins.treesitter = {
     enable = true;
-		
+
     settings.indent.enable = true;
+    settings.highlight.enable = true;
   };
 
   plugins.treesitter-textobjects = {

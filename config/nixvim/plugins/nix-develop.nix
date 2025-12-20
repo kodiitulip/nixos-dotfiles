@@ -1,7 +1,7 @@
 {
   plugins.nix-develop = {
     enable = true;
-    
+
     ignoredVariables = {
       BASHOPTS = true;
       HOME = true;
@@ -26,9 +26,10 @@
       XDG_DATA_DIRS = ":";
     };
   };
+  plugins.nix.enable = true;
   keymaps = [
     {
-      key = "<leader>nd";
+      key = "<leader>cnd";
       mode = [ "n" ];
       action = "<cmd>NixDevelop<CR>";
     }

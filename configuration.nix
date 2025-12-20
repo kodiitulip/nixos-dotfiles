@@ -102,6 +102,13 @@
     };
 
     qbittorrent.enable = true;
+
+    sunshine = {
+      enable = true;
+      autoStart = true;
+      capSysAdmin = true;
+      openFirewall = true;
+    };
   };
 
   xdg.icons.fallbackCursorThemes = [ "breeze_cursors" ];

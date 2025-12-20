@@ -5,6 +5,7 @@
       disable_filetype = [
         "TelescopePrompt"
         "vim"
+        "snacks_picker_list"
       ];
     };
   };

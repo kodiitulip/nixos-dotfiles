@@ -1,9 +1,8 @@
 {
-  lib,
   appimageTools,
   fetchurl,
 }:
-let 
+let
   pname = "steam-art-manager";
   version = "v3.11.1";
 
@@ -16,7 +15,7 @@ let
     url = "https://github.com/Tormak9970/Steam-Art-Manager/releases/download/${version}/steam-art-manager.AppImage";
     hash = "sha256-qBwYOhmwfMoTrwUGh+UCVzL/H2n5pKOYbvvoJ18PmWY=";
   };
-in 
+in
 appimageTools.wrapType2 {
   inherit pname version src;
 
@@ -37,3 +36,4 @@ appimageTools.wrapType2 {
     EOF
   '';
 }
+

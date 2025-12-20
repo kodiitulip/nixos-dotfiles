@@ -1,9 +1,10 @@
-{ pkgs, config, ... }:
+_:
 
 {
   programs.starship = {
     enable = true;
     enableNushellIntegration = true;
+    enableBashIntegration = true;
     settings = {
       add_newline = true;
       command_timeout = 1000;

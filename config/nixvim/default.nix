@@ -9,6 +9,8 @@
       mapleader = " ";
     };
 
+    clipboard.register = "unnamedplus";
+
     opts = {
       number = true;
       # colorcolumn = "80";

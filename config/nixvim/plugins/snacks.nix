@@ -1,58 +1,84 @@
-{
-  lib,
-  config,
-  ...
-}:
-{
+_: {
   plugins.snacks = {
     enable = true;
 
     settings = {
+      bigfile.enabled = true;
+      indent.enabled = true;
+      input.enabled = true;
+      explorer.enabled = true;
+      notifier.enabled = true;
+      picker.enabled = true;
+      scope.enabled = true;
+      scroll.enabled = true;
+      words.enabled = true;
       dashboard = {
+        preset = {
+          header = ''
+             ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓
+             ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒
+            ▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░
+            ▓██▒  ▐▌██▒▒▓█  ▄ ▒██   ██░  ▒██ █░░░██░▒██    ▒██ 
+            ▒██░   ▓██░░▒████▒░ ████▓▒░   ▒▀█░  ░██░▒██▒   ░██▒
+            ░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒░▒░▒░    ░ ▐░  ░▓  ░ ▒░   ░  ░
+            ░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░
+               ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░   
+                     ░    ░  ░    ░ ░        ░   ░         ░   
+                                            ░                  
+          '';
+          keys = [
+            {
+              icon = " ";
+              key = "f";
+              desc = "Find File";
+              action = ":lua Snacks.dashboard.pick('files')";
+            }
+            {
+              icon = " ";
+              key = "n";
+              desc = "New File";
+              action = ":ene | startinsert";
+            }
+            {
+              icon = " ";
+              key = "g";
+              desc = "Find Text";
+              action = ":lua Snacks.dashboard.pick('live_grep')";
+            }
+            {
+              icon = " ";
+              key = "r";
+              desc = "Recent Files";
+              action = ":lua Snacks.dashboard.pick('oldfiles')";
+            }
+            {
+              icon = " ";
+              key = "c";
+              desc = "Config";
+              action = ":lua Snacks.dashboard.pick('files'; {cwd = '/home/kodie/nixos-dotfiles'})";
+            }
+            {
+              icon = " ";
+              key = "s";
+              desc = "Restore Session";
+              section = "session";
+            }
+            {
+              icon = " ";
+              key = "q";
+              desc = "Quit";
+              action = ":qa";
+            }
+          ];
+        };
         sections = [
+          { section = "header"; }
           {
-            header = ''
-              "██╗  ██╗██╗  ██╗██╗   ██╗██╗   ██╗███████╗"
-              "╚██╗██╔╝██║  ██║██║   ██║╚██╗ ██╔╝╚══███╔╝"
-              " ╚███╔╝ ███████║██║   ██║ ╚████╔╝   ███╔╝ "
-              " ██╔██╗ ██╔══██║██║   ██║  ╚██╔╝   ███╔╝  "
-              "██╔╝ ██╗██║  ██║╚██████╔╝   ██║   ███████╗"
-              "╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚══════╝"
-            '';
-          }
-          {
-            icon = " ";
-            title = "Keymaps";
             section = "keys";
             gap = 1;
             padding = 1;
           }
-          {
-            icon = " ";
-            title = "Find Files";
-            __unkeyed-1.__raw = "require('snacks').dashboard.sections.recent_files({cwd = true})";
-            gap = 1;
-            padding = 1;
-          }
-          {
-            icon = " ";
-            title = "Projects";
-            section = "projects";
-            gap = 1;
-            padding = 1;
-          }
-          {
-            pane = 1;
-            icon = " ";
-            desc = "Browse Repo";
-            padding = 1;
-            key = "b";
-            action.__raw = ''
-              function()
-                Snacks.gitbrowse()
-              end'';
-          }
-          (lib.mkIf config.plugins.lazy.enable { section = "startup"; })
+          { section = "session"; }
         ];
       };
     };
@@ -65,8 +91,8 @@
       options = {
         silent = true;
         noremap = true;
+        desc = "Snacks Explorer";
       };
-      options.desc = "Snacks Explorer";
     }
     {
       key = "<leader>/";
@@ -93,8 +119,8 @@
       options = {
         silent = true;
         noremap = true;
+        desc = "Buffer Picker";
       };
-      options.desc = "Buffer Picker";
     }
     {
       key = "<leader><leader>";
@@ -151,36 +177,36 @@
       mode = [ "n" ];
       action = "<cmd>lua Snacks.picker.command_history()<CR>";
     }
-    {
-      # Goto Definition
-      key = "gd";
-      mode = [ "n" ];
-      action = "<cmd>lua Snacks.picker.lsp_definitions()<CR>";
-    }
-    {
-      # Goto Declaration
-      key = "gD";
-      mode = [ "n" ];
-      action = "<cmd>lua Snacks.picker.lsp_declarations()<CR>";
-    }
-    {
-      # References
-      key = "gr";
-      mode = [ "n" ];
-      action = "<cmd>lua Snacks.picker.lsp_references()<CR>";
-    }
-    {
-      # Goto Implementation
-      key = "gI";
-      mode = [ "n" ];
-      action = "<cmd>lua Snacks.picker.lsp_implementations()<CR>";
-    }
-    {
-      # Goto Type Definition (gy)
-      key = "gy";
-      mode = [ "n" ];
-      action = "<cmd>lua Snacks.picker.lsp_type_definitions()<CR>";
-    }
+    # {
+    #   # Goto Definition
+    #   key = "gd";
+    #   mode = [ "n" ];
+    #   action = "<cmd>lua Snacks.picker.lsp_definitions()<CR>";
+    # }
+    # {
+    #   # Goto Declaration
+    #   key = "gD";
+    #   mode = [ "n" ];
+    #   action = "<cmd>lua Snacks.picker.lsp_declarations()<CR>";
+    # }
+    # {
+    #   # References
+    #   key = "gr";
+    #   mode = [ "n" ];
+    #   action = "<cmd>lua Snacks.picker.lsp_references()<CR>";
+    # }
+    # {
+    #   # Goto Implementation
+    #   key = "gI";
+    #   mode = [ "n" ];
+    #   action = "<cmd>lua Snacks.picker.lsp_implementations()<CR>";
+    # }
+    # {
+    #   # Goto Type Definition (gy)
+    #   key = "gy";
+    #   mode = [ "n" ];
+    #   action = "<cmd>lua Snacks.picker.lsp_type_definitions()<CR>";
+    # }
 
     # LSP Symbols
     {

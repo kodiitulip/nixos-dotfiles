@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+_:
 
 {
   programs.nushell = {
@@ -6,6 +6,7 @@
     shellAliases = {
       btw = "echo I use NixOS, btw";
       vi = "nvim";
+      vim = "nvim";
 
       gs = "git status";
       ga = "git add";
@@ -60,7 +61,11 @@
           name = "lfcd";
           modifier = "control";
           keycode = "char_o";
-          mode = [ "emacs" "vi_normal" "vi_insert" ];
+          mode = [
+            "emacs"
+            "vi_normal"
+            "vi_insert"
+          ];
           event = {
             send = "executehostcommand";
             cmd = "lfcd";
@@ -76,7 +81,7 @@
     '';
 
     extraConfig = ''
-      $env.PATH ++= ['/home/kodie/.nuscripts/']
+      $env.PATH | append '/home/kodie/.nuscripts'
 
       def --env get-env [name] { $env | get $name }
       def --env set-env [name, value] { load-env { $name: $value } }
@@ -99,25 +104,15 @@
           print "No pack.toml found"
           return
         }
-        mv ./pack.toml ./pack.toml.bak
-        cat ./pack.toml.bak | str replace -r 'version = "(.*)"' $'version = "($version)"' | save ./pack.toml
+        cat ./pack.toml | str replace -r 'version = "(.*)"' $'version = "($version)"' | save -f ./pack.toml
       }
 
-      # mkdir ($nu.data-dir | path join "vendor/autoload")
-      # tree-sitter complete --shell nushell | save -f ($nu.data-dir | path join "vendor/autoload/tree-sitter-completions.nu")
-
-      # $env.TRANSIENT_PROMPT_COMMAND = ^starship prompt --profile transient
-      # $env.TRANSIENT_PROMPT_INDICATOR = ""
-      # $env.TRANSIENT_PROMPT_INDICATOR_VI_INSERT = ": "
-      # $env.TRANSIENT_PROMPT_INDICATOR_VI_NORMAL = ""
-      # $env.TRANSIENT_PROMPT_MULTILINE_INDICATOR = "∙ "
-      # $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ""
-
       source ~/.config/nushell/completions/lf.nu
-      '';
+    '';
   };
   xdg.configFile."nushell/completions" = {
     source = ./nushell/completions;
     recursive = true;
   };
 }
+
