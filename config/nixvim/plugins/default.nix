@@ -1,4 +1,5 @@
 {
+  # INFO: Always update this list when adding/removing files
   imports = [
     ./lsp
     ./aerial.nix
@@ -6,8 +7,6 @@
     ./blink.nix
     ./bufferline.nix
     ./gitsigns.nix
-    ./hlchunk.nix
-    ./lazygit.nix
     ./lualine.nix
     ./direnv.nix
     ./nix-develop.nix
@@ -17,7 +16,6 @@
     ./rustaceanvim.nix
     ./smear-cursor.nix
     ./snacks.nix
-    ./toggleterm.nix
     ./treesitter.nix
     ./treesj.nix
     ./ts-comments.nix

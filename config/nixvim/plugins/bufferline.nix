@@ -1,32 +1,30 @@
 { lib, ... }:
 {
-  plugins = {
-    bufferline = {
-      enable = true;
-      settings = {
-        options = {
-          diagnostics = "nvim_lsp";
-          mode = "buffers";
-          close_command = lib.nixvim.utils.mkRaw ''function(n) Snacks.bufdelete(n) end'';
-          right_mouse_command = lib.nixvim.utils.mkRaw ''function(n) Snacks.bufdelete(n) end'';
-          always_show_bufferline = false;
+  plugins.bufferline = {
+    enable = true;
+    settings = {
+      options = {
+        diagnostics = "nvim_lsp";
+        mode = "buffers";
+        close_command = lib.nixvim.utils.mkRaw ''function(n) Snacks.bufdelete(n) end'';
+        right_mouse_command = lib.nixvim.utils.mkRaw ''function(n) Snacks.bufdelete(n) end'';
+        always_show_bufferline = false;
 
-          close_icon = " ";
-          buffer_close_icon = " ";
-          modified_icon = " ";
+        close_icon = " ";
+        buffer_close_icon = " ";
+        modified_icon = " ";
 
-          offsets = [
-            {
-              filetype = "snacks_layout_box";
-            }
-            {
-              filetype = "neo-tree";
-              text = "Neo-tree";
-              highlight = "Directory";
-              text_align = "left";
-            }
-          ];
-        };
+        offsets = [
+          {
+            filetype = "snacks_layout_box";
+          }
+          {
+            filetype = "neo-tree";
+            text = "Neo-tree";
+            highlight = "Directory";
+            text_align = "left";
+          }
+        ];
       };
     };
   };
@@ -71,9 +69,18 @@
     {
       mode = "n";
       key = "<leader>bd";
-      action = "<cmd>bdelete<cr>";
+      action = "<cmd>lua Snacks.bufdelete()<cr>";
       options = {
         desc = "Delete buffer";
+      };
+    }
+
+    {
+      mode = "n";
+      key = "<leader>bD";
+      action = "<cmd>:bd<cr>";
+      options = {
+        desc = "Delete buffer and window";
       };
     }
 
@@ -98,7 +105,7 @@
     {
       mode = "n";
       key = "<leader>bo";
-      action = "<cmd>BufferLineCloseOthers<cr>";
+      action = "<cmd>lua Snacks.bufdelete.other()<cr>";
       options = {
         desc = "Delete other buffers";
       };
