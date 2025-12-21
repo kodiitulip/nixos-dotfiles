@@ -108,6 +108,26 @@ _:
       }
 
       source ~/.config/nushell/completions/lf.nu
+
+      export-env { load-env {
+          TRANSIENT_PROMPT_MULTILINE_INDICATOR: (
+              ^/nix/store/lfw8yb2nhj04fcfb7lc5zl6mh6m6n5l1-starship-1.24.1/bin/starship prompt --continuation
+          )
+
+          TRANSIENT_PROMPT_INDICATOR: ""
+
+          TRANSIENT_PROMPT_COMMAND: {||
+            (
+              let cmd_duration = if $env.CMD_DURATION_MS == "0823" { 0 } else { $env.CMD_DURATION_MS };
+              ^/nix/store/lfw8yb2nhj04fcfb7lc5zl6mh6m6n5l1-starship-1.24.1/bin/starship prompt
+                --profile=transient
+                --cmd-duration $cmd_duration
+                $"--status=($env.LAST_EXIT_CODE)"
+                --terminal-width (term size).columns
+                --jobs (job list | length)
+            )
+          }
+      }}
     '';
   };
   xdg.configFile."nushell/completions" = {
@@ -115,4 +135,3 @@ _:
     recursive = true;
   };
 }
-
