@@ -108,6 +108,7 @@ _:
       }
 
       source ~/.config/nushell/completions/lf.nu
+      source ~/.config/nushell/completions/packwiz.nu
 
       export-env { load-env {
           TRANSIENT_PROMPT_MULTILINE_INDICATOR: (

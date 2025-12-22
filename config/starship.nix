@@ -1,4 +1,4 @@
-_:
+{ lib, ... }:
 
 {
   programs.starship = {
@@ -8,7 +8,30 @@ _:
     settings = {
       add_newline = true;
       command_timeout = 1000;
-      format = "$sudo$username$directory$git_branch$git_status$fill$bun$c$elixir$elm$golang$haskell$java$julia$nodejs$nim$rust$scala$conda$python$time\n $character";
+      format = [
+        "$sudo"
+        "$username"
+        "$directory"
+        "$git_branch"
+        "$git_status"
+        "$fill"
+        "$bun"
+        "$c"
+        "$elixir"
+        "$elm"
+        "$golang"
+        "$haskell"
+        "$java"
+        "$julia"
+        "$nodejs"
+        "$nim"
+        "$rust"
+        "$scala"
+        "$conda"
+        "$python"
+        "$time\n "
+        "$character"
+      ];
       palettes.rose-pine = {
         foam = "#9ccfd8";
         gold = "#f6c177";
@@ -19,7 +42,18 @@ _:
         rose = "#ebbcba";
       };
       palette = "rose-pine";
-      profiles.transient = "[](fg:overlay)[ 󰧱 ](bg:overlay fg:iris)[](fg:overlay) $fill [](fg:overlay)[ 󰴈 ](bg:overlay fg:rose)[](fg:overlay)\n $character";
+      profiles.transient = [
+        "[](fg:overlay)[ 󰧱 ](bg:overlay fg:iris)[](fg:overlay) "
+        "$fill "
+        "[](fg:overlay)[ 󰴈 ](bg:overlay fg:rose)[](fg:overlay)\n "
+        "$character"
+      ];
+      profiles.sudo_prompt = lib.concatStrings [
+        "$sudo"
+        "$fill "
+        "[](fg:overlay)[ 󰴈 ](bg:overlay fg:rose)[](fg:overlay)\n "
+        "$character"
+      ];
       character.format = "[󱞪](fg:iris) ";
       fill = {
         style = "fg:overlay";

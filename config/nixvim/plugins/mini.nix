@@ -15,7 +15,11 @@
           update_n_lines = "gsn";
         };
       };
+      sessions = { };
+      ai = { };
+      comment = { };
+      move = { };
+      splitjoin = { };
     };
   };
 }
-

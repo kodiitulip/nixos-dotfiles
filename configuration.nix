@@ -72,7 +72,7 @@
       videoDrivers = [ "amdgpu" ];
     };
 
-    displayManager.ly.enable = true;
+    displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
 
     xserver.xkb = {
@@ -105,7 +105,7 @@
 
     sunshine = {
       enable = true;
-      autoStart = true;
+      autoStart = false;
       capSysAdmin = true;
       openFirewall = true;
     };

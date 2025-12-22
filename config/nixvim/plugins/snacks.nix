@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+_: {
   plugins.snacks = {
     enable = true;
 
@@ -10,16 +9,15 @@
       explorer.enabled = true;
       notifier.enabled = true;
       picker = {
-        win.input.keys = lib.nixvim.utils.toRawKeys {
-          "<a-s>" = {
-            __unkeyed-1 = "flash";
-            mode = [
-              "n"
-              "i"
-            ];
-          };
-          "s" = [ "flash" ];
-        };
+        win.input.keys.__raw = ''
+          {
+            ["<a-s>"] = {
+              "flash",
+              mode = { "n", "i" },
+            },
+            ["s"] = { "flash" },
+          }
+        '';
         actions.flash.__raw = ''
           function(picker)
             require("flash").jump({
@@ -152,7 +150,6 @@
             gap = 1;
             padding = 1;
           }
-          { section = "session"; }
         ];
       };
     };
@@ -192,18 +189,10 @@
 
     {
       mode = [ "n" ];
-      key = "<leader>fT";
-      action.__raw = ''function() Snacks.terminal(nil, { position = "float" }) end'';
+      key = "<leader>ft";
+      action.__raw = ''function() Snacks.terminal() end'';
       options = {
         desc = "Terminal (cwd)";
-      };
-    }
-    {
-      mode = [ "n" ];
-      key = "<leader>ft";
-      action.__raw = ''function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end'';
-      options = {
-        desc = "Terminal (Root Dir)";
       };
     }
     {
@@ -212,7 +201,7 @@
         "t"
       ];
       key = "<c-/>";
-      action.__raw = ''function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end'';
+      action.__raw = ''function() Snacks.terminal() end'';
       options = {
         desc = "Terminal (Root Dir)";
       };
@@ -223,7 +212,7 @@
         "t"
       ];
       key = "<c-_>";
-      action.__raw = ''function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end'';
+      action.__raw = ''function() Snacks.terminal() end'';
       options = {
         desc = "which_key_ignore";
       };
@@ -283,6 +272,16 @@
       options = {
         silent = true;
         noremap = true;
+      };
+    }
+    {
+      key = "<leader>gg";
+      mode = [ "n" ];
+      action.__raw = ''function() Snacks.lazygit() end'';
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "Lazygit";
       };
     }
     {
