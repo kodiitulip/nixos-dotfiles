@@ -42,8 +42,6 @@ with pkgs;
   rimsort
   vintagestoryPackages.rustique
   vintagestoryPackages.vs-launcher
-  # inputs.sls-steam.packages.${system}.default
-  (with python313Packages; callPackage ./custom-packages/accela.nix { })
 
   # Daily Utils
   vesktop
