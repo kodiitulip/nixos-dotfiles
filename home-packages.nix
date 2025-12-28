@@ -19,6 +19,7 @@ with pkgs;
   (with kdePackages; callPackage ./custom-packages/plasma-smart-video-wallpaper-reborn.nix { })
   kdePackages.qtmultimedia
   inputs.playit-nixos-module.packages."${system}".default
+  yt-dlp
 
   # Editors / IDEs
   vscodium-fhs

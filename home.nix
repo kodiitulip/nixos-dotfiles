@@ -41,15 +41,54 @@
     zoxide = {
       enable = true;
       enableNushellIntegration = true;
+      enableBashIntegration = true;
     };
     direnv = {
       enable = true;
       enableNushellIntegration = true;
+      enableBashIntegration = true;
       nix-direnv.enable = true;
     };
     carapace = {
       enable = true;
       enableNushellIntegration = true;
+      enableBashIntegration = true;
+    };
+    bash = {
+      enable = true;
+      shellAliases = {
+        btw = "echo I use NixOS, btw";
+        vi = "nvim";
+        vim = "nvim";
+
+        gs = "git status";
+        ga = "git add";
+        gc = "git commit -m";
+        gp = "git push";
+        gb = "git branch";
+        gsw = "git switch";
+        gd = "git diff";
+        gcl = "git clone";
+
+        e = "exit";
+        c = "clear";
+        lg = "lazygit";
+        gw = "./gradlew";
+        cr = "cargo run";
+        crq = "cr --quiet";
+        cb = "cargo build";
+        cbq = "cb --quiet";
+        ct = "cargo test";
+        ctq = "ct --quiet";
+        ".." = "z ..";
+        "..." = "z ../..";
+        "3.." = "z ../../..";
+        "4.." = "z ../../../..";
+        "5.." = "z ../../../../";
+
+        garbage-collect = "sudo nix-collect-garbage -d";
+        rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos";
+      };
     };
 
     # nvf.enable = true;

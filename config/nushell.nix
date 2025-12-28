@@ -1,10 +1,10 @@
-_:
+{ lib, ... }:
 
 {
   programs.nushell = {
     enable = true;
     shellAliases = {
-      btw = "echo I use NixOS, btw";
+      btw = ''print "I use NixOS, btw"'';
       vi = "nvim";
       vim = "nvim";
 
@@ -41,6 +41,17 @@ _:
     environmentVariables = {
       VISUAL = "nvim";
       EDITOR = "nvim";
+      SUDO_PROMPT = lib.hm.nushell.mkNushellInline ''
+        (
+          let cmd_duration = if $env.CMD_DURATION_MS == "0823" { 0 } else { $env.CMD_DURATION_MS };
+          ^starship prompt
+            --profile=sudo_prompt
+            --cmd-duration $cmd_duration
+            $"--status=($env.LAST_EXIT_CODE)"
+            --terminal-width (term size).columns
+            --jobs (job list | length)
+        )
+      '';
     };
 
     settings = {
@@ -112,7 +123,7 @@ _:
 
       export-env { load-env {
           TRANSIENT_PROMPT_MULTILINE_INDICATOR: (
-              ^/nix/store/lfw8yb2nhj04fcfb7lc5zl6mh6m6n5l1-starship-1.24.1/bin/starship prompt --continuation
+              ^starship prompt --continuation
           )
 
           TRANSIENT_PROMPT_INDICATOR: ""
@@ -120,7 +131,7 @@ _:
           TRANSIENT_PROMPT_COMMAND: {||
             (
               let cmd_duration = if $env.CMD_DURATION_MS == "0823" { 0 } else { $env.CMD_DURATION_MS };
-              ^/nix/store/lfw8yb2nhj04fcfb7lc5zl6mh6m6n5l1-starship-1.24.1/bin/starship prompt
+              ^starship prompt
                 --profile=transient
                 --cmd-duration $cmd_duration
                 $"--status=($env.LAST_EXIT_CODE)"
