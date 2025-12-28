@@ -6,6 +6,7 @@
   imports = [
     ./fidget.nix
     ./conform.nix
+    ./lint.nix
   ];
   plugins = {
     lsp-lines.enable = true;

@@ -124,19 +124,18 @@
       };
 
       formatters = {
-        nufmt.command = "${lib.getExe pkgs.nufmt}";
-        black.command = "${lib.getExe pkgs.black}";
-        isort.command = "${lib.getExe pkgs.isort}";
-        nixfmt-rfc-style.command = "${lib.getExe pkgs.nixfmt-rfc-style}";
-        alejandra.command = "${lib.getExe pkgs.alejandra}";
-        jq.command = "${lib.getExe pkgs.jq}";
-        prettierd.command = "${lib.getExe pkgs.prettierd}";
-        stylua.command = "${lib.getExe pkgs.stylua}";
-        shellcheck.command = "${lib.getExe pkgs.shellcheck}";
-        shfmt.command = "${lib.getExe pkgs.shfmt}";
-        shellharden.command = "${lib.getExe pkgs.shellharden}";
-        # bicep.command = "${lib.getExe pkgs.bicep}";
-        # yamlfmt.command = "${lib.getExe pkgs.yamlfmt}";
+        nufmt.command = lib.getExe pkgs.nufmt;
+        black.command = lib.getExe pkgs.black;
+        isort.command = lib.getExe pkgs.isort;
+        nixfmt-rfc-style.command = lib.getExe pkgs.nixfmt-rfc-style;
+        alejandra.command = lib.getExe pkgs.alejandra;
+        jq.command = lib.getExe pkgs.jq;
+        prettierd.command = lib.getExe pkgs.prettierd;
+        stylua.command = lib.getExe pkgs.stylua;
+        shellcheck.command = lib.getExe pkgs.shellcheck;
+        shfmt.command = lib.getExe pkgs.shfmt;
+        shellharden.command = lib.getExe pkgs.shellharden;
+        yamlfmt.command = lib.getExe pkgs.yamlfmt;
       };
     };
   };

@@ -28,13 +28,17 @@
       url = "github:PierreBorine/vintagestory-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sls-steam = {
+      url = "github:AceSLS/SLSsteam";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # nu-lint.url = "git+https://codeberg.org/wvhulle/nu-lint";
   };
 
   outputs =
     {
       nixpkgs,
       home-manager,
-      # nvf,
       playit-nixos-module,
       ...
     }@inputs:

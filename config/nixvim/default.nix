@@ -47,6 +47,7 @@
       # golangci-lint # Go linter
       shellcheck # Shell script linter
       eslint_d # JavaScript/TypeScript linter
+      statix
 
       # Debuggers
       # netcoredbg # C# debugger

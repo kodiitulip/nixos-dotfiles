@@ -23,7 +23,7 @@ with pkgs;
 
   # Editors / IDEs
   vscodium-fhs
-  jetbrains.idea-community
+  jetbrains.idea-oss
   kdePackages.kate
   poedit
   godot
@@ -42,11 +42,13 @@ with pkgs;
   rimsort
   vintagestoryPackages.rustique
   vintagestoryPackages.vs-launcher
+  # inputs.sls-steam.packages.${system}.default
+  (with python313Packages; callPackage ./custom-packages/accela.nix { })
 
   # Daily Utils
   vesktop
   easyeffects
   youtube-music
   libreoffice-qt-fresh
-  inputs.zen-browser.packages."${system}".default
+  inputs.zen-browser.packages.${system}.default
 ]

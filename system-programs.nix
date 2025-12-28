@@ -26,8 +26,10 @@
     };
   };
   kdeconnect.enable = true;
-  steam.enable = true;
-  steam.protontricks.enable = true;
+  steam = {
+    enable = true;
+    protontricks.enable = true;
+  };
   npm.enable = true;
   lazygit.enable = true;
   lazygit.settings = {

@@ -6,7 +6,9 @@
 }:
 
 {
-  nixpkgs.overlays = [ inputs.vintagestory-nix.overlays.default ];
+  nixpkgs.overlays = [
+    inputs.vintagestory-nix.overlays.default
+  ];
 
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -20,7 +22,7 @@
     age.generateKey = true;
 
     secrets.playitgg = {
-      owner = config.users.users.playit.name;
+      owner = config.users.users.kodie.name;
     };
   };
 
@@ -96,8 +98,6 @@
 
     playit = {
       enable = true;
-      user = "playit";
-      group = "playit";
       secretPath = config.sops.secrets.playitgg.path;
     };
 
@@ -126,16 +126,15 @@
       packages = [ ];
       shell = pkgs.nushell;
     };
-
-    playit = {
-      home = "/var/lib/playit";
-      createHome = true;
-      isSystemUser = true;
-      group = "playit";
-    };
+    # playit = {
+    #   home = "/var/lib/playit";
+    #   createHome = true;
+    #   isSystemUser = true;
+    #   group = "playit";
+    # };
   };
 
-  users.groups.playit = { };
+  # users.groups.playit = { };
 
   programs = import ./system-programs.nix { inherit pkgs; };
 
@@ -152,6 +151,10 @@
 
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
   networking = {
     hostName = "nixos"; # Define your hostname.
     networkmanager.enable = true;
