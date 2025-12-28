@@ -41,17 +41,7 @@
     environmentVariables = {
       VISUAL = "nvim";
       EDITOR = "nvim";
-      SUDO_PROMPT = lib.hm.nushell.mkNushellInline ''
-        (
-          let cmd_duration = if $env.CMD_DURATION_MS == "0823" { 0 } else { $env.CMD_DURATION_MS };
-          ^starship prompt
-            --profile=sudo_prompt
-            --cmd-duration $cmd_duration
-            $"--status=($env.LAST_EXIT_CODE)"
-            --terminal-width (term size).columns
-            --jobs (job list | length)
-        )
-      '';
+      SUDO_PROMPT = lib.hm.nushell.mkNushellInline ''(^starship prompt --profile=sudo_prompt --terminal-width (term size).columns)'';
     };
 
     settings = {
