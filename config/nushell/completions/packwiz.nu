@@ -1,9 +1,8 @@
 def "packwiz-slug-completer" [ctx: string] {
 	let pins_only = ($ctx | split words | last) like 'unpin'
-	let files: table<name: string, slug: string, pin: bool> = ls **/*.pw.toml | where name =~ '(resourcepacks|shaders|mods)' | each {
-		open $in.name | insert slug { $in.name }
+	let files: table<name: string, slug: string, pin: bool> = ls **/*.pw.toml | where name =~ '(resourcepacks|shaders|mods)' | each { |file|
+		open $file.name | insert slug { $file.name | str replace -r '(resourcepacks|mods|shaders)/' '' | str replace '.pw.toml' '' }
 	} | select name slug pin?
-
 	if $pins_only {
 		$files | where pin | each { { value: $in.slug, description: $in.name } }
 	} else {
@@ -12,6 +11,7 @@ def "packwiz-slug-completer" [ctx: string] {
 }
 
 export extern "packwiz" [
+	subcommand: string
 	--cache: string              # The directory where packwiz will cache downloaded mods (default "/opt/buildhome/.cache/packwiz/cache")
 	--config: string             # The config file to use (default "/opt/buildhome/.config/packwiz/.packwiz.toml")
 	--meta-folder: string        # The folder in which new metadata files will be added, defaulting to a folder based on the category (mods, resourcepacks, etc; if the category is unknown the current directory is used)
@@ -21,6 +21,7 @@ export extern "packwiz" [
 	--help(-h)                   # Help for packwiz
 ]
 
+# Initialise a packwiz modpack
 export extern "packwiz init" [
 	--author: string             # The author of the modpack (omit to define interactively)
 	--fabric-latest              # Automatically select the latest version of Fabric loader
@@ -51,16 +52,19 @@ export extern "packwiz rm" [
 	arg: string@packwiz-slug-completer # slug of project to remove
 ]
 
-export extern "packwiz refresh" [ # Refresh the index file
+# Refresh the index file
+export extern "packwiz refresh" [
 	--build											 # Only has an effect in no-internal-hashes mode: generates internal hashes for distribution with packwiz-installer
 	--help(-h)                   # Help for refresh
 ]
 
-export extern "packwiz mr" [ # Manage modrinth-based mods
+# Manage modrinth-based mods
+export extern "packwiz mr" [
 	--help(-h)                   # Help for modrinth
 ]
 
-export extern "packwiz mr add" [ # Add a project from a Modrinth URL, slug/project ID or search
+# Add a project from a Modrinth URL, slug/project ID or search
+export extern "packwiz mr add" [
 	...args: string              # [URL|slug|search]
 	--help(-h)                   # Help for modrinth add
 	--project-id: string         # The Modrinth project ID to use
@@ -68,11 +72,30 @@ export extern "packwiz mr add" [ # Add a project from a Modrinth URL, slug/proje
 	--version-id: string         # The Modrinth version ID to use
 ]
 
+# Pin a file so it does not get updated automatically
 export extern "packwiz pin" [
 	--help(-h)                   # Help for pin
 	arg: string@packwiz-slug-completer # slug to pin
 ]
+
+# Unpin a file so it receives updates
 export extern "packwiz unpin" [
 	--help(-h)                   # Help for unpin
 	arg: string@packwiz-slug-completer # slug to unpin
+]
+
+# Update an external file (or all external files) in the modpack
+export extern "packwiz update" [
+	--help(-h) # Help for update
+	--all(-a)  # Update all files
+	arg?: string@packwiz-slug-completer
+]
+
+def modpack-side [] {["server", "client", "both"]}
+
+# List all the mods in the modpack
+export extern "packwiz list" [
+	--help(-h)           							# help for list
+  --side(-s): string@modpack-side   # Filter mods by side (e.g., client or server)
+  --version(-v)        							# Print name and version
 ]

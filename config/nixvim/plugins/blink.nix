@@ -74,14 +74,11 @@
 
         sources = {
           default = [
-            "buffer"
             "lsp"
+            "buffer"
             "path"
             "snippets"
-            # Community
-            # "copilot"
             "dictionary"
-            # "emoji"
             "git"
             "spell"
             "ripgrep"
@@ -97,17 +94,6 @@
               module = "blink-cmp-dictionary";
               min_keyword_length = 3;
             };
-            # emoji = {
-            #   name = "Emoji";
-            #   module = "blink-emoji";
-            #   score_offset = 1;
-            # };
-            # copilot = {
-            #   name = "copilot";
-            #   module = "blink-copilot";
-            #   async = true;
-            #   score_offset = 100;
-            # };
             lsp.score_offset = 4;
             spell = {
               name = "Spell";
@@ -174,8 +160,6 @@
             Warning = "󰏯";
             Information = "󰏮";
             Hint = "󰏭";
-
-            # Emoji = "🤶";
           };
         };
         completion = {

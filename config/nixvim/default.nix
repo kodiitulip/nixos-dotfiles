@@ -29,6 +29,7 @@
       updatetime = 50;
       foldlevelstart = 99;
       fillchars = ''eob: '';
+      expandtab = true;
     };
     extraPackages = with pkgs; [
       # base

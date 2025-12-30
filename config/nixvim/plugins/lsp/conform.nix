@@ -40,6 +40,8 @@
   plugins.conform-nvim = {
     enable = true;
     settings = {
+      log_level = "debug";
+      default_format_opts.lsp_format = "fallback";
       format_on_save = ''
         function(bufnr)
           if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -81,6 +83,16 @@
           stop_after_first = true;
         };
         css = {
+          __unkeyed-1 = "prettierd";
+          __unkeyed-2 = "prettier";
+          stop_after_first = true;
+        };
+        javascriptreact = {
+          __unkeyed-1 = "prettierd";
+          __unkeyed-2 = "prettier";
+          stop_after_first = true;
+        };
+        typescriptreact = {
           __unkeyed-1 = "prettierd";
           __unkeyed-2 = "prettier";
           stop_after_first = true;
@@ -147,7 +159,7 @@
         "x"
       ];
       key = "<leader>cf";
-      action = "<cmd>Format<cr>";
+      action.__raw = "function() require('conform').format() end";
     }
   ];
 }

@@ -18,7 +18,4 @@ with pkgs;
   trashy
   dotnetCorePackages.runtime_8_0-bin
   libnotify
-  python315
-  libgcc
-  rustdesk
 ]

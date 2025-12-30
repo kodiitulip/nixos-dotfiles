@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   ...
 }:
@@ -27,6 +28,7 @@
         marksman.enable = true;
         pyright.enable = true;
         jsonls.enable = true;
+        tailwindcss.enable = true;
         helm_ls = {
           enable = true;
           extraOptions = {
@@ -64,63 +66,51 @@
         };
       };
 
-      keymaps = {
-        silent = true;
-        lspBuf = {
-          #   gd = {
-          #     action = "definition";
-          #     desc = "Goto Definition";
-          #   };
-          #   gr = {
-          #     action = "references";
-          #     desc = "Goto References";
-          #   };
-          #   gD = {
-          #     action = "declaration";
-          #     desc = "Goto Declaration";
-          #   };
-          #   gI = {
-          #     action = "implementation";
-          #     desc = "Goto Implementation";
-          #   };
-          #   gT = {
-          #     action = "type_definition";
-          #     desc = "Type Definition";
-          #   };
-          K = {
-            action = "hover";
-            desc = "Hover";
-          };
-          #   "<leader>cw" = {
-          #     action = "workspace_symbol";
-          #     desc = "Workspace Symbol";
-          #   };
-          # "<leader>ca" = {
-          #   action = "actions";
-          #   desc = "Actions";
-          # };
-          # "<leader>cr" = {
-          #   action = "rename";
-          #   desc = "Rename";
-          # };
-        };
-        diagnostic = {
-          "<leader>cd" = {
-            action = "open_float";
-            desc = "Line Diagnostics";
-          };
-          "[d" = {
-            action = "goto_next";
-            desc = "Next Diagnostic";
-          };
-          "]d" = {
-            action = "goto_prev";
-            desc = "Previous Diagnostic";
-          };
-        };
-      };
     };
   };
+
+  lsp.keymaps = [
+    {
+      key = "gd";
+      lspBufAction = "definition";
+    }
+    {
+      key = "gD";
+      lspBufAction = "references";
+    }
+    {
+      key = "gt";
+      lspBufAction = "type_definition";
+    }
+    {
+      key = "gi";
+      lspBufAction = "implementation";
+    }
+    {
+      key = "K";
+      lspBufAction = "hover";
+    }
+    {
+      action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=-1, float=true }) end";
+      key = "<leader>k";
+    }
+    {
+      action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=1, float=true }) end";
+      key = "<leader>j";
+    }
+    {
+      action = "<CMD>LspStop<Enter>";
+      key = "<leader>lx";
+    }
+    {
+      action = "<CMD>LspStart<Enter>";
+      key = "<leader>ls";
+    }
+    {
+      action = "<CMD>LspRestart<Enter>";
+      key = "<leader>lr";
+    }
+  ];
 
   extraConfigLua = ''
     local _border = "rounded"
