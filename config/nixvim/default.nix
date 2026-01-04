@@ -5,11 +5,13 @@
     ./plugins
   ];
   config = {
-    globals = {
-      mapleader = " ";
-    };
+    globals.mapleader = " ";
 
     clipboard.register = "unnamedplus";
+    diagnostic.settings = {
+      virtual_lines.current_line = true;
+      virtual_text = true;
+    };
 
     opts = {
       number = true;
@@ -28,6 +30,7 @@
       signcolumn = "yes";
       updatetime = 50;
       foldlevelstart = 99;
+      foldmethod = "expr";
       fillchars = ''eob: '';
       expandtab = true;
     };
@@ -39,23 +42,14 @@
       fd
 
       # Formatters
-      stylua # Lua formatter
-      # csharpier # C# formatter
-      nixfmt-rfc-style # Nix formatter
+      stylua
+      nixfmt-rfc-style
       nufmt
 
       # Linters
-      # golangci-lint # Go linter
       shellcheck # Shell script linter
       eslint_d # JavaScript/TypeScript linter
       statix
-
-      # Debuggers
-      # netcoredbg # C# debugger
-      # asm-lsp # Assembly LSP
-      # delve # Go debugger
-      # gcc
-
     ];
   };
 }

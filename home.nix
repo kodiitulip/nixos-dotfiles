@@ -89,8 +89,10 @@
         garbage-collect = "sudo nix-collect-garbage -d";
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos";
       };
+
     };
 
+    obsidian.enable = true;
     # nvf.enable = true;
     # nvf.settings = import ./config/nvf { inherit pkgs lib; };
     nixvim = {

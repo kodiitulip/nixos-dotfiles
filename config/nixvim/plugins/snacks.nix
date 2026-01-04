@@ -303,20 +303,6 @@ _: {
       mode = [ "n" ];
       action = "<cmd>lua Snacks.picker.command_history()<CR>";
     }
-    # LSP Symbols
-    {
-      key = "<leader>ss";
-      mode = [ "n" ];
-      action = "<cmd>lua Snacks.picker.lsp_symbols()<CR>";
-    }
-
-    # LSP Workspace Symbols
-    {
-      key = "<leader>sS";
-      mode = [ "n" ];
-      action = "<cmd>lua Snacks.picker.lsp_workspace_symbols()<CR>";
-    }
-
     {
       key = "<leader>st";
       action.__raw = ''function() Snacks.picker.todo_comments() end'';

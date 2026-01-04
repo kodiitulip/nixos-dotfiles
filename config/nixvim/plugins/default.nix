@@ -17,12 +17,12 @@
     ./smear-cursor.nix
     ./snacks.nix
     ./treesitter.nix
-    ./treesj.nix
     ./ts-comments.nix
     ./whichkey.nix
     ./yanky.nix
     ./mini.nix
     ./todo-comments.nix
     ./flash.nix
+    ./colorizer.nix
   ];
 }

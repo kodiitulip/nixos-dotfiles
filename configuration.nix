@@ -149,12 +149,15 @@
     comic-relief
   ];
 
-  hardware.opentabletdriver.enable = true;
-  hardware.opentabletdriver.daemon.enable = true;
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
+  hardware = {
+    opentabletdriver.enable = true;
+    opentabletdriver.daemon.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
   };
+
   networking = {
     hostName = "nixos"; # Define your hostname.
     networkmanager.enable = true;
@@ -164,6 +167,7 @@
       allowedTCPPorts = [
         80
         443
+        3000
       ];
       allowedUDPPortRanges = [
         {

@@ -93,62 +93,32 @@
       };
     }
 
-    # Move lines
+    # Resize windows with <ctrl> arrow keys
 
-    # {
-    #   mode = [ "n" ];
-    #   key = "<A-j>";
-    #   action = "<cmd>execute 'move .+' . v:count1<cr>==";
-    #   options = {
-    #     desc = "Move Down";
-    #     silent = true;
-    #   };
-    # }
-    # {
-    #   mode = [ "n" ];
-    #   key = "<A-k>";
-    #   action = "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==";
-    #   options = {
-    #     desc = "Move Up";
-    #     silent = true;
-    #   };
-    # }
-    # {
-    #   mode = [ "i" ];
-    #   key = "<A-j>";
-    #   action = "<esc><cmd>m .+1<cr>==gi";
-    #   options = {
-    #     desc = "Move Down";
-    #     silent = true;
-    #   };
-    # }
-    # {
-    #   mode = [ "i" ];
-    #   key = "<A-k>";
-    #   action = "<esc><cmd>m .-2<cr>==gi";
-    #   options = {
-    #     desc = "Move Up";
-    #     silent = true;
-    #   };
-    # }
-    # {
-    #   mode = [ "v" ];
-    #   key = "<A-j>";
-    #   action = ":<C-u>execute \"'<;'>move '>+\" . v:count1<cr>gv=gv";
-    #   options = {
-    #     desc = "Move Down";
-    #     silent = true;
-    #   };
-    # }
-    # {
-    #   mode = [ "v" ];
-    #   key = "<A-k>";
-    #   action = ":<C-u>execute \"'<;'>move '<-\" . (v:count1 + 1)<cr>gv=gv";
-    #   options = {
-    #     desc = "Move Up";
-    #     silent = true;
-    #   };
-    # }
+    {
+      mode = [ "n" ];
+      key = "<C-Up>";
+      action = "<cmd>resize +2<cr>";
+      options.desc = "Increase Window Height";
+    }
+    {
+      mode = [ "n" ];
+      key = "<C-Down>";
+      action = "<cmd>resize -2<cr>";
+      options.desc = "Decrease Window Height";
+    }
+    {
+      mode = [ "n" ];
+      key = "<C-Left>";
+      action = "<cmd>vertical resize -2<cr>";
+      options.desc = "Decrease Window Width";
+    }
+    {
+      mode = [ "n" ];
+      key = "<C-Right>";
+      action = "<cmd>vertical resize +2<cr>";
+      options.desc = "Increase Window Width";
+    }
 
     # Misc
 
@@ -222,6 +192,36 @@
       mode = [ "i" ];
       key = ";";
       action = ";<c-g>u";
+    }
+
+    # new file
+    {
+      key = "<leader>fn";
+      action = "<cmd>enew<cr>";
+      mode = [ "n" ];
+      options = {
+        silent = true;
+        desc = "New File";
+      };
+    }
+
+    {
+      key = "+";
+      action = "<c-a>";
+      mode = [
+        "n"
+        "x"
+      ];
+      options.desc = "Increment";
+    }
+    {
+      key = "-";
+      action = "<c-x>";
+      mode = [
+        "n"
+        "x"
+      ];
+      options.desc = "Decrement";
     }
   ];
 }

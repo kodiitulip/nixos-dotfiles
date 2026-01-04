@@ -42,7 +42,7 @@
     settings = {
       log_level = "debug";
       default_format_opts.lsp_format = "fallback";
-      format_on_save = ''
+      format_on_save.__raw = ''
         function(bufnr)
           if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return
@@ -62,7 +62,7 @@
          end
       '';
 
-      format_after_save = ''
+      format_after_save.__raw = ''
         function(bufnr)
           if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return
@@ -124,8 +124,6 @@
           __unkeyed-2 = "prettier";
           stop_after_first = true;
         };
-        # terraform = [ "terraform_fmt" ];
-        # bicep = [ "bicep" ];
         bash = [
           "shellcheck"
           "shellharden"
@@ -147,7 +145,8 @@
         shellcheck.command = lib.getExe pkgs.shellcheck;
         shfmt.command = lib.getExe pkgs.shfmt;
         shellharden.command = lib.getExe pkgs.shellharden;
-        yamlfmt.command = lib.getExe pkgs.yamlfmt;
+
+        injected.options.ignore_errors = true;
       };
     };
   };
@@ -160,6 +159,20 @@
       ];
       key = "<leader>cf";
       action.__raw = "function() require('conform').format() end";
+      options.desc = "Format";
+    }
+    {
+      key = "<leader>cF";
+      action.__raw = ''
+        function()
+          require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
+        end
+      '';
+      mode = [
+        "n"
+        "x"
+      ];
+      options.desc = "Format Injected Langs";
     }
   ];
 }

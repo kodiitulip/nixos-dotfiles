@@ -20,7 +20,6 @@
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
-    # nvf.url = "github:notashelf/nvf";
     nixvim.url = "github:nix-community/nixvim";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";

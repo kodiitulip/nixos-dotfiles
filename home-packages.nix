@@ -18,7 +18,7 @@ with pkgs;
   (callPackage ./custom-packages/steam-art-manager.nix { })
   (with kdePackages; callPackage ./custom-packages/plasma-smart-video-wallpaper-reborn.nix { })
   kdePackages.qtmultimedia
-  inputs.playit-nixos-module.packages."${system}".default
+  inputs.playit-nixos-module.packages.${system}.default
   yt-dlp
 
   # Editors / IDEs
