@@ -24,5 +24,8 @@
     ./todo-comments.nix
     ./flash.nix
     ./colorizer.nix
+    ./dial.nix
+    ./inc-rename.nix
+    ./persistence.nix
   ];
 }

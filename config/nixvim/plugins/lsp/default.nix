@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
-{
+_: {
   imports = [
     ./fidget.nix
     ./conform.nix
@@ -53,8 +48,10 @@
       {
         key = "K";
         action = "<cmd>Lspsaga hover_doc<cr>";
-        options.desc = "Hover";
-        # lspBufAction = "hover";
+        options = {
+          desc = "Hover";
+          silent = true;
+        };
       }
       {
         key = "gK";
@@ -102,14 +99,26 @@
       }
       {
         key = "<leader>cr";
-        # action.__raw = "vim.lsp.buf.rename";
+        action.__raw = ''
+          function() 
+            local inc = require('inc_rename')
+            return "<cmd>" .. inc.config.cmd_name .. " " .. vim.fn.expand("<cword>")
+          end
+        '';
         options.desc = "Rename";
-        lspBufAction = "rename";
       }
       {
         key = "<leader>cd";
-        options.desc = "Show diagnostics under the cursor";
-        action.__raw = "function() vim.diagnostic.open_float() end";
+        options = {
+          desc = "Show diagnostics under the cursor";
+          silent = true;
+        };
+        action = "<cmd>Lspsaga show_cursor_diagnostics<cr>";
+      }
+      {
+        key = "<leader>sd";
+        options.desc = "Search diagnostics";
+        action.__raw = "function() Snacks.picker.diagnostics() end";
       }
       {
         key = "]]";

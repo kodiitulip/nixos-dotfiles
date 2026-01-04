@@ -3,13 +3,7 @@
   plugins.lint = {
     enable = true;
     linters = {
-      statix = {
-        cmd = lib.getExe pkgs.statix;
-      };
-      eslint_d = {
-        cmd = lib.getExe pkgs.eslint_d;
-      };
-      vale.cmd = lib.getExe pkgs.vale;
+      statix.cmd = lib.getExe pkgs.statix;
     };
 
     lintersByFt = {
@@ -21,4 +15,15 @@
       markdown = [ "vale" ];
     };
   };
+
+  autoCmd = [
+    {
+      event = [
+        "InsertLeave"
+        "TextChanged"
+      ];
+      callback.__raw = ''function() require('lint').try_lint() end'';
+      desc = "Lint when TextChanged or InsertLeave";
+    }
+  ];
 }

@@ -10,6 +10,7 @@
   imports = [
     inputs.vintagestory-nix.homeModules.default
     inputs.nixvim.homeModules.nixvim
+    # inputs.sls-steam.homeModules.sls-steam
     ./config/lf.nix
     ./config/starship.nix
     ./config/nushell.nix

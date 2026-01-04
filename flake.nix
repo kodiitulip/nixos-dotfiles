@@ -27,6 +27,8 @@
       url = "github:PierreBorine/vintagestory-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # sls-steam.url = "github:AceSLS/SLSsteam";
   };
 
   outputs =

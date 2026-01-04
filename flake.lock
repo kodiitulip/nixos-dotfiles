@@ -221,30 +221,9 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "playit-nixos-module": "playit-nixos-module",
-        "sls-steam": "sls-steam",
         "sops-nix": "sops-nix",
         "vintagestory-nix": "vintagestory-nix",
         "zen-browser": "zen-browser"
-      }
-    },
-    "sls-steam": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1766842252,
-        "narHash": "sha256-wHGW7QAzZmCOaa0/eeNZwr7fYSVFOD1WZm2gSlhyIts=",
-        "owner": "AceSLS",
-        "repo": "SLSsteam",
-        "rev": "21864bdaf525e0e57d58d479de4bda6311e1b6c0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AceSLS",
-        "repo": "SLSsteam",
-        "type": "github"
       }
     },
     "sops-nix": {

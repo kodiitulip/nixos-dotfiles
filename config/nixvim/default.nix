@@ -9,21 +9,19 @@
 
     clipboard.register = "unnamedplus";
     diagnostic.settings = {
-      virtual_lines.current_line = true;
       virtual_text = true;
     };
 
     opts = {
       number = true;
-      # colorcolumn = "80";
       relativenumber = true;
       shiftwidth = 2;
       tabstop = 2;
       wrap = false;
-      swapfile = false; # Undotree
-      backup = false; # Undotree
+      swapfile = false;
+      backup = false;
       undofile = true;
-      hlsearch = false;
+      hlsearch = true;
       incsearch = true;
       termguicolors = true;
       scrolloff = 8;

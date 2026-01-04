@@ -133,7 +133,7 @@ _: {
               icon = " ";
               key = "s";
               desc = "Restore Session";
-              section = "session";
+              action = "<leader>qs";
             }
             {
               icon = " ";
@@ -172,7 +172,7 @@ _: {
       options = {
         silent = true;
         noremap = true;
-        desc = "Snacks Explorer";
+        desc = "Search Keymaps";
       };
     }
     {

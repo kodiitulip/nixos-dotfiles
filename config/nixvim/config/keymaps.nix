@@ -167,7 +167,7 @@
       key = "<esc>";
       action = lib.nixvim.utils.mkRaw ''
         function()
-          vim.cmd("noh")
+          vim.cmd("nohl")
           return "<esc>"
         end '';
       options = {
