@@ -8,11 +8,11 @@
 {
   nixpkgs.overlays = [
     inputs.vintagestory-nix.overlays.default
-    inputs.copyparty.overlays.default
+    # inputs.copyparty.overlays.default
   ];
 
   imports = [
-    inputs.copyparty.nixosModules.default
+    # inputs.copyparty.nixosModules.default
     inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
   ];
@@ -112,37 +112,37 @@
       openFirewall = true;
     };
 
-    copyparty = {
-      enable = true;
-      user = "copyparty";
-      group = "copyparty";
-      settings = {
-        i = "0.0.0.0";
-        p = [
-          3210
-          3211
-        ];
-        no-reload = true;
-        ignored-flag = false;
-      };
-      accounts = {
-        kodie.passwordFile = config.sops.secrets.copyparty.path;
-      };
-      groups.g1 = [ "kodie" ];
-      volumes."/" = {
-        path = "/srv/copyparty";
-        access = {
-          r = "*";
-          rw = [ "kodie" ];
-        };
-        flags = {
-          e2dsa = true;
-          e2ts = true;
-          norobots = true;
-          forcejs = true;
-        };
-      };
-    };
+    # copyparty = {
+    #   enable = true;
+    #   user = "copyparty";
+    #   group = "copyparty";
+    #   settings = {
+    #     i = "0.0.0.0";
+    #     p = [
+    #       3210
+    #       3211
+    #     ];
+    #     no-reload = true;
+    #     ignored-flag = false;
+    #   };
+    #   accounts = {
+    #     kodie.passwordFile = config.sops.secrets.copyparty.path;
+    #   };
+    #   groups.g1 = [ "kodie" ];
+    #   volumes."/" = {
+    #     path = "/srv/copyparty";
+    #     access = {
+    #       r = "*";
+    #       A = [ "kodie" ];
+    #     };
+    #     flags = {
+    #       e2dsa = true;
+    #       e2ts = true;
+    #       norobots = true;
+    #       forcejs = true;
+    #     };
+    #   };
+    # };
   };
 
   xdg.icons.fallbackCursorThemes = [ "breeze_cursors" ];
