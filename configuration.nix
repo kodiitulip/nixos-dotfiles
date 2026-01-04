@@ -8,9 +8,11 @@
 {
   nixpkgs.overlays = [
     inputs.vintagestory-nix.overlays.default
+    inputs.copyparty.overlays.default
   ];
 
   imports = [
+    inputs.copyparty.nixosModules.default
     inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
   ];
@@ -20,9 +22,9 @@
 
     age.keyFile = "/home/kodie/.config/sops/age/keys.txt";
     age.generateKey = true;
-
-    secrets.playitgg = {
-      owner = config.users.users.kodie.name;
+    secrets = {
+      playitgg.owner = config.users.users.kodie.name;
+      copyparty.owner = config.users.users.copyparty.name;
     };
   };
 
@@ -109,6 +111,38 @@
       capSysAdmin = true;
       openFirewall = true;
     };
+
+    copyparty = {
+      enable = true;
+      user = "copyparty";
+      group = "copyparty";
+      settings = {
+        i = "0.0.0.0";
+        p = [
+          3210
+          3211
+        ];
+        no-reload = true;
+        ignored-flag = false;
+      };
+      accounts = {
+        kodie.passwordFile = config.sops.secrets.copyparty.path;
+      };
+      groups.g1 = [ "kodie" ];
+      volumes."/" = {
+        path = "/srv/copyparty";
+        access = {
+          r = "*";
+          rw = [ "kodie" ];
+        };
+        flags = {
+          e2dsa = true;
+          e2ts = true;
+          norobots = true;
+          forcejs = true;
+        };
+      };
+    };
   };
 
   xdg.icons.fallbackCursorThemes = [ "breeze_cursors" ];
@@ -126,15 +160,15 @@
       packages = [ ];
       shell = pkgs.nushell;
     };
-    # playit = {
-    #   home = "/var/lib/playit";
-    #   createHome = true;
-    #   isSystemUser = true;
-    #   group = "playit";
-    # };
+    copyparty = {
+      home = "/var/lib/copyparty";
+      createHome = true;
+      isSystemUser = true;
+      group = "copyparty";
+    };
   };
 
-  # users.groups.playit = { };
+  users.groups.copyparty = { };
 
   programs = import ./system-programs.nix { inherit pkgs; };
 

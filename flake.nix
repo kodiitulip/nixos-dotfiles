@@ -28,7 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # sls-steam.url = "github:AceSLS/SLSsteam";
+    copyparty.url = "github:9001/copyparty";
   };
 
   outputs =
