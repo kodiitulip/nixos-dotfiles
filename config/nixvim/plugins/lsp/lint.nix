@@ -4,6 +4,7 @@
     enable = true;
     linters = {
       statix.cmd = lib.getExe pkgs.statix;
+      vale.cmd = lib.getExe pkgs.vale;
     };
 
     lintersByFt = {
@@ -19,6 +20,7 @@
   autoCmd = [
     {
       event = [
+        "BufRead"
         "InsertLeave"
         "TextChanged"
       ];

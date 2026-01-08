@@ -29,6 +29,11 @@
   plugins.nix.enable = true;
   keymaps = [
     {
+      key = "<leader>cn";
+      action = "";
+      options.desc = "+Nix";
+    }
+    {
       key = "<leader>cnd";
       mode = [ "n" ];
       action = "<cmd>NixDevelop<CR>";

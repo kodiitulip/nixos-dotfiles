@@ -1,8 +1,14 @@
-_: {
+{ pkgs, ... }:
+{
   imports = [
     ./fidget.nix
     ./conform.nix
     ./lint.nix
+    # ./lspsaga.nix
+  ];
+  extraPackages = with pkgs; [
+    nil
+    nixd
   ];
   lsp = {
     inlayHints.enable = true;
@@ -47,7 +53,8 @@ _: {
       }
       {
         key = "K";
-        action = "<cmd>Lspsaga hover_doc<cr>";
+        # action = "<cmd>Lspsaga hover_doc<cr>";
+        lspBufAction = "hover";
         options = {
           desc = "Hover";
           silent = true;
@@ -68,7 +75,6 @@ _: {
       }
       {
         key = "<leader>ca";
-        # action.__raw = "vim.lsp.buf.code_action";
         options.desc = "Code Action";
         mode = [
           "n"
@@ -102,18 +108,33 @@ _: {
         action.__raw = ''
           function() 
             local inc = require('inc_rename')
-            return "<cmd>" .. inc.config.cmd_name .. " " .. vim.fn.expand("<cword>")
+            return ":" .. inc.config.cmd_name .. " " .. vim.fn.expand("<cword>")
           end
         '';
-        options.desc = "Rename";
+        options = {
+          expr = true;
+          desc = "Rename";
+        };
       }
+      # {
+      #   key = "<leader>cci";
+      #   action = "<cmd>Lspsaga incoming_calls<cr>";
+      #   options.desc = "Incoming Calls";
+      # }
+      # {
+      #   key = "<leader>cco";
+      #   action = "<cmd>Lspsaga outgoing_calls<cr>";
+      #   options.desc = "Outgoing Calls";
+      # }
       {
         key = "<leader>cd";
         options = {
           desc = "Show diagnostics under the cursor";
           silent = true;
         };
-        action = "<cmd>Lspsaga show_cursor_diagnostics<cr>";
+        # action = "<cmd>Lspsaga show_cursor_diagnostics<cr>";
+        action.__raw = ''vim.diagnostic.open_float'';
+
       }
       {
         key = "<leader>sd";
@@ -170,7 +191,14 @@ _: {
       sqls.enable = true;
       nushell.enable = true;
       lua_ls.enable = true;
-      nil_ls.enable = true;
+      nil_ls = {
+        enable = true;
+        package = pkgs.nil;
+      };
+      nixd = {
+        enable = true;
+        package = pkgs.nixd;
+      };
       ts_ls.enable = true;
       emmet_language_server.enable = true;
       tailwindcss.enable = true;
@@ -206,7 +234,6 @@ _: {
   };
   plugins = {
     helm.enable = true;
-    lspsaga.enable = true;
     lspconfig = {
       enable = true;
       settings = {

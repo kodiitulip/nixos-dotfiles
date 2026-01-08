@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./config
@@ -48,6 +48,11 @@
       shellcheck # Shell script linter
       eslint_d # JavaScript/TypeScript linter
       statix
+      vale
+
+      # Lsps
+      nixd
+      nil
     ];
   };
 }

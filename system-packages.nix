@@ -19,4 +19,5 @@ with pkgs;
   dotnetCorePackages.runtime_8_0-bin
   libnotify
   # copyparty
+
 ]

@@ -3,6 +3,7 @@
   pkgs,
   system,
   inputs,
+  lib,
   ...
 }:
 
@@ -117,18 +118,40 @@
 
   };
 
-  xdg.configFile = {
-    "nvim-lazy" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
-      recursive = true;
+  xdg = {
+    dataFile."vale/styles/Readability" = {
+      enable = true;
+      source = pkgs.fetchzip {
+        url = "https://github.com/errata-ai/readability/releases/download/v0.1.1/Readability.zip";
+        hash = "sha256-DGzOVyTkT1H6NWf/1Sk2bImw0rUs8RPF5pawMrNs3pE=";
+      };
     };
-    "kitty" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/kitty/";
-      recursive = true;
-    };
-    "bat/themes" = {
-      source = ./config/bat/themes;
-      recursive = true;
+
+    configFile = {
+      "nvim-lazy" = {
+        source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
+        recursive = true;
+      };
+      "kitty" = {
+        source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/kitty/";
+        recursive = true;
+      };
+      "bat/themes" = {
+        source = ./config/bat/themes;
+        recursive = true;
+      };
+
+      "vale/.vale.ini" = {
+        enable = true;
+        text = ''
+          MinAlertLevel = suggestion
+
+          Packages = proselint,alex
+
+          [*.md]
+          BasedOnStyles = Readability,alex,proselint
+        '';
+      };
     };
   };
 
