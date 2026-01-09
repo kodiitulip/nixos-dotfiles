@@ -22,10 +22,8 @@ with pkgs;
   yt-dlp
 
   # Editors / IDEs
-  vscodium-fhs
-  jetbrains.idea-oss
+  # jetbrains.idea-oss
   kdePackages.kate
-  poedit
   godot
 
   # Art / 3D Modeling
@@ -36,7 +34,6 @@ with pkgs;
 
   # Games
   prismlauncher
-  mindustry
   heroic
   hydralauncher
   rimsort
@@ -45,8 +42,6 @@ with pkgs;
 
   # Daily Utils
   vesktop
-  easyeffects
-  pear-desktop
   libreoffice-qt-fresh
   inputs.zen-browser.packages.${system}.default
 ]

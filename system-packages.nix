@@ -16,5 +16,5 @@ with pkgs;
   jellyfin-ffmpeg
   trashy
   # copyparty
-
+  gdu
 ]
