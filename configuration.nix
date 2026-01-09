@@ -68,7 +68,6 @@
   };
 
   services = {
-
     xserver = {
       enable = true;
       autoRepeatDelay = 200;
@@ -145,7 +144,7 @@
     # };
   };
 
-  xdg.icons.fallbackCursorThemes = [ "breeze_cursors" ];
+  xdg.icons.fallbackCursorThemes = [ "BreezeX-RosePine-Linux" ];
   console.keyMap = "br-abnt2";
   security.rtkit.enable = true;
 
@@ -180,12 +179,13 @@
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
-    comic-relief
   ];
 
   hardware = {
-    opentabletdriver.enable = true;
-    opentabletdriver.daemon.enable = true;
+    opentabletdriver = {
+      enable = true;
+      daemon.enable = true;
+    };
     bluetooth = {
       enable = true;
       powerOnBoot = true;

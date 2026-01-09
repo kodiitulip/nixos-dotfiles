@@ -49,6 +49,7 @@ _: {
       words.enabled = true;
       terminal.win.style = "floating_terminal";
       gh = { };
+      health = { };
       styles = {
         floating_terminal = {
           style = "terminal";
@@ -312,6 +313,19 @@ _: {
       key = "<leader>sT";
       action.__raw = ''function () Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end'';
       options.desc = "Todo/Fix/Fixme";
+    }
+
+    # Health
+
+    {
+      key = "<leader>h";
+      action = "";
+      options.desc = "+Healthcheck";
+    }
+    {
+      key = "<leader>hc";
+      action.__raw = ''function() Snacks.health.check() end'';
+      options.desc = "Healthcheck";
     }
   ];
 }

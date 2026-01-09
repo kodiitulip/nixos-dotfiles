@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 with pkgs;
 [
   kitty
@@ -13,11 +13,8 @@ with pkgs;
   winetricks
   sops
   fd
-  cabextract
   jellyfin-ffmpeg
   trashy
-  dotnetCorePackages.runtime_8_0-bin
-  libnotify
   # copyparty
 
 ]

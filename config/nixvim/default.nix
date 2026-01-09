@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./config
@@ -49,6 +49,7 @@
       eslint_d # JavaScript/TypeScript linter
       statix
       vale
+      markdownlint-cli2
 
       # Lsps
       nixd

@@ -20,30 +20,27 @@
       }
       {
         key = "gd";
-        # action.__raw = "vim.lsp.buf.definition";
+        action.__raw = "function() Snacks.picker.lsp_definitions() end";
         options.desc = "Goto Definition";
-        lspBufAction = "definition";
       }
       {
         key = "gr";
-        # action.__raw = "vim.lsp.buf.references";
+        action.__raw = "function() Snacks.picker.lsp_references() end";
         options = {
           desc = "References";
           nowait = true;
         };
-        lspBufAction = "references";
       }
       {
         key = "gI";
-        # action.__raw = "vim.lsp.buf.implementation";
+        action.__raw = "function() Snacks.picker.lsp_implementations() end";
         options.desc = "Goto Implementation";
-        lspBufAction = "implementation";
       }
       {
         key = "gy";
-        # action.__raw = "vim.lsp.buf.type_definition";
+        action.__raw = "function() Snacks.picker.lsp_type_definitions() end";
         options.desc = "Goto T[y]pe Definition";
-        lspBufAction = "type_definition";
+        # lspBufAction = "type_definition";
       }
       {
         key = "gD";
@@ -116,16 +113,16 @@
           desc = "Rename";
         };
       }
-      # {
-      #   key = "<leader>cci";
-      #   action = "<cmd>Lspsaga incoming_calls<cr>";
-      #   options.desc = "Incoming Calls";
-      # }
-      # {
-      #   key = "<leader>cco";
-      #   action = "<cmd>Lspsaga outgoing_calls<cr>";
-      #   options.desc = "Outgoing Calls";
-      # }
+      {
+        key = "gai";
+        action.__raw = "function() Snacks.picker.lsp_incoming_calls() end";
+        options.desc = "Incoming Calls";
+      }
+      {
+        key = "gao";
+        action.__raw = "function() Snacks.picker.lsp_outgoing_calls() end";
+        options.desc = "Outgoing Calls";
+      }
       {
         key = "<leader>cd";
         options = {

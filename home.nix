@@ -3,7 +3,6 @@
   pkgs,
   system,
   inputs,
-  lib,
   ...
 }:
 
@@ -119,14 +118,6 @@
   };
 
   xdg = {
-    dataFile."vale/styles/Readability" = {
-      enable = true;
-      source = pkgs.fetchzip {
-        url = "https://github.com/errata-ai/readability/releases/download/v0.1.1/Readability.zip";
-        hash = "sha256-DGzOVyTkT1H6NWf/1Sk2bImw0rUs8RPF5pawMrNs3pE=";
-      };
-    };
-
     configFile = {
       "nvim-lazy" = {
         source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
@@ -149,7 +140,7 @@
           Packages = proselint,alex
 
           [*.md]
-          BasedOnStyles = Readability,alex,proselint
+          BasedOnStyles = alex,proselint
         '';
       };
     };
