@@ -46,7 +46,7 @@ with pkgs;
   # Daily Utils
   vesktop
   easyeffects
-  youtube-music
+  pear-desktop
   libreoffice-qt-fresh
   inputs.zen-browser.packages.${system}.default
 ]
