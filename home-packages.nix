@@ -20,6 +20,7 @@ with pkgs;
   kdePackages.qtmultimedia
   inputs.playit-nixos-module.packages.${system}.default
   yt-dlp
+  pear-desktop
 
   # Editors / IDEs
   # jetbrains.idea-oss
@@ -39,9 +40,11 @@ with pkgs;
   rimsort
   vintagestoryPackages.rustique
   vintagestoryPackages.vs-launcher
+  inputs.hytale-launcher.packages.${system}.default
 
   # Daily Utils
   vesktop
   libreoffice-qt-fresh
   inputs.zen-browser.packages.${system}.default
+  inputs.nix-alien.packages.${system}.nix-alien
 ]

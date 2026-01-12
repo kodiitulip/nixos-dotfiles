@@ -29,6 +29,8 @@
     };
 
     # copyparty.url = "github:9001/copyparty";
+    nix-alien.url = "github:thiagokokada/nix-alien";
+    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
   };
 
   outputs =
