@@ -14,6 +14,7 @@
   imports = [
     # inputs.copyparty.nixosModules.default
     inputs.sops-nix.nixosModules.sops
+    inputs.vintagestory-nix.nixosModules.default
     ./hardware-configuration.nix
   ];
   sops = {
@@ -109,6 +110,14 @@
       autoStart = false;
       capSysAdmin = true;
       openFirewall = true;
+    };
+
+    vintagestory = {
+      enable = true;
+      openFirewall = true;
+      host = "127.0.0.1";
+      extraFlags = [ ];
+      package = pkgs.vintagestoryPackages.latest;
     };
 
     # copyparty = {
