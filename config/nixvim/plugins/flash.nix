@@ -1,16 +1,16 @@
 {
-  plugins.flash.enable = true;
-  plugins.flash.settings = {
-    search.mode = "fuzzy";
-    label.uppercase = false;
-    jump.autojump = true;
-    rainbow.enabled = true;
-    prompt.prefix = [
-      [
-        "󱐋"
-        "FlashPromptIcon"
-      ]
-    ];
+  plugins.flash = {
+    enable = true;
+    settings = {
+      label.uppercase = false;
+      jump.autojump = true;
+      prompt.prefix = [
+        [
+          "󱐋"
+          "FlashPromptIcon"
+        ]
+      ];
+    };
   };
   keymaps = [
     {

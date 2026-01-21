@@ -18,7 +18,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
     nixvim.url = "github:nix-community/nixvim";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -30,7 +33,7 @@
 
     # copyparty.url = "github:9001/copyparty";
     nix-alien.url = "github:thiagokokada/nix-alien";
-    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
+    hytale-launcher.url = "github:JPyke3/hytale-launcher-nix";
   };
 
   outputs =

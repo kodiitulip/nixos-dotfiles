@@ -1,6 +1,7 @@
 { pkgs, ... }:
 with pkgs;
 [
+  bun
   kitty
   vlc
   wl-clipboard-rs
@@ -17,4 +18,6 @@ with pkgs;
   trashy
   # copyparty
   gdu
+  kdePackages.qtmultimedia
+  firefoxpwa
 ]

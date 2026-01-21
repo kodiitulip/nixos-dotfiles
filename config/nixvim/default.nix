@@ -29,12 +29,12 @@
       updatetime = 50;
       foldlevelstart = 99;
       foldmethod = "expr";
+      foldexpr.__raw = "vim.treesitter.foldexpr()";
       fillchars = ''eob: '';
       expandtab = true;
     };
     extraPackages = with pkgs; [
       # base
-      nerd-fonts.fira-mono
       fzf
       ripgrep
       fd

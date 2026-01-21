@@ -5,6 +5,11 @@
   ...
 }:
 
+let
+  sddm-astronaut = pkgs.sddm-astronaut.override {
+    embeddedTheme = "pixel_sakura";
+  };
+in
 {
   nixpkgs.overlays = [
     inputs.vintagestory-nix.overlays.default
@@ -75,8 +80,14 @@
       autoRepeatInterval = 35;
       videoDrivers = [ "amdgpu" ];
     };
-
-    displayManager.sddm.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      theme = "sddm-astronaut-theme";
+      extraPackages = [
+        sddm-astronaut
+        pkgs.kdePackages.qtmultimedia
+      ];
+    };
     desktopManager.plasma6.enable = true;
 
     xserver.xkb = {
@@ -113,44 +124,10 @@
     };
 
     vintagestory = {
-      enable = true;
+      enable = false;
       openFirewall = true;
-      host = "127.0.0.1";
-      extraFlags = [ ];
-      package = pkgs.vintagestoryPackages.latest;
     };
 
-    # copyparty = {
-    #   enable = true;
-    #   user = "copyparty";
-    #   group = "copyparty";
-    #   settings = {
-    #     i = "0.0.0.0";
-    #     p = [
-    #       3210
-    #       3211
-    #     ];
-    #     no-reload = true;
-    #     ignored-flag = false;
-    #   };
-    #   accounts = {
-    #     kodie.passwordFile = config.sops.secrets.copyparty.path;
-    #   };
-    #   groups.g1 = [ "kodie" ];
-    #   volumes."/" = {
-    #     path = "/srv/copyparty";
-    #     access = {
-    #       r = "*";
-    #       A = [ "kodie" ];
-    #     };
-    #     flags = {
-    #       e2dsa = true;
-    #       e2ts = true;
-    #       norobots = true;
-    #       forcejs = true;
-    #     };
-    #   };
-    # };
   };
 
   xdg.icons.fallbackCursorThemes = [ "BreezeX-RosePine-Linux" ];
@@ -183,7 +160,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = import ./system-packages.nix { inherit pkgs inputs; };
+  environment.systemPackages = [
+    sddm-astronaut
+  ]
+  ++ import ./system-packages.nix { inherit pkgs inputs; };
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono

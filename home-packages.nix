@@ -32,6 +32,7 @@ with pkgs;
   aseprite
   blockbench
   blender
+  kdePackages.kdenlive
 
   # Games
   prismlauncher
@@ -40,7 +41,7 @@ with pkgs;
   rimsort
   vintagestoryPackages.rustique
   vintagestoryPackages.vs-launcher
-  inputs.hytale-launcher.packages.${system}.default
+  inputs.hytale-launcher.packages.x86_64-linux.default
 
   # Daily Utils
   vesktop

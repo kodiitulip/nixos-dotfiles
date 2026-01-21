@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   programs.obs-studio = {
@@ -8,6 +8,7 @@
       obs-backgroundremoval
       obs-pipewire-audio-capture
       obs-vkcapture
+      obs-tuna
     ];
   };
 

@@ -197,6 +197,7 @@
         package = pkgs.nixd;
       };
       ts_ls.enable = true;
+
       emmet_language_server.enable = true;
       tailwindcss.enable = true;
       rust_analyser.enable = true;
@@ -271,14 +272,10 @@
       end
     end)
 
-    Snacks.util.lsp.on({ method = "textDocument/foldingRange" }, function()
+    Snacks.util.lsp.on({ method = "textDocument/foldingRange" }, function(buffer)
       if vim.opt.foldmethod == "expr" then
-        vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
+        vim.opt.foldexpr = vim.treesitter.foldexpr()
       end
     end)
-
-    require('lspconfig.ui.windows').default_options = {
-      border = _border
-    }
   '';
 }
