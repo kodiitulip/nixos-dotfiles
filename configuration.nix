@@ -128,6 +128,12 @@ in
       openFirewall = true;
     };
 
+    zerotierone = {
+      enable = true;
+      joinNetworks = [
+        "bb720a5aaedee869"
+      ];
+    };
   };
 
   xdg.icons.fallbackCursorThemes = [ "BreezeX-RosePine-Linux" ];
@@ -182,7 +188,10 @@ in
   };
 
   networking = {
-    hostName = "nixos"; # Define your hostname.
+    extraHosts = {
+      "172.24.145.167" = [ "julia-servers" ];
+    };
+    hostName = "nixos";
     networkmanager.enable = true;
     nftables.enable = true;
     firewall = {
@@ -191,6 +200,12 @@ in
         80
         443
         3000
+      ];
+      allowedTCPPortRanges = [
+        {
+          from = 45000;
+          to = 47000;
+        }
       ];
       allowedUDPPortRanges = [
         {

@@ -20,4 +20,8 @@ with pkgs;
   gdu
   kdePackages.qtmultimedia
   firefoxpwa
+  gnome-network-displays
+  catt
+  zerotierone
+  croc
 ]
