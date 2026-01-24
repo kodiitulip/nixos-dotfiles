@@ -188,7 +188,7 @@ in
   };
 
   networking = {
-    extraHosts = {
+    hosts = {
       "172.24.145.167" = [ "julia-servers" ];
     };
     hostName = "nixos";
