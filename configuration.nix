@@ -21,6 +21,7 @@ in
     inputs.sops-nix.nixosModules.sops
     inputs.vintagestory-nix.nixosModules.default
     ./hardware-configuration.nix
+    ./system-services.nix
   ];
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
@@ -71,69 +72,6 @@ in
     LC_PAPER = "pt_BR.UTF-8";
     LC_TELEPHONE = "pt_BR.UTF-8";
     LC_TIME = "pt_BR.UTF-8";
-  };
-
-  services = {
-    xserver = {
-      enable = true;
-      autoRepeatDelay = 200;
-      autoRepeatInterval = 35;
-      videoDrivers = [ "amdgpu" ];
-    };
-    displayManager.sddm = {
-      enable = true;
-      theme = "sddm-astronaut-theme";
-      extraPackages = [
-        sddm-astronaut
-        pkgs.kdePackages.qtmultimedia
-      ];
-    };
-    desktopManager.plasma6.enable = true;
-
-    xserver.xkb = {
-      layout = "br";
-      variant = "nodeadkeys";
-      options = "compose:rctrl";
-    };
-
-    printing.enable = true;
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      #jack.enable = true;
-    };
-
-    flatpak.enable = true;
-    openssh.enable = true;
-
-    playit = {
-      enable = true;
-      secretPath = config.sops.secrets.playitgg.path;
-    };
-
-    qbittorrent.enable = true;
-
-    sunshine = {
-      enable = true;
-      autoStart = false;
-      capSysAdmin = true;
-      openFirewall = true;
-    };
-
-    vintagestory = {
-      enable = false;
-      openFirewall = true;
-    };
-
-    zerotierone = {
-      enable = true;
-      joinNetworks = [
-        "bb720a5aaedee869"
-      ];
-    };
   };
 
   xdg.icons.fallbackCursorThemes = [ "BreezeX-RosePine-Linux" ];

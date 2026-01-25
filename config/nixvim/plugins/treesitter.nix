@@ -1,14 +1,14 @@
 _: {
+  # extraPlugins = [ treesitter-mcfunction ];
   plugins = {
     treesitter = {
       enable = true;
-
-      settings.indent.enable = true;
-      settings.highlight.enable = true;
+      highlight.enable = true;
+      indent.enable = true;
+      folding.enable = true;
+      # grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars ++ [ treesitter-mcfunction ];
+      # languageRegister.mcfunction = "mcfunction";
     };
-
-    treesitter-context.enable = true;
-
     treesitter-textobjects = {
       enable = true;
       settings = {

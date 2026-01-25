@@ -197,7 +197,6 @@
         package = pkgs.nixd;
       };
       ts_ls.enable = true;
-
       emmet_language_server.enable = true;
       tailwindcss.enable = true;
       rust_analyser.enable = true;
