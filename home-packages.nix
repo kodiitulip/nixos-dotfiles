@@ -32,7 +32,7 @@ with pkgs;
   aseprite
   blockbench
   blender
-  kdePackages.kdenlive
+  # kdePackages.kdenlive
 
   # Games
   prismlauncher

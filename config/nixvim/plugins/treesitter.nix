@@ -3,9 +3,11 @@ _: {
   plugins = {
     treesitter = {
       enable = true;
-      highlight.enable = true;
-      indent.enable = true;
-      folding.enable = true;
+      settings = {
+        highlight.enable = true;
+        indent.enable = true;
+        folding.enable = true;
+      };
       # grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars ++ [ treesitter-mcfunction ];
       # languageRegister.mcfunction = "mcfunction";
     };
