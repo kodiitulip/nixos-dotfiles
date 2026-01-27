@@ -42,7 +42,8 @@ in
     loader.efi.canTouchEfiVariables = true;
 
     # Use latest kernel.
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "v4l2loopback" ];
 
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback

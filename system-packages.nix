@@ -22,6 +22,5 @@ with pkgs;
   firefoxpwa
   gnome-network-displays
   catt
-  zerotierone
   croc
 ]

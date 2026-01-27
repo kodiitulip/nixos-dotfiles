@@ -63,5 +63,7 @@ in
       enable = false;
       openFirewall = true;
     };
+
+    zerotierone.enable = true;
   };
 }
