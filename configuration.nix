@@ -22,6 +22,8 @@ in
     inputs.vintagestory-nix.nixosModules.default
     ./hardware-configuration.nix
     ./system-services.nix
+    ./system-programs.nix
+    ./system-packages.nix
   ];
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
@@ -42,7 +44,7 @@ in
     loader.efi.canTouchEfiVariables = true;
 
     # Use latest kernel.
-    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "v4l2loopback" ];
 
     extraModulePackages = with config.boot.kernelPackages; [
@@ -100,15 +102,13 @@ in
 
   users.groups.copyparty = { };
 
-  programs = import ./system-programs.nix { inherit pkgs; };
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = [
     sddm-astronaut
-  ]
-  ++ import ./system-packages.nix { inherit pkgs inputs; };
+  ];
+  # ++ import ./system-packages.nix { inherit pkgs inputs; };
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
