@@ -181,6 +181,7 @@ _: {
       mode = [ "n" ];
       action = "<cmd>lua Snacks.picker.grep()<CR>";
       options = {
+        desc = "Grep Picker";
         silent = true;
         noremap = true;
       };
@@ -224,6 +225,7 @@ _: {
       mode = [ "n" ];
       action = "<cmd>lua Snacks.picker.notifications()<CR>";
       options = {
+        desc = "Notifications History";
         silent = true;
         noremap = true;
       };
@@ -303,6 +305,7 @@ _: {
       key = "<leader>:";
       mode = [ "n" ];
       action = "<cmd>lua Snacks.picker.command_history()<CR>";
+      options.desc = "Command History";
     }
     {
       key = "<leader>st";
@@ -319,11 +322,6 @@ _: {
 
     {
       key = "<leader>h";
-      action = "";
-      options.desc = "+Healthcheck";
-    }
-    {
-      key = "<leader>hc";
       action.__raw = ''function() Snacks.health.check() end'';
       options.desc = "Healthcheck";
     }

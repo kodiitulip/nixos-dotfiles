@@ -32,6 +32,8 @@
       foldexpr.__raw = "vim.treesitter.foldexpr()";
       fillchars = ''eob: '';
       expandtab = true;
+      smartcase = true;
+      ignorecase = true;
     };
     extraPackages = with pkgs; [
       # base

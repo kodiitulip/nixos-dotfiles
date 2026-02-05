@@ -2,14 +2,21 @@
   plugins.flash = {
     enable = true;
     settings = {
-      label.uppercase = false;
-      jump.autojump = true;
+      label = {
+        uppercase = false;
+        rainbow.enabled = true;
+      };
+      jump = {
+        nohlsearch = true;
+        autojump = true;
+      };
       prompt.prefix = [
         [
           "󱐋"
           "FlashPromptIcon"
         ]
       ];
+      modes.search.enabled = true;
     };
   };
   keymaps = [

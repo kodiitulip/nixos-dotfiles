@@ -27,5 +27,6 @@
     ./dial.nix
     ./inc-rename.nix
     ./persistence.nix
+    ./grug-far.nix
   ];
 }

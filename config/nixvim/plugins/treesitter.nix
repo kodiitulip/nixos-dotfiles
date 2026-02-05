@@ -88,12 +88,12 @@ _: {
         swap = {
           enable = true;
           swap_next = {
-            "<leader>na" = "@parameter.inner";
-            "<leader>nm" = "@function.outer";
+            "<leader>tna" = "@parameter.inner";
+            "<leader>tnm" = "@function.outer";
           };
           swap_previous = {
-            "<leader>pa" = "@parameter.inner";
-            "<leader>pm" = "@parameter.outer";
+            "<leader>tpa" = "@parameter.inner";
+            "<leader>tpm" = "@function.outer";
           };
         };
 

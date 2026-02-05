@@ -93,6 +93,18 @@
               __unkeyed-1 = "gx";
               desc = "Open with system app";
             }
+            {
+              __unkeyed-1 = "<leader>t";
+              desc = "Treesitter Movements";
+            }
+            {
+              __unkeyed-1 = "<leader>tn";
+              desc = "+Swap next";
+            }
+            {
+              __unkeyed-1 = "<leader>tp";
+              desc = "+Swap previous";
+            }
           ]
           // {
             mode = [
