@@ -184,6 +184,10 @@
           root_markers = [ ".git" ];
         };
       };
+      spyglassmc-language-server = {
+        enable = true;
+        package = null;
+      };
       superhtml.enable = true;
       sqls.enable = true;
       nushell.enable = true;

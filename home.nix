@@ -119,10 +119,6 @@
 
   xdg = {
     configFile = {
-      "nvim-lazy" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/nvim/";
-        recursive = true;
-      };
       "kitty" = {
         source = config.lib.file.mkOutOfStoreSymlink "/home/kodie/nixos-dotfiles/config/kitty/";
         recursive = true;
