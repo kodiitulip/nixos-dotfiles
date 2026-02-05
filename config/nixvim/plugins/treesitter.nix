@@ -3,6 +3,9 @@ _: {
   plugins = {
     treesitter = {
       enable = true;
+      highlight.enable = true;
+      indent.enable = true;
+      folding.enable = true;
       settings = {
         highlight.enable = true;
         indent.enable = true;
