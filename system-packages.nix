@@ -19,6 +19,7 @@
     # copyparty
     gdu
     kdePackages.qtmultimedia
+    kdePackages.partitionmanager
     firefoxpwa
     gnome-network-displays
     catt

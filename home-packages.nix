@@ -12,12 +12,9 @@ with pkgs;
   temurin-bin
   protonup-qt
   direnv
-  kdePackages.partitionmanager
-  kdePackages.kdialog
   rose-pine-cursor
   (callPackage ./custom-packages/steam-art-manager.nix { })
   (with kdePackages; callPackage ./custom-packages/plasma-smart-video-wallpaper-reborn.nix { })
-  kdePackages.qtmultimedia
   inputs.playit-nixos-module.packages.${system}.default
   yt-dlp
   pear-desktop
@@ -38,7 +35,6 @@ with pkgs;
   prismlauncher
   heroic
   hydralauncher
-  rimsort
   vintagestoryPackages.rustique
   vintagestoryPackages.vs-launcher
   inputs.hytale-launcher.packages.x86_64-linux.default
@@ -46,7 +42,7 @@ with pkgs;
   # Daily Utils
   vesktop
   libreoffice-qt-fresh
-  inputs.nix-alien.packages.${system}.nix-alien
+  # inputs.nix-alien.packages.${system}.nix-alien
   (pkgs.wrapFirefox
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
     {

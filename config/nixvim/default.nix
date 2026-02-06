@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./config
@@ -10,6 +10,18 @@
     clipboard.register = "unnamedplus";
     diagnostic.settings = {
       virtual_text = true;
+    };
+
+    filetype = {
+      pattern = {
+        "__rawKey__\".*/.github/workflows/.*%.yml\"" = "yaml.ghaction";
+      };
+      extension = {
+        mcfunction = "mcfunction";
+        mcdoc = "mcdoc";
+        bolt = "bolt";
+        mcmeta = "json.mcmeta";
+      };
     };
 
     opts = {
@@ -30,7 +42,7 @@
       foldlevelstart = 99;
       foldmethod = "expr";
       foldexpr.__raw = "vim.treesitter.foldexpr()";
-      fillchars = ''eob: '';
+      fillchars = "eob: ";
       expandtab = true;
       smartcase = true;
       ignorecase = true;
@@ -43,7 +55,7 @@
 
       # Formatters
       stylua
-      nixfmt-rfc-style
+      nixfmt
       nufmt
 
       # Linters
@@ -57,5 +69,9 @@
       nixd
       nil
     ];
+
+    extraConfigLuaPost = ''
+      vim.treesitter.language.register('rust', 'mcdoc')
+    '';
   };
 }

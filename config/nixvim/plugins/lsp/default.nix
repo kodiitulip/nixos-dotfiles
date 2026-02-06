@@ -184,9 +184,22 @@
           root_markers = [ ".git" ];
         };
       };
-      spyglassmc-language-server = {
+      spyglassmc_language_server = {
         enable = true;
         package = null;
+        config = {
+          cmd = [
+            "spyglassmc-language-server"
+            "--stdio"
+          ];
+          filetypes = [
+            "mcfunction"
+            "json"
+            "mcdoc"
+            "json.mcmeta"
+          ];
+          root_markers = [ "pack.mcmeta" ];
+        };
       };
       superhtml.enable = true;
       sqls.enable = true;
@@ -203,10 +216,17 @@
       ts_ls.enable = true;
       emmet_language_server.enable = true;
       tailwindcss.enable = true;
-      rust_analyser.enable = true;
+      rust_analyzer.enable = true;
       marksman.enable = true;
       pyright.enable = true;
-      jsonls.enable = true;
+      jsonls = {
+        enable = true;
+        config.filetypes = [
+          "json"
+          "jsonc"
+          "json.mcmeta"
+        ];
+      };
       helm_ls.enable = true;
       yamlls = {
         enable = true;
