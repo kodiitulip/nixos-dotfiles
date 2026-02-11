@@ -24,5 +24,6 @@
     gnome-network-displays
     catt
     croc
+    ethtool
   ];
 }

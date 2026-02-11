@@ -46,11 +46,11 @@ in
     openssh.enable = true;
 
     playit = {
-      enable = true;
+      enable = false;
       secretPath = config.sops.secrets.playitgg.path;
     };
 
-    qbittorrent.enable = true;
+    qbittorrent.enable = false;
 
     sunshine = {
       enable = true;
