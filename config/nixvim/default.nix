@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./config
@@ -57,6 +57,7 @@
       stylua
       nixfmt
       nufmt
+      astyle
 
       # Linters
       shellcheck # Shell script linter

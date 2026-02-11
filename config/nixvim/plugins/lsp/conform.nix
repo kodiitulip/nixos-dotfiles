@@ -130,6 +130,7 @@
           "shfmt"
         ];
         json = [ "jq" ];
+        java = [ "astyle" ];
         "_" = [ "trim_whitespace" ];
       };
 

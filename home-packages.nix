@@ -18,9 +18,10 @@ with pkgs;
   inputs.playit-nixos-module.packages.${system}.default
   yt-dlp
   pear-desktop
+  easyeffects
 
   # Editors / IDEs
-  # jetbrains.idea-oss
+  jetbrains.idea-oss
   kdePackages.kate
   godot
 
@@ -43,6 +44,7 @@ with pkgs;
   vesktop
   libreoffice-qt-fresh
   # inputs.nix-alien.packages.${system}.nix-alien
+  overlayed
   (pkgs.wrapFirefox
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
     {

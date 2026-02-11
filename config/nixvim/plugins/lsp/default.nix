@@ -130,7 +130,7 @@
           silent = true;
         };
         # action = "<cmd>Lspsaga show_cursor_diagnostics<cr>";
-        action.__raw = ''vim.diagnostic.open_float'';
+        action.__raw = "vim.diagnostic.open_float";
 
       }
       {
@@ -161,15 +161,16 @@
 
       {
         key = "<leader>ss";
-        action.__raw = ''function() Snacks.picker.lsp_symbols() end'';
+        action.__raw = "function() Snacks.picker.lsp_symbols() end";
         options.desc = "LSP Symbols";
       }
       {
         key = "<leader>sS";
-        action.__raw = ''function() Snacks.picker.lsp_workspace_symbols() end'';
+        action.__raw = "function() Snacks.picker.lsp_workspace_symbols() end";
         options.desc = "LSP Workspace Symbols";
       }
     ];
+    plugins.jdtls.enable = true;
     servers = {
       "*" = {
         enable = true;
@@ -218,6 +219,7 @@
       tailwindcss.enable = true;
       rust_analyzer.enable = true;
       marksman.enable = true;
+      jdtls.enable = true;
       pyright.enable = true;
       jsonls = {
         enable = true;
