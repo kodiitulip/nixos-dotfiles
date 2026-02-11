@@ -141,9 +141,6 @@ in
           to = 25565;
         }
       ];
-      extraCommands = ''
-        iptables -A OUTPUT -o zt4honjmwh ! -d 172.24.0.0/16 -j REJECT
-      '';
     };
   };
 
