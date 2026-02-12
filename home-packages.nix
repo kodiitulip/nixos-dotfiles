@@ -19,6 +19,7 @@ with pkgs;
   yt-dlp
   pear-desktop
   easyeffects
+  mrpack-install
 
   # Editors / IDEs
   jetbrains.idea-oss

@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   programs = {
@@ -51,20 +51,6 @@
     };
 
     screen.enable = true;
-
-    firejail = {
-      enable = true;
-      wrappedBinaries = {
-        vesktop = {
-          executable = "${lib.getBin pkgs.vesktop}/bin/vesktop";
-          desktop = "${pkgs.vesktop}/share/applications/vesktop.desktop";
-          profile = "${pkgs.firejail}/etc/firejail/vesktop.profile";
-          extraArgs = [
-            "--net=wlp10s0u7"
-          ];
-        };
-      };
-    };
 
     # nix-ld = {
     # enable = true;
