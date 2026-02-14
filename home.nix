@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  system,
   inputs,
   ...
 }:
@@ -11,6 +10,7 @@
     inputs.vintagestory-nix.homeModules.default
     inputs.nixvim.homeModules.nixvim
     # inputs.sls-steam.homeModules.sls-steam
+    ./home-packages.nix
     ./config/lf.nix
     ./config/starship.nix
     ./config/nushell.nix
@@ -21,8 +21,6 @@
     username = "kodie";
     homeDirectory = "/home/kodie";
     stateVersion = "25.05";
-
-    packages = import ./home-packages.nix { inherit pkgs system inputs; };
 
     file.".local/share/godot/export_templates" = {
       source = "${pkgs.godot-export-templates-bin}/share/godot/export_templates";

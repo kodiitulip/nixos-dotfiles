@@ -46,7 +46,7 @@ in
     openssh.enable = true;
 
     playit = {
-      enable = false;
+      enable = true;
       secretPath = config.sops.secrets.playitgg.path;
     };
 
