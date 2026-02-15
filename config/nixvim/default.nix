@@ -15,6 +15,7 @@
     filetype = {
       pattern = {
         "__rawKey__\".*/.github/workflows/.*%.yml\"" = "yaml.ghaction";
+        "__rawKey__\".*/(data|assets)/\S+/.*%.json\"" = "json.mcdatapack";
       };
       extension = {
         mcfunction = "mcfunction";
@@ -42,7 +43,8 @@
       foldlevelstart = 99;
       foldmethod = "expr";
       foldexpr.__raw = "vim.treesitter.foldexpr()";
-      fillchars = "eob: ";
+      foldtext.__raw = ''vim.fn.getline(vim.v.foldstart) .. ' ... ' .. vim.fn.getline(vim.v.foldend):gsub("^%s*", "")'';
+      fillchars = "eob: ,fold:·";
       expandtab = true;
       smartcase = true;
       ignorecase = true;
@@ -58,6 +60,7 @@
       nixfmt
       nufmt
       astyle
+      gdscript-formatter
 
       # Linters
       shellcheck # Shell script linter
@@ -65,6 +68,7 @@
       statix
       vale
       markdownlint-cli2
+      gdtoolkit_4
 
       # Lsps
       nixd

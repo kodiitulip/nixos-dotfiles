@@ -195,11 +195,35 @@
           ];
           filetypes = [
             "mcfunction"
-            "json"
+            "json.mcdatapack"
             "mcdoc"
             "json.mcmeta"
           ];
           root_markers = [ "pack.mcmeta" ];
+        };
+      };
+      gdscript = {
+        enable = true;
+        package = null;
+        config = {
+          cmd.__raw = "vim.lsp.rpc.connect('127.0.0.1', tonumber(os.getenv 'GDScript_Port' or '6005'))";
+          filetypes = [
+            "gd"
+            "gdscipt"
+            "gdscipt3"
+          ];
+          root_markers = [
+            "project.godot"
+            ".git"
+          ];
+          on_attach.__raw = ''
+            function(client, bufnr)
+              local server_pipe = vim.fn.getcwd() .. '/godothost'
+              if not vim.uv.fs_stat(server_pipe) then
+                vim.fn.serverstart(server_pipe)
+              end
+            end
+          '';
         };
       };
       superhtml.enable = true;
@@ -227,6 +251,7 @@
           "json"
           "jsonc"
           "json.mcmeta"
+          "json.mcdatapack"
         ];
       };
       helm_ls.enable = true;

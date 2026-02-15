@@ -28,5 +28,6 @@
     ./inc-rename.nix
     ./persistence.nix
     ./grug-far.nix
+    ./gdscript.nix
   ];
 }

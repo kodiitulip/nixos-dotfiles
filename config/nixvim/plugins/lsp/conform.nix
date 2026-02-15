@@ -131,6 +131,7 @@
         ];
         json = [ "jq" ];
         java = [ "astyle" ];
+        gdscript = [ "gdscript-formatter" ];
         "_" = [ "trim_whitespace" ];
       };
 

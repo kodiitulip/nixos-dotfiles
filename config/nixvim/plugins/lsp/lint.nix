@@ -11,6 +11,7 @@
         "markdownlint-cli2"
         "vale"
       ];
+      gdscript = [ "gdlint" ];
     };
   };
 
@@ -18,10 +19,11 @@
     {
       event = [
         "BufRead"
+        "BufWritePost"
         "InsertLeave"
         "TextChanged"
       ];
-      callback.__raw = ''function() require('lint').try_lint() end'';
+      callback.__raw = "function() require('lint').try_lint() end";
       desc = "Lint when TextChanged or InsertLeave";
     }
   ];
