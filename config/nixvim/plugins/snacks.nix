@@ -28,7 +28,7 @@ _: {
           local deleted_bt = vim.api.nvim_get_option_value("buftype", { buf = ev.buf })
           local dashboard_on_empty = deleted_name == "" and deleted_ft == "" and deleted_bt == ""
           if dashboard_on_empty then
-            Snacks.dashboard.open()
+            Snacks.dashboard.open({ buf = ev.buf, win = vim.api.nvim_tabpage_get_win(0) })
           end
         end
       '';
