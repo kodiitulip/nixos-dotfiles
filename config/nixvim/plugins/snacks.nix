@@ -1,4 +1,40 @@
 _: {
+  autoGroups = {
+    bufdelpost_autocmd = { };
+    dashboard_delete_buffers = { };
+  };
+  autoCmd = [
+    {
+      event = "BufDelete";
+      group = "bufdelpost_autocmd";
+      desc = "BufDeletePost User autocmd";
+      callback.__raw = ''
+        function()
+          vim.schedule(function()
+            vim.api.nvim_exec_autocmds("User", { pattern = "BufDeletePost" })
+          end)
+        end
+      '';
+    }
+    {
+      event = "User";
+      group = "dashboard_delete_buffers";
+      pattern = "BufDeletePost";
+      desc = "Open Dashboard when no available buffers";
+      callback.__raw = ''
+        function(ev)
+          local deleted_name = vim.api.nvim_buf_get_name(ev.buf)
+          local deleted_ft = vim.api.nvim_get_option_value("filetype", { buf = ev.buf })
+          local deleted_bt = vim.api.nvim_get_option_value("buftype", { buf = ev.buf })
+          local dashboard_on_empty = deleted_name == "" and deleted_ft == "" and deleted_bt == ""
+          if dashboard_on_empty then
+            Snacks.dashboard.open()
+          end
+        end
+      '';
+    }
+  ];
+
   plugins.snacks = {
     enable = true;
 
