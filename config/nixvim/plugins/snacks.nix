@@ -157,6 +157,11 @@ _: {
   };
   keymaps = [
     {
+      key = "<leader>cl";
+      action.__raw = "function() Snacks.picker.lsp_config() end";
+      options.desc = "Lsp Info";
+    }
+    {
       key = "<leader>e";
       mode = [ "n" ];
       action = "<cmd>lua Snacks.explorer()<CR>";
@@ -169,7 +174,7 @@ _: {
     {
       key = "<leader>sK";
       mode = [ "n" ];
-      action.__raw = ''function() Snacks.picker('keymaps') end'';
+      action.__raw = "function() Snacks.picker('keymaps') end";
       options = {
         silent = true;
         noremap = true;
@@ -192,7 +197,7 @@ _: {
     {
       mode = [ "n" ];
       key = "<leader>ft";
-      action.__raw = ''function() Snacks.terminal() end'';
+      action.__raw = "function() Snacks.terminal() end";
       options = {
         desc = "Terminal (cwd)";
       };
@@ -203,7 +208,7 @@ _: {
         "t"
       ];
       key = "<c-/>";
-      action.__raw = ''function() Snacks.terminal() end'';
+      action.__raw = "function() Snacks.terminal() end";
       options = {
         desc = "Terminal (Root Dir)";
       };
@@ -214,7 +219,7 @@ _: {
         "t"
       ];
       key = "<c-_>";
-      action.__raw = ''function() Snacks.terminal() end'';
+      action.__raw = "function() Snacks.terminal() end";
       options = {
         desc = "which_key_ignore";
       };
@@ -280,7 +285,7 @@ _: {
     {
       key = "<leader>gg";
       mode = [ "n" ];
-      action.__raw = ''function() Snacks.lazygit() end'';
+      action.__raw = "function() Snacks.lazygit() end";
       options = {
         silent = true;
         noremap = true;
@@ -309,7 +314,7 @@ _: {
     }
     {
       key = "<leader>st";
-      action.__raw = ''function() Snacks.picker.todo_comments() end'';
+      action.__raw = "function() Snacks.picker.todo_comments() end";
       options.desc = "Todo";
     }
     {
@@ -322,7 +327,7 @@ _: {
 
     {
       key = "<leader>h";
-      action.__raw = ''function() Snacks.health.check() end'';
+      action.__raw = "function() Snacks.health.check() end";
       options.desc = "Healthcheck";
     }
   ];

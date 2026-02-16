@@ -14,11 +14,6 @@
     inlayHints.enable = true;
     keymaps = [
       {
-        key = "<leader>cl";
-        action.__raw = "function() Snacks.picker.lsp_config() end";
-        options.desc = "Lsp Info";
-      }
-      {
         key = "gd";
         action.__raw = "function() Snacks.picker.lsp_definitions() end";
         options.desc = "Goto Definition";
@@ -204,18 +199,8 @@
       };
       gdscript = {
         enable = true;
-        package = null;
         config = {
           cmd.__raw = "vim.lsp.rpc.connect('127.0.0.1', tonumber(os.getenv 'GDScript_Port' or '6005'))";
-          filetypes = [
-            "gd"
-            "gdscipt"
-            "gdscipt3"
-          ];
-          root_markers = [
-            "project.godot"
-            ".git"
-          ];
           on_attach.__raw = ''
             function(client, bufnr)
               local server_pipe = vim.fn.getcwd() .. '/godothost'
