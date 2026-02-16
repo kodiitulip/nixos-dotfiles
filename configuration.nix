@@ -144,17 +144,17 @@ in
     };
   };
 
-  fileSystems."/home/kodie/lupingo" = {
-    device = "/dev/disk/by-uuid/80505401-f77e-40d3-8c21-505749c93a86";
-    fsType = "ext4";
-    options = [
-      # boot options for fstab. Search up fstab mount options you can use
-      "users" # Allows any user to mount and unmount
-      "nofail" # Prevent system from failing if this drive doesn't mount
-      "rw"
-      "gid=users"
-    ];
-  };
+  # fileSystems."/home/kodie/lupingo" = {
+  #   device = "/dev/disk/by-uuid/80505401-f77e-40d3-8c21-505749c93a86";
+  #   fsType = "ext4";
+  #   options = [
+  #     # boot options for fstab. Search up fstab mount options you can use
+  #     "users" # Allows any user to mount and unmount
+  #     "nofail" # Prevent system from failing if this drive doesn't mount
+  #     "rw"
+  #     "gid=users"
+  #   ];
+  # };
 
   system.stateVersion = "25.05"; # WARN: DO NOT CHANGE! NO NEED TO!
 }
