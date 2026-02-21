@@ -7,10 +7,7 @@
       javascriptreact = [ "eslint_d" ];
       typescript = [ "eslint_d" ];
       typescriptreact = [ "eslint_d" ];
-      markdown = [
-        "markdownlint-cli2"
-        "vale"
-      ];
+      markdown = [ "markdownlint-cli2" ];
       gdscript = [ "gdlint" ];
     };
   };

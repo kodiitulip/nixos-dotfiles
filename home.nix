@@ -125,18 +125,6 @@
         source = ./config/bat/themes;
         recursive = true;
       };
-
-      "vale/.vale.ini" = {
-        enable = true;
-        text = ''
-          MinAlertLevel = suggestion
-
-          Packages = proselint,alex
-
-          [*.md]
-          BasedOnStyles = alex,proselint
-        '';
-      };
     };
   };
 
