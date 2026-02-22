@@ -45,10 +45,8 @@
     };
 
     plugins = with pkgs.nushellPlugins; [
-      skim
       semver
       query
-      net
       formats
       desktop_notifications
     ];
