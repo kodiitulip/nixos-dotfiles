@@ -66,4 +66,8 @@ in
 
     zerotierone.enable = true;
   };
+
+  environment.systemPackages = [
+    sddm-astronaut
+  ];
 }

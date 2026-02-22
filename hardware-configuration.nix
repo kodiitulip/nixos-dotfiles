@@ -14,46 +14,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      mrpack-install = prev.mrpack-install.overrideAttrs (old: rec {
-        version = "0.21.0-beta";
-        src = prev.fetchFromGitHub {
-          owner = "nothub";
-          repo = "mrpack-install";
-          tag = "v${version}";
-          hash = "sha256-QSgq9VgiEg2aZLgMhzhFE2IpSVcYdmmRV9CJWkWPkg4=";
-        };
-        vendorHash = "sha256-ZbQICz2z2+SPY1z9dS5AXJh18+522PfT/wPg5GhmNZQ=";
-        checkFlags =
-          let
-            skippedTests = [
-              # Skip tests that require network access
-              "TestFetchMetadata"
-              "TestClient_VersionFromHash"
-              "TestClient_GetDependencies"
-              "TestClient_GetProjectVersions_Count"
-              "TestClient_GetVersion"
-              "TestClient_CheckProjectValidity_Slug"
-              "Test_GetProject_404"
-              "TestClient_GetProjects_Count"
-              "TestClient_GetProjectVersions_Filter_NoResults"
-              "Test_GetProject_Success"
-              "TestClient_CheckProjectValidity_Id"
-              "TestClient_GetLatestGameVersion"
-              "TestClient_GetProjectVersions_Filter_Results"
-              "TestClient_GetProjects_Slug"
-              "TestClient_GetVersions"
-              "TestGetPlayerUuid"
-              "TestClient_VersionFromMrpackFile"
-            ];
-          in
-          [ "-skip=^${builtins.concatStringsSep "$|^" skippedTests}$" ];
-        postInstall = "";
-      });
-    })
-  ];
-
   boot = {
     initrd.availableKernelModules = [
       "xhci_pci"
