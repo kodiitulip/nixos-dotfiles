@@ -45,7 +45,6 @@
     };
 
     plugins = with pkgs.nushellPlugins; [
-      units
       skim
       semver
       query
@@ -85,12 +84,6 @@
       ];
     };
 
-    envFile.text = ''
-      def --env --wrapped lfcd [...args: string] { 
-        cd (lf -print-last-dir ...$args)
-      }
-    '';
-
     extraConfig = ''
       $env.PATH = ($env.PATH | append '/home/kodie/.nuscripts' | append '/home/kodie/.bun/bin')
 
@@ -106,10 +99,6 @@
         }
       }
 
-      def bumpversion [] {
-        print "use bumpversion packwiz <VERSION-STRING>"
-      }
-
       def "bumpversion packwiz" [version: string] {
         if (not ('./pack.toml' | path exists)) {
           print "No pack.toml found"
@@ -118,13 +107,10 @@
         cat ./pack.toml | str replace -r 'version = "(.*)"' $'version = "($version)"' | save -f ./pack.toml
       }
 
-      source ~/.config/nushell/completions/lf.nu
       source ~/.config/nushell/completions/packwiz.nu
 
       export-env { load-env {
-          TRANSIENT_PROMPT_MULTILINE_INDICATOR: (
-              ^starship prompt --continuation
-          )
+          TRANSIENT_PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)
 
           TRANSIENT_PROMPT_INDICATOR: ""
 
