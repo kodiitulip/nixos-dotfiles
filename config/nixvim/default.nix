@@ -52,6 +52,7 @@
     extraPackages = with pkgs; [
       # base
       fzf
+      skim
       ripgrep
       fd
 

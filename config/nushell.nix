@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.nushell = {
@@ -41,8 +41,18 @@
     environmentVariables = {
       VISUAL = "nvim";
       EDITOR = "nvim";
-      SUDO_PROMPT = lib.hm.nushell.mkNushellInline ''(^starship prompt --profile=sudo_prompt --terminal-width (term size).columns)'';
+      SUDO_PROMPT = lib.hm.nushell.mkNushellInline "(^starship prompt --profile=sudo_prompt --terminal-width (term size).columns)";
     };
+
+    plugins = with pkgs.nushellPlugins; [
+      units
+      skim
+      semver
+      query
+      net
+      formats
+      desktop_notifications
+    ];
 
     settings = {
       show_banner = false;

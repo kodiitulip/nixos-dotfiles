@@ -14,6 +14,7 @@
     winetricks
     sops
     fd
+    skim
     jellyfin-ffmpeg
     trashy
     # copyparty
