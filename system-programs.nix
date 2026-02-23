@@ -22,7 +22,7 @@
         };
         user = {
           name = "kodiitulip";
-          email = "kodii.tulip@gmail.com";
+          email = "kodii.tulip@proton.me";
         };
       };
     };
