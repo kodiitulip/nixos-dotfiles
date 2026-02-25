@@ -31,6 +31,7 @@
       enable = true;
       protontricks.enable = true;
     };
+    gamemode.enable = true;
     npm.enable = true;
     lazygit = {
       enable = true;
