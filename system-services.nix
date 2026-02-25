@@ -53,7 +53,7 @@ in
     qbittorrent.enable = false;
 
     sunshine = {
-      enable = true;
+      enable = false; # TODO: reenable when not glitched
       autoStart = false;
       capSysAdmin = true;
       openFirewall = true;

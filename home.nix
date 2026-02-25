@@ -81,6 +81,7 @@
         "4.." = "z ../../../..";
         "5.." = "z ../../../../";
 
+        dedup = "nix store optimise";
         garbage-collect = "sudo nix-collect-garbage -d";
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos";
       };

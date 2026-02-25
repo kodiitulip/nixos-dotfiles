@@ -27,7 +27,7 @@
     godot
 
     # Art / 3D Modeling
-    krita
+    # krita # TODO: reenable after lager bug is fixed
     aseprite
     blockbench
     blender
@@ -38,9 +38,10 @@
       additionalPrograms = [ vlc ];
       additionalLibs = [ vlc ];
     })
+    (callPackage ./custom-packages/hyprism.nix { })
     heroic
     hydralauncher
-    vintagestoryPackages.rustique
+    # vintagestoryPackages.rustique # TODO: reenable when the flake updates
     vintagestoryPackages.vs-launcher
     inputs.hytale-launcher.packages.x86_64-linux.default
 
@@ -58,7 +59,7 @@
             Default = "ddg";
             Add = [
               {
-                Name = "nixpkgs packages";
+                Name = "NixOS packages";
                 URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
                 IconURL = "https://wiki.nixos.org/favicon.ico";
                 Alias = "@np";
@@ -82,7 +83,7 @@
                 Alias = "@hm";
               }
               {
-                Name = "noogle";
+                Name = "Noogle";
                 URLTemplate = "https://noogle.dev/q?term={searchTerms}";
                 IconURL = "https://noogle.dev/favicon.ico";
                 Alias = "@ng";
