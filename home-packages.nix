@@ -27,7 +27,7 @@
     godot
 
     # Art / 3D Modeling
-    # krita # TODO: reenable after lager bug is fixed
+    krita
     aseprite
     blockbench
     blender
@@ -41,7 +41,7 @@
     (callPackage ./custom-packages/hyprism { })
     heroic
     hydralauncher
-    # vintagestoryPackages.rustique # TODO: reenable when the flake updates
+    vintagestoryPackages.rustique
     vintagestoryPackages.vs-launcher
     inputs.hytale-launcher.packages.x86_64-linux.default
 
