@@ -89,12 +89,9 @@
       def --env set-env [name, value] { load-env { $name: $value } }
       def --env unset-env [name] { hide-env $name }
 
-      def config-nix [--vscodium (-v)] {
-        if $vscodium {
-          cd ~/nixos-dotfiles/; codium .; cd -
-        } else {
-          cd ~/nixos-dotfiles/; nvim; cd -
-        }
+      # Edit NixOS Config
+      def "config nix" [] {
+        cd ~/nixos-dotfiles; nvim; cd -
       }
 
       def "bumpversion packwiz" [version: string] {

@@ -4,25 +4,24 @@
 }:
 let
   pname = "steam-art-manager";
-  version = "v3.11.1";
+  version = "3.12.1";
 
   logo = fetchurl {
-    url = "https://raw.githubusercontent.com/Tormak9970/Steam-Art-Manager/${version}/public/logo.png";
+    url = "https://raw.githubusercontent.com/Tormak9970/Steam-Art-Manager/v${version}/public/logo.png";
     hash = "sha256-g/Qg+fGr3ZP11JxWcEKfeQ+mr5R98v0yRw0FKu5WGww=";
   };
 
   src = fetchurl {
-    url = "https://github.com/Tormak9970/Steam-Art-Manager/releases/download/${version}/steam-art-manager.AppImage";
-    hash = "sha256-qBwYOhmwfMoTrwUGh+UCVzL/H2n5pKOYbvvoJ18PmWY=";
+    url = "https://github.com/Tormak9970/Steam-Art-Manager/releases/download/v${version}/steam-art-manager.AppImage";
+    hash = "sha256-eH2Adl0+i+8I7+hPUyCGHzrm7xW34D7MdVex5Yi7pfI=";
   };
 in
 appimageTools.wrapType2 {
   inherit pname version src;
 
   extraInstallCommands = ''
-    mkdir -pv $out/share/icons/hicolor/512x512/apps
+    mkdir -pv $out/share/icons/hicolor/512x512/apps $out/share/applications
     cp -v ${logo} $out/share/icons/hicolor/512x512/apps/${pname}.png
-    mkdir -pv $out/share/applications
     cat << EOF > $out/share/applications/${pname}.desktop
     [Desktop Entry]
     Comment=A tool for setting the artwork of your Steam library.
@@ -36,4 +35,3 @@ appimageTools.wrapType2 {
     EOF
   '';
 }
-

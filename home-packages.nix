@@ -13,7 +13,7 @@
     protonup-qt
     direnv
     rose-pine-cursor
-    (callPackage ./custom-packages/steam-art-manager.nix { })
+    (callPackage ./custom-packages/steam-art-manager { })
     (with kdePackages; callPackage ./custom-packages/plasma-smart-video-wallpaper-reborn.nix { })
     inputs.playit-nixos-module.packages.${system}.default
     yt-dlp
@@ -38,7 +38,7 @@
       additionalPrograms = [ vlc ];
       additionalLibs = [ vlc ];
     })
-    (callPackage ./custom-packages/hyprism.nix { })
+    (callPackage ./custom-packages/hyprism { })
     heroic
     hydralauncher
     # vintagestoryPackages.rustique # TODO: reenable when the flake updates
