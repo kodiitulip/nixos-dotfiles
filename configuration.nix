@@ -56,8 +56,23 @@
     ./system-programs.nix
     ./system-packages.nix
   ];
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
 
-  nix.settings.auto-optimise-store = true;
+    optimise.automatic = true;
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "-d";
+    };
+  };
 
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
@@ -72,11 +87,6 @@
   };
 
   security.polkit.enable = true;
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
 
   time.timeZone = "America/Fortaleza";
   i18n.defaultLocale = "en_US.UTF-8";
