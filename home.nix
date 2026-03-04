@@ -100,8 +100,11 @@
       enable = true;
       settings.gameVersions = with pkgs.vintagestoryPackages; [
         latest
-        v1-21-1
-        v1-22
+        (v1-21-1.override {
+          waylandSupport = true;
+          x11Support = true;
+        })
+        v1-22-0-pre-4
       ];
     };
 
