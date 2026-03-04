@@ -28,7 +28,7 @@
 
     # Art / 3D Modeling
     krita
-    aseprite
+    # aseprite # TODO: enable when not bugged
     blockbench
     blender
     # kdePackages.kdenlive
@@ -43,7 +43,6 @@
     hydralauncher
     vintagestoryPackages.rustique
     vintagestoryPackages.vs-launcher
-    inputs.hytale-launcher.packages.x86_64-linux.default
 
     # Daily Utils
     vesktop

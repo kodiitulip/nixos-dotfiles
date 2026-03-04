@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    # copyparty.url = "github:9001/copyparty";
+    nix-alien.url = "github:thiagokokada/nix-alien";
+    playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
+    nixvim.url = "github:nix-community/nixvim";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,12 +27,6 @@
       url = "github:PierreBorine/vintagestory-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # copyparty.url = "github:9001/copyparty";
-    nix-alien.url = "github:thiagokokada/nix-alien";
-    hytale-launcher.url = "github:JPyke3/hytale-launcher-nix";
-    playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
-    nixvim.url = "github:nix-community/nixvim";
   };
 
   outputs =
@@ -52,14 +51,9 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.kodie.imports = [
-                # nvf.homeManagerModules.default
-                ./home.nix
-              ];
+              users.kodie.imports = [ ./home.nix ];
               backupFileExtension = "backup";
-              extraSpecialArgs = {
-                inherit inputs system;
-              };
+              extraSpecialArgs = { inherit inputs system; };
             };
           }
         ];
