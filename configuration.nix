@@ -56,6 +56,9 @@
     ./system-programs.nix
     ./system-packages.nix
   ];
+
+  nix.settings.auto-optimise-store = true;
+
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";

@@ -89,24 +89,19 @@
     };
 
     obsidian.enable = true;
-    # nvf.enable = true;
-    # nvf.settings = import ./config/nvf { inherit pkgs lib; };
     nixvim = {
       enable = true;
       imports = [ ./config/nixvim ];
     };
-    # neovim = {
-    #   enable = true;
-    #   defaultEditor = true;
-    # };
 
     lutris.enable = true;
 
     vs-launcher = {
       enable = true;
-      settings.gameVersions = [
-        pkgs.vintagestoryPackages.latest
-        pkgs.vintagestoryPackages.v1-21-6-rc-1
+      settings.gameVersions = with pkgs.vintagestoryPackages; [
+        latest
+        v1-21-1
+        v1-22
       ];
     };
 
