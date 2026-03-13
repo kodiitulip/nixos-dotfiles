@@ -113,6 +113,7 @@
       extraGroups = [
         "networkmanager"
         "wheel"
+        "docker"
       ];
       packages = [ ];
       shell = pkgs.nushell;
@@ -184,6 +185,7 @@
       ];
     };
   };
+  virtualisation.docker.enable = true;
 
   # fileSystems."/home/kodie/lupingo" = {
   #   device = "/dev/disk/by-uuid/80505401-f77e-40d3-8c21-505749c93a86";

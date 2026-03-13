@@ -5,6 +5,7 @@
   ...
 }:
 {
+  imports = [ ./config/inkscape ];
   home.packages = with pkgs; [
     # Misc
     gh
@@ -20,6 +21,7 @@
     pear-desktop
     easyeffects
     mrpack-install
+    act
 
     # Editors / IDEs
     jetbrains.idea-oss
