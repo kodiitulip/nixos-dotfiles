@@ -4,12 +4,11 @@ let
 in
 {
   home.packages = with pkgs; [
-    inkscape-with-extensions.override
-    {
+    (inkscape-with-extensions.override {
       inkscapeExtensions = with pkgs; [
         inkscape-extensions.applytransforms
         extra-extensions.godot-tools
       ];
-    }
+    })
   ];
 }
