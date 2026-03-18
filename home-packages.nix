@@ -22,6 +22,8 @@
     easyeffects
     mrpack-install
     act
+    kdePackages.kalgebra
+    kdePackages.kcalc
 
     # Editors / IDEs
     jetbrains.idea-oss

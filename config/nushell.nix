@@ -36,6 +36,11 @@
 
       garbage-collect = "sudo nix-collect-garbage -d";
       rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos";
+
+      julia-join = "sudo zerotier-cli join bb720a5aaedee869";
+      julia-leave = "sudo zerotier-cli leave bb720a5aaedee869";
+
+      ztls = "sudo zerotier-cli listnetworks";
     };
 
     environmentVariables = {
