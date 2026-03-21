@@ -52,8 +52,7 @@
       ];
       profiles.sudo_prompt = lib.concatStrings [
         "[](fg:overlay)[  ](bg:overlay fg:iris)[](fg:overlay) "
-        "== "
-        "[Password: ](fg:iris)"
+        "[](fg:iris)"
       ];
       character = {
         format = "[󱞪](fg:iris) ";
