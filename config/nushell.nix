@@ -47,13 +47,13 @@
       VISUAL = "nvim";
       EDITOR = "nvim";
       SUDO_PROMPT = lib.hm.nushell.mkNushellInline "(^starship prompt --profile=sudo_prompt --terminal-width (term size).columns)";
+      STARSHIP_LOG = "error";
     };
 
     plugins = with pkgs.nushellPlugins; [
       semver
       query
       formats
-      desktop_notifications
     ];
 
     settings = {

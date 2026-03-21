@@ -29,6 +29,7 @@
         "$scala"
         "$conda"
         "$python"
+        "$direnv"
         "$time\n "
         "$character"
       ];
@@ -45,14 +46,24 @@
       profiles.transient = lib.concatStrings [
         "[](fg:overlay)[ 󰧱 ](bg:overlay fg:iris)[](fg:overlay) "
         "$fill "
-        "[](fg:overlay)[ 󰴈 ](bg:overlay fg:rose)[](fg:overlay)\n "
+        "[](fg:overlay)[ 󰴈 ](bg:overlay fg:rose)[](fg:overlay) "
+        "$time\n "
         "$character"
       ];
       profiles.sudo_prompt = lib.concatStrings [
         "[](fg:overlay)[  ](bg:overlay fg:iris)[](fg:overlay) "
-        "[Password: ](fg:iris)"
+        "== "
+        "[Password: ](fg:iris)"
       ];
-      character.format = "[󱞪](fg:iris) ";
+      character = {
+        format = "[󱞪](fg:iris) ";
+        success_symbol = "[󱞪](bold fg:green)";
+        error_symbol = "[󱞪](bold fg:red)";
+        vimcmd_symbol = "[󱞦](bold fg:green)";
+        vimcmd_replace_one_symbol = "[󱞦](bold fg:lavender)";
+        vimcmd_replace_symbol = "[󱞦](bold fg:lavender)";
+        vimcmd_visual_symbol = "[󱞦](bold fg:yellow)";
+      };
       fill = {
         style = "fg:overlay";
         symbol = "=";
@@ -61,13 +72,13 @@
         disabled = false;
         format = "[](fg:overlay)[ 󰧱 $user ]($style)[](fg:overlay) ";
         show_always = true;
-        style_root = "bg:overlay fg:iris";
+        style_root = "bg:overlay fg:love";
         style_user = "bg:overlay fg:iris";
       };
       sudo = {
         disabled = false;
         format = "[](fg:overlay)[ $symbol ]($style)[](fg:overlay) ";
-        style = "bg:overlay fg:iris";
+        style = "bg:overlay fg:love";
         symbol = "";
       };
       directory = {
@@ -88,14 +99,25 @@
           Python = "  ";
           Rust = "  ";
           Web = "  ";
+          Streaming = " 󰄄 ";
         };
       };
       time = {
         disabled = false;
         format = " [](fg:overlay)[ $time 󰴈 ]($style)[](fg:overlay)";
         style = "bg:overlay fg:rose";
-        time_format = "%I:%M%P";
-        use_12hr = false;
+        time_format = "%R";
+      };
+      direnv = {
+        disabled = false;
+        format = " [](fg:overlay)[$symbol ($allowed $loaded) ]($style)[](fg:overlay)";
+        symbol = "  ";
+        style = "bg:overlay fg:pine";
+        allowed_msg = "󰄬";
+        not_allowed_msg = "";
+        denied_msg = "";
+        loaded_msg = "";
+        unloaded_msg = "";
       };
     };
   };

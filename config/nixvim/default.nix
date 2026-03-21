@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./config
@@ -48,6 +48,7 @@
       expandtab = true;
       smartcase = true;
       ignorecase = true;
+      shell = lib.getExe pkgs.nushell;
     };
     extraPackages = with pkgs; [
       # base
