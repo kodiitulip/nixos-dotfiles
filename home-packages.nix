@@ -16,7 +16,6 @@
     rose-pine-cursor
     (callPackage ./custom-packages/steam-art-manager { })
     (with kdePackages; callPackage ./custom-packages/plasma-smart-video-wallpaper-reborn.nix { })
-    inputs.playit-nixos-module.packages.${system}.default
     yt-dlp
     pear-desktop
     easyeffects
