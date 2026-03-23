@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }:
 
@@ -48,8 +47,6 @@
   ];
 
   imports = [
-    # inputs.copyparty.nixosModules.default
-    inputs.sops-nix.nixosModules.sops
     inputs.vintagestory-nix.nixosModules.default
     ./hardware-configuration.nix
     ./system-services.nix
@@ -71,18 +68,6 @@
       automatic = true;
       dates = "weekly";
       options = "-d";
-    };
-  };
-
-  sops = {
-    defaultSopsFile = ./secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-
-    age.keyFile = "/home/kodie/.config/sops/age/keys.txt";
-    age.generateKey = true;
-    secrets = {
-      playitgg.owner = config.users.users.kodie.name;
-      copyparty.owner = config.users.users.copyparty.name;
     };
   };
 
@@ -118,20 +103,12 @@
       packages = [ ];
       shell = pkgs.nushell;
     };
-    copyparty = {
-      home = "/var/lib/copyparty";
-      createHome = true;
-      isSystemUser = true;
-      group = "copyparty";
-    };
   };
 
   users.groups.copyparty = { };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # ++ import ./system-packages.nix { inherit pkgs inputs; };
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -162,6 +139,10 @@
         80
         443
         3000
+        6567
+      ];
+      allowedUDPPorts = [
+        6567
       ];
       allowedTCPPortRanges = [
         {
@@ -186,18 +167,6 @@
     };
   };
   virtualisation.docker.enable = true;
-
-  # fileSystems."/home/kodie/lupingo" = {
-  #   device = "/dev/disk/by-uuid/80505401-f77e-40d3-8c21-505749c93a86";
-  #   fsType = "ext4";
-  #   options = [
-  #     # boot options for fstab. Search up fstab mount options you can use
-  #     "users" # Allows any user to mount and unmount
-  #     "nofail" # Prevent system from failing if this drive doesn't mount
-  #     "rw"
-  #     "gid=users"
-  #   ];
-  # };
 
   system.stateVersion = "25.05"; # WARN: DO NOT CHANGE! NO NEED TO!
 }

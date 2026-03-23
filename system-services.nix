@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   ...
 }:
 let
@@ -44,11 +43,6 @@ in
 
     flatpak.enable = true;
     openssh.enable = true;
-
-    playit = {
-      enable = true;
-      secretPath = config.sops.secrets.playitgg.path;
-    };
 
     qbittorrent.enable = false;
 

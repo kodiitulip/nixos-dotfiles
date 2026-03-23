@@ -3,9 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # copyparty.url = "github:9001/copyparty";
     nix-alien.url = "github:thiagokokada/nix-alien";
-    playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
     nixvim.url = "github:nix-community/nixvim";
 
     home-manager = {
@@ -15,11 +13,6 @@
 
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -33,7 +26,6 @@
     {
       nixpkgs,
       home-manager,
-      playit-nixos-module,
       ...
     }@inputs:
     let
@@ -45,7 +37,6 @@
 
         modules = [
           ./configuration.nix
-          playit-nixos-module.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager = {

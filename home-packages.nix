@@ -47,6 +47,7 @@
     hydralauncher
     vintagestoryPackages.rustique
     vintagestoryPackages.vs-launcher
+    mindustry
 
     # Daily Utils
     vesktop
