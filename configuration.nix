@@ -47,7 +47,7 @@
       })
     ];
 
-    config.config.allowUnfree = true;
+    config.allowUnfree = true;
   };
 
   imports = [

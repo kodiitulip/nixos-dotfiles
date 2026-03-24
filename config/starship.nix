@@ -60,14 +60,10 @@
       ];
       continuation_prompt = " [∙](bold fg:iris) ";
       character = {
-        format = "$symbol ";
+        format = " $symbol ";
         symbol = "[󱞪](bold fg:iris)";
-        success_symbol = "[󱞪](bold fg:pine)";
+        success_symbol = "[󱞪](bold fg:iris)";
         error_symbol = "[󱞪](bold fg:love)";
-        vimcmd_symbol = "[󱞦](bold fg:pine)";
-        vimcmd_replace_one_symbol = "[󱞦](bold fg:iris)";
-        vimcmd_replace_symbol = "[󱞦](bold fg:iris)";
-        vimcmd_visual_symbol = "[󱞦](bold fg:gold)";
       };
       fill = {
         style = "fg:overlay";
@@ -92,19 +88,19 @@
         symbol = "";
       };
       git_status = {
-        ahead = "[⇡\($count\)](fg:foam)";
-        behind = "[⇣\($count\)](fg:love)";
-        deleted = "[✘\($count\)](fg:love)";
+        ahead = "⇡\($count\)";
+        behind = "⇣\($count\)";
+        deleted = "✘\($count\)";
         disabled = false;
-        diverged = "⇕[\[⇡\($ahead_count\)⇣\($behind_count\)\]](fg:love)";
+        diverged = "⇕\[⇡\($ahead_count\)⇣\($behind_count\)\]";
         format = "([$all_status$ahead_behind ]($style))";
         modified = "[!\($count\)](fg:gold)";
-        renamed = "[»\($count\)](fg:iris)";
+        renamed = "[»\($count\)](fg:gold)";
         staged = "[++\($count\)](fg:gold)";
-        stashed = "[\$](fg:iris)";
+        stashed = "[\$](fg:gold)";
         style = "fg:love";
         untracked = "[?\($count\)](fg:gold)";
-        up_to_date = "[✓](bg:overlay fg:iris)";
+        up_to_date = "[✓](bg:overlay fg:foam)";
       };
       directory = {
         format = "[](fg:overlay)[ $path ]($style)[](fg:overlay) ";
