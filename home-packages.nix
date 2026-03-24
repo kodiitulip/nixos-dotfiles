@@ -31,7 +31,7 @@
 
     # Art / 3D Modeling
     krita
-    # aseprite # TODO: enable when not bugged
+    aseprite # TODO: enable when not bugged
     blockbench
     blender
     # kdePackages.kdenlive
@@ -49,7 +49,11 @@
     mindustry
 
     # Daily Utils
-    vesktop
+    # vesktop
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
     libreoffice-qt-fresh
     inputs.nix-alien.packages.${system}.nix-alien
     (pkgs.wrapFirefox
