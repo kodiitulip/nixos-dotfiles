@@ -32,7 +32,7 @@
         "$conda"
         "$python"
         "$direnv"
-        "$time\n "
+        "$time\n"
         "$character"
       ];
       palettes.rose-pine = {
@@ -51,12 +51,12 @@
         "[ 󰧱 ](bg:overlay fg:iris)"
         "[](fg:overlay) "
         "$fill"
-        "$time\n "
+        "$time\n"
         " [∙](bold fg:iris) "
       ];
       profiles.sudo_prompt = lib.concatStrings [
-        "$sudo"
-        "[](fg:overlay) "
+        "[](fg:overlay)[  ](bg:overlay fg:rose)[](fg:overlay) "
+        "[](fg:rose) "
       ];
       continuation_prompt = " [∙](bold fg:iris) ";
       character = {
@@ -79,7 +79,7 @@
       sudo = {
         disabled = false;
         format = "[ $symbol]($style)";
-        style = "bg:overlay fg:love";
+        style = "bg:overlay fg:rose";
         symbol = "";
       };
       git_branch = {

@@ -110,6 +110,7 @@
       source ~/.config/nushell/completions/packwiz.nu
 
       export-env { load-env {
+          PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)
           TRANSIENT_PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)
 
           TRANSIENT_PROMPT_INDICATOR: ""

@@ -84,11 +84,11 @@
         dedup = "nix store optimise";
         garbage-collect = "sudo nix-collect-garbage -d";
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos";
+        rollback = "sudo nixos-rebuild --rollback switch";
       };
 
     };
 
-    obsidian.enable = true;
     nixvim = {
       enable = true;
       imports = [ ./config/nixvim ];
@@ -100,11 +100,6 @@
       enable = true;
       settings.gameVersions = with pkgs.vintagestoryPackages; [
         latest
-        (v1-21-1.override {
-          waylandSupport = true;
-          x11Support = true;
-        })
-        v1-22-0-pre-4
       ];
     };
 
