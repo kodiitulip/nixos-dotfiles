@@ -47,7 +47,7 @@
       })
     ];
 
-    config.android_sdk.accept_license = true;
+    config.config.allowUnfree = true;
   };
 
   imports = [
