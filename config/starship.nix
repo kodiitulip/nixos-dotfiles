@@ -100,7 +100,7 @@
         stashed = "[\$](fg:gold)";
         style = "fg:love";
         untracked = "[?\($count\)](fg:gold)";
-        up_to_date = "[✓](bg:overlay fg:foam)";
+        up_to_date = "[✓](fg:foam)";
       };
       directory = {
         format = "[](fg:overlay)[ $path ]($style)[](fg:overlay) ";
