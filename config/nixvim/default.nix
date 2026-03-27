@@ -48,6 +48,7 @@
       expandtab = true;
       smartcase = true;
       ignorecase = true;
+      shell = "nu";
     };
     extraPackages = with pkgs; [
       # base
