@@ -53,11 +53,6 @@ in
       openFirewall = true;
     };
 
-    vintagestory = {
-      enable = false;
-      openFirewall = true;
-    };
-
     zerotierone.enable = true;
   };
 

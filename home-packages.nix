@@ -50,10 +50,7 @@
 
     # Daily Utils
     # vesktop
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
+    (discord.override { withVencord = true; })
     libreoffice-qt-fresh
     inputs.nix-alien.packages.${system}.nix-alien
     (pkgs.wrapFirefox

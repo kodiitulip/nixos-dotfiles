@@ -42,16 +42,17 @@
     };
     xwayland.enable = true;
 
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
     appimage = {
       enable = true;
       binfmt = true;
     };
 
     screen.enable = true;
+
+    nixvim = {
+      enable = true;
+      imports = [ ./config/nixvim ];
+    };
 
     # nix-ld = {
     # enable = true;

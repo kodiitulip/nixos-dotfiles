@@ -8,7 +8,6 @@
 {
   imports = [
     inputs.vintagestory-nix.homeModules.default
-    inputs.nixvim.homeModules.nixvim
     ./home-packages.nix
     ./config
   ];
@@ -87,11 +86,6 @@
         rollback = "sudo nixos-rebuild --rollback switch";
       };
 
-    };
-
-    nixvim = {
-      enable = true;
-      imports = [ ./config/nixvim ];
     };
 
     lutris.enable = true;

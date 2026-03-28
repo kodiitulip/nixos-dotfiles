@@ -51,7 +51,7 @@
   };
 
   imports = [
-    inputs.vintagestory-nix.nixosModules.default
+    inputs.nixvim.nixosModules.nixvim
     ./hardware-configuration.nix
     ./system-services.nix
     ./system-programs.nix
