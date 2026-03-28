@@ -180,6 +180,7 @@
           root_markers = [ ".git" ];
         };
       };
+      statix.enable = true;
       spyglassmc_language_server = {
         enable = true;
         package = null;
