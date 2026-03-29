@@ -152,7 +152,7 @@
         shfmt.command = lib.getExe pkgs.shfmt;
         shellharden.command = lib.getExe pkgs.shellharden;
         dioxus-fmt = {
-          command = lib.getExe pkgs.dioxus-cli;
+          command = "dx";
           args = [
             "fmt"
             "-s"
@@ -163,7 +163,7 @@
           tmpfile_format = ".conform.$RANDOM.$FILENAME";
           condition.__raw = ''
             function(self, ctx)
-              local fd = vim.loop.fs_open(ctx.filename, "r", 438)
+              local fd = vim.loop.fs_open(ctx.filepath, "r", 438)
               if not fd then return false end
               local stat = vim.loop.fs_fstat(fd)
               if not stat then
