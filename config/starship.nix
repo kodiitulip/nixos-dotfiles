@@ -130,7 +130,7 @@
         nu_indicator = "nu";
         unknown_indicator = "???";
         format = "[ $indicator ]($style)";
-        style = "fg:iris";
+        style = "bg:overlay fg:iris";
       };
       time = {
         disabled = false;

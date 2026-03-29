@@ -48,7 +48,7 @@
       expandtab = true;
       smartcase = true;
       ignorecase = true;
-      shell = "nu";
+      shell = lib.getExe pkgs.nushell;
     };
     extraPackages = with pkgs; [
       # base
