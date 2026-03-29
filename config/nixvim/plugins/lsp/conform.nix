@@ -132,7 +132,10 @@
         json = [ "jq" ];
         java = [ "astyle" ];
         gdscript = [ "gdscript-formatter" ];
-        rust = [ "rustfmt" ];
+        rust = [
+          "rustfmt"
+          "dioxus-fmt"
+        ];
         "_" = [ "trim_whitespace" ];
       };
 
@@ -148,7 +151,32 @@
         shellcheck.command = lib.getExe pkgs.shellcheck;
         shfmt.command = lib.getExe pkgs.shfmt;
         shellharden.command = lib.getExe pkgs.shellharden;
-
+        dioxus-fmt = {
+          command = lib.getExe pkgs.dioxus-cli;
+          args = [
+            "fmt"
+            "-s"
+            "-f"
+            "$FILENAME"
+          ];
+          stdin = false;
+          tmpfile_format = ".conform.$RANDOM.$FILENAME";
+          condition.__raw = ''
+            function(self, ctx)
+              local fd = vim.loop.fs_open(ctx.filename, "r", 438)
+              if not fd then return false end
+              local stat = vim.loop.fs_fstat(fd)
+              if not stat then
+                vim.loop.fs_close(fd)
+                return false
+              end
+              local data = vim.loop.fs_read(fd, stat.size, 0)
+              vim.loop.fs_close(fd)
+              if not data then return false end 
+              return data:find("rsx!", 1, true) ~= nil
+            end
+          '';
+        };
         injected.options.ignore_errors = true;
       };
     };
