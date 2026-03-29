@@ -132,6 +132,7 @@
         json = [ "jq" ];
         java = [ "astyle" ];
         gdscript = [ "gdscript-formatter" ];
+        rust = [ "rustfmt" ];
         "_" = [ "trim_whitespace" ];
       };
 

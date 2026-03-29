@@ -29,5 +29,6 @@
     ./persistence.nix
     ./grug-far.nix
     ./gdscript.nix
+    ./dioxus.nix
   ];
 }

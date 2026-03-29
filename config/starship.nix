@@ -12,6 +12,7 @@
         "[](fg:overlay)"
         "$sudo"
         "$username"
+        "$shell"
         "[](fg:overlay) "
         "$directory"
         "$git_branch"
@@ -122,6 +123,14 @@
           Web = "  ";
           Streaming = " 󰄄 ";
         };
+      };
+      shell = {
+        disabled = false;
+        bash_indicator = "bsh";
+        nu_indicator = "nu";
+        unknown_indicator = "???";
+        format = "[ $indicator ]($style)";
+        style = "fg:iris";
       };
       time = {
         disabled = false;
