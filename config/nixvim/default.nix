@@ -49,6 +49,7 @@
       smartcase = true;
       ignorecase = true;
       shell = lib.getExe pkgs.nushell;
+      ssop = "buffers,curdir,folds,help,tabpages,winsize,terminal";
     };
     extraPackages = with pkgs; [
       # base

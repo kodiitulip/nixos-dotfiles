@@ -42,6 +42,7 @@
       additionalLibs = [ vlc ];
     })
     (callPackage ./custom-packages/hyprism { })
+    parsec-bin
     # heroic
     hydralauncher
     vintagestoryPackages.rustique
