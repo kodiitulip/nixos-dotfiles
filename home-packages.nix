@@ -23,11 +23,13 @@
     act
     kdePackages.kalgebra
     kdePackages.kcalc
+    youtube-tui
 
     # Editors / IDEs
     jetbrains.idea-oss
     kdePackages.kate
     godot
+    penpot-desktop
 
     # Art / 3D Modeling
     krita
@@ -40,6 +42,14 @@
     (prismlauncher.override {
       additionalPrograms = [ vlc ];
       additionalLibs = [ vlc ];
+      jdks = [
+        jdk25
+        jdk21
+        jdk17
+        temurin-bin-25
+        temurin-bin-21
+        temurin-bin-17
+      ];
     })
     (callPackage ./custom-packages/hyprism { })
     parsec-bin
