@@ -108,8 +108,6 @@
         cat ./pack.toml | str replace -r 'version = "(.*)"' $'version = "($version)"' | save -f ./pack.toml
       }
 
-      source ~/.config/nushell/completions/packwiz.nu
-
       export-env { load-env {
         PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)
         TRANSIENT_PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)

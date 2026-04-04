@@ -118,7 +118,7 @@
           __unkeyed-2 = "prettier";
           stop_after_first = true;
         };
-        nushell = [ "nufmt" ];
+        nu = [ "nufmt" ];
         yaml = {
           __unkeyed-1 = "prettierd";
           __unkeyed-2 = "prettier";
