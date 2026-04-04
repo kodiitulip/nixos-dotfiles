@@ -111,27 +111,69 @@
       source ~/.config/nushell/completions/packwiz.nu
 
       export-env { load-env {
-          PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)
-          TRANSIENT_PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)
+        PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)
+        TRANSIENT_PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)
 
-          TRANSIENT_PROMPT_INDICATOR: ""
+        TRANSIENT_PROMPT_INDICATOR: ""
 
-          TRANSIENT_PROMPT_COMMAND: {||
-            (
-              let cmd_duration = if $env.CMD_DURATION_MS == "0823" { 0 } else { $env.CMD_DURATION_MS };
-              ^starship prompt
-                --profile=transient
-                --cmd-duration $cmd_duration
-                $"--status=($env.LAST_EXIT_CODE)"
-                --terminal-width (term size).columns
-                --jobs (job list | length)
-            )
-          }
+        TRANSIENT_PROMPT_COMMAND: {||
+          (
+            let cmd_duration = if $env.CMD_DURATION_MS == "0823" { 0 } else { $env.CMD_DURATION_MS };
+            ^starship prompt
+              --profile=transient
+              --cmd-duration $cmd_duration
+              $"--status=($env.LAST_EXIT_CODE)"
+              --terminal-width (term size).columns
+              --jobs (job list | length)
+          )
+        }
       }}
+
+      set-env ACTIVE_OVERLAYS []
+
+      def load-overlays [dir: string] {
+        let overlay_file = ($dir | path join ".nu-overlay")
+        if not ($overlay_file | path exists) {
+          return
+        }
+
+        let modules = (open $overlay_file
+        | lines
+        | where {|l| ($l | str trim) != "" and not ($l | str starts-with "#") })
+        
+        if ((get-env ACTIVE_OVERLAYS) == ($modules | each {|m|
+          (($dir | path join $m) | path parse | get stem)
+        })) { return }
+
+        set-env ACTIVE_OVERLAYS ($modules | each {|m|
+          let module_path = ($dir | path join $m)
+          let overlay_name = ($module_path | path parse | get stem)
+          if ($module_path | path exists) {
+            overlay use --prefix $module_path
+            $overlay_name
+          } else {
+            print $"Warning: ($module_path) not found"
+            null
+          }
+        })
+      }
+
+      def unload-overlays [] {
+        if ((get-env ACTIVE_OVERLAYS) | is-empty) { return }
+        set-env ACTIVE_OVERLAYS ((get-env ACTIVE_OVERLAYS) | each {|o|
+          overlay hide $o
+        })
+      }
+
+      $env.config = ($env.config | upsert hooks.env_change.PWD [
+        {
+          code: {|before, after|
+            let has_new = (($after | path join ".nu-overlay") | path exists)
+            unload-overlays
+            if $has_new { load-overlays $after }
+          }
+        }
+      ])
     '';
-  };
-  xdg.configFile."nushell/completions" = {
-    source = ./nushell/completions;
-    recursive = true;
   };
 }
