@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nix-alien.url = "github:thiagokokada/nix-alien";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";

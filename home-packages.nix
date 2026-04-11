@@ -30,6 +30,7 @@
     kdePackages.kate
     godot
     penpot-desktop
+    ventoy-full-qt
 
     # Art / 3D Modeling
     krita
@@ -58,12 +59,12 @@
     vintagestoryPackages.rustique
     vintagestoryPackages.vs-launcher
     mindustry
+    clonehero
 
     # Daily Utils
     # vesktop
     (discord.override { withVencord = true; })
     libreoffice-qt-fresh
-    inputs.nix-alien.packages.${system}.nix-alien
     (pkgs.wrapFirefox
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
       {

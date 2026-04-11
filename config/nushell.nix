@@ -100,14 +100,6 @@
         cd ~/nixos-dotfiles; nvim; cd -
       }
 
-      def "bumpversion packwiz" [version: string] {
-        if (not ('./pack.toml' | path exists)) {
-          print "No pack.toml found"
-          return
-        }
-        cat ./pack.toml | str replace -r 'version = "(.*)"' $'version = "($version)"' | save -f ./pack.toml
-      }
-
       export-env { load-env {
         PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)
         TRANSIENT_PROMPT_MULTILINE_INDICATOR: (^starship prompt --continuation)
@@ -126,52 +118,6 @@
           )
         }
       }}
-
-      set-env ACTIVE_OVERLAYS []
-
-      def load-overlays [dir: string] {
-        let overlay_file = ($dir | path join ".nu-overlay")
-        if not ($overlay_file | path exists) {
-          return
-        }
-
-        let modules = (open $overlay_file
-        | lines
-        | where {|l| ($l | str trim) != "" and not ($l | str starts-with "#") })
-        
-        if ((get-env ACTIVE_OVERLAYS) == ($modules | each {|m|
-          (($dir | path join $m) | path parse | get stem)
-        })) { return }
-
-        set-env ACTIVE_OVERLAYS ($modules | each {|m|
-          let module_path = ($dir | path join $m)
-          let overlay_name = ($module_path | path parse | get stem)
-          if ($module_path | path exists) {
-            overlay use --prefix $module_path
-            $overlay_name
-          } else {
-            print $"Warning: ($module_path) not found"
-            null
-          }
-        })
-      }
-
-      def unload-overlays [] {
-        if ((get-env ACTIVE_OVERLAYS) | is-empty) { return }
-        set-env ACTIVE_OVERLAYS ((get-env ACTIVE_OVERLAYS) | each {|o|
-          overlay hide $o
-        })
-      }
-
-      $env.config = ($env.config | upsert hooks.env_change.PWD [
-        {
-          code: {|before, after|
-            let has_new = (($after | path join ".nu-overlay") | path exists)
-            unload-overlays
-            if $has_new { load-overlays $after }
-          }
-        }
-      ])
     '';
   };
 }

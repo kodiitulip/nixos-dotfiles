@@ -118,7 +118,6 @@
           __unkeyed-2 = "prettier";
           stop_after_first = true;
         };
-        nu = [ "nufmt" ];
         yaml = {
           __unkeyed-1 = "prettierd";
           __unkeyed-2 = "prettier";
@@ -140,7 +139,6 @@
       };
 
       formatters = {
-        nufmt.command = lib.getExe pkgs.nufmt;
         black.command = lib.getExe pkgs.black;
         isort.command = lib.getExe pkgs.isort;
         nixfmt.command = lib.getExe pkgs.nixfmt;
