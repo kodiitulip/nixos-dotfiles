@@ -48,9 +48,6 @@
     ];
 
     config.allowUnfree = true;
-    config.permittedInsecurePackages = [
-      "ventoy-qt5-1.1.10"
-    ];
   };
 
   imports = [

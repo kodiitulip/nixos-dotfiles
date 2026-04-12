@@ -30,7 +30,6 @@
     kdePackages.kate
     godot
     penpot-desktop
-    ventoy-full-qt
 
     # Art / 3D Modeling
     krita
@@ -54,7 +53,7 @@
     })
     (callPackage ./custom-packages/hyprism { })
     parsec-bin
-    # heroic
+    r2modman
     hydralauncher
     vintagestoryPackages.rustique
     vintagestoryPackages.vs-launcher
