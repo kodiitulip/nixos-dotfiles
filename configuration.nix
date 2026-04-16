@@ -52,11 +52,14 @@
 
   imports = [
     inputs.nixvim.nixosModules.nixvim
+    inputs.playit-nixos-module.nixosModules.default
+    inputs.agenix.nixosModules.default
     ./hardware-configuration.nix
     ./system-services.nix
     ./system-programs.nix
     ./system-packages.nix
   ];
+
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -141,9 +144,11 @@
         443
         3000
         6567
+        42420
       ];
       allowedUDPPorts = [
         6567
+        42420
       ];
       allowedTCPPortRanges = [
         {

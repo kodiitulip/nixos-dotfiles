@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 let
@@ -8,6 +9,11 @@ let
   };
 in
 {
+  age.secrets.playitgg = {
+    owner = "kodie";
+    group = "users";
+    file = ./secrets/playitgg.age;
+  };
   services = {
     xserver = {
       enable = true;
@@ -54,6 +60,11 @@ in
     };
 
     zerotierone.enable = true;
+
+    playit = {
+      enable = true;
+      secretPath = config.age.secrets.playitgg.path;
+    };
   };
 
   environment.systemPackages = [

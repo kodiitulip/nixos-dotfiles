@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     bun
@@ -25,5 +25,7 @@
     catt
     croc
     ethtool
+    inputs.agenix.packages."x86_64-linux".default
+    inputs.playit-nixos-module.packages."x86_64-linux".playit-cli
   ];
 }
