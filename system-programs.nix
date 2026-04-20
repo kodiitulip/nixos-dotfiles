@@ -49,17 +49,18 @@
     screen = {
       enable = true;
       screenrc = ''
+        truecolor on
+        term screen-256color
         attrcolor b ".I"
+        defbce on
         termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-        termcapinfo xterm|xterms|xs|rxvt ti@:te@
-        defbce "on"
-        term xterm-256color
-        defscrollback 30000
-        hardstatus alwayslastline
-        hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%{KY}%101`%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
-        bind f eval "hardstatus ignore"
-        bind F eval "hardstatus alwayslastline"
+
+        altscreen on
+        defscrollback 10000
         startup_message off
+
+        # Pass through terminal type to inner applications
+        termcapinfo xterm*|rxvt*|putty* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;3;4;6l\E[4l\E[?1000h\E[?25h'
       '';
     };
 
@@ -69,31 +70,5 @@
       nixpkgs.useGlobalPackages = true;
       imports = [ ./config/nixvim ];
     };
-
-    # nix-ld = {
-    # enable = true;
-    # libraries = with pkgs; [
-    # fontconfig
-    # wayland
-    # libx11
-    # libdecor
-    # libxcursor
-    # libuiohook
-    # libxext
-    # libxfixes
-    # libxi
-    # libxinerama
-    # libxkbcommon
-    # libxrandr
-    # libxrender
-    # alsa-lib
-    # libGL
-    # vulkan-loader
-    # fontconfig.lib
-    # libpulseaudio
-    # speechd-minimal
-    # udev
-    # ];
-    # };
   };
 }

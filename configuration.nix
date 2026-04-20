@@ -145,30 +145,12 @@
         3000
         6567
         42420
+        25565
       ];
       allowedUDPPorts = [
         6567
         42420
-      ];
-      allowedTCPPortRanges = [
-        {
-          from = 45000;
-          to = 47000;
-        }
-      ];
-      allowedUDPPortRanges = [
-        {
-          from = 4000;
-          to = 4007;
-        }
-        {
-          from = 8000;
-          to = 8010;
-        }
-        {
-          from = 25555;
-          to = 25565;
-        }
+        25565
       ];
     };
   };

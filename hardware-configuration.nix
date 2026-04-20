@@ -22,16 +22,24 @@
       "uas"
       "sd_mod"
     ];
-    initrd.kernelModules = [ "amdgpu" ];
+    kernelParams = [
+      "quiet"
+      "udev.log_level=3"
+      "systemd.show_status=auto"
+    ];
     kernelModules = [
-      "kvm-amd"
+      "mt7921e"
+      "coretemp"
+      "cpuid"
       "v4l2loopback"
     ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
-    # Bootloader.
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      timeout = 0;
+    };
 
     # Use latest kernel.
     kernelPackages = pkgs.linuxPackages_latest;
@@ -39,6 +47,21 @@
     extraModprobeConfig = ''
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
+
+    plymouth = {
+      enable = true;
+      theme = "pixels";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "pixels" ];
+        })
+      ];
+    };
+    consoleLogLevel = 3;
+    initrd = {
+      verbose = false;
+      kernelModules = [ "amdgpu" ];
+    };
   };
 
   fileSystems."/" = {
