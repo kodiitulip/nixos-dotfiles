@@ -59,6 +59,7 @@
     vintagestoryPackages.vs-launcher
     mindustry
     clonehero
+    heroic
 
     # Daily Utils
     # vesktop

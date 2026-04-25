@@ -54,6 +54,7 @@
     inputs.nixvim.nixosModules.nixvim
     inputs.playit-nixos-module.nixosModules.default
     inputs.agenix.nixosModules.default
+    ./servers.nix
     ./hardware-configuration.nix
     ./system-services.nix
     ./system-programs.nix
