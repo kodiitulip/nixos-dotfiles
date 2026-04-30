@@ -54,7 +54,7 @@
 
     # Daily Utils
     equibop
-    (discord-canary.override {
+    (discord.override {
       withEquicord = true;
     })
     (pkgs.wrapFirefox
