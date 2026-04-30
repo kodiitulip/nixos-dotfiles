@@ -15,17 +15,13 @@
     sops
     fd
     jellyfin-ffmpeg
-    trashy
-    # copyparty
     gdu
     kdePackages.qtmultimedia
-    kdePackages.partitionmanager
     firefoxpwa
-    gnome-network-displays
     catt
     croc
     ethtool
     inputs.agenix.packages."x86_64-linux".default
-    inputs.playit-nixos-module.packages."x86_64-linux".playit-cli
+    # inputs.playit-nixos-module.packages."x86_64-linux".playit-cli
   ];
 }

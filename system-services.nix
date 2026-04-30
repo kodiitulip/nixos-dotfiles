@@ -52,17 +52,10 @@ in
 
     qbittorrent.enable = false;
 
-    sunshine = {
-      enable = false; # TODO: reenable when not glitched
-      autoStart = false;
-      capSysAdmin = true;
-      openFirewall = true;
-    };
-
     zerotierone.enable = true;
 
     playit = {
-      enable = true;
+      enable = false;
       secretPath = config.age.secrets.playitgg.path;
     };
   };

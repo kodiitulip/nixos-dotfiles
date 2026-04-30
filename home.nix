@@ -88,7 +88,7 @@
 
     };
 
-    lutris.enable = true;
+    lutris.enable = false;
 
     vs-launcher = {
       enable = true;

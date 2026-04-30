@@ -41,7 +41,7 @@
       };
     };
     xwayland.enable = true;
-
+    firejail.enable = true;
     appimage = {
       enable = true;
       binfmt = true;

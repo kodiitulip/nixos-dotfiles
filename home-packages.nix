@@ -1,11 +1,11 @@
 {
   pkgs,
-  system,
   inputs,
   ...
 }:
 {
   imports = [ ./config/inkscape ];
+
   home.packages = with pkgs; [
     # Misc
     gh
@@ -14,22 +14,14 @@
     protonup-qt
     direnv
     rose-pine-cursor
-    (callPackage ./custom-packages/steam-art-manager { })
     (with kdePackages; callPackage ./custom-packages/plasma-smart-video-wallpaper-reborn.nix { })
     yt-dlp
     pear-desktop
     easyeffects
-    mrpack-install
-    act
-    kdePackages.kalgebra
-    kdePackages.kcalc
-    youtube-tui
 
     # Editors / IDEs
-    jetbrains.idea-oss
     kdePackages.kate
     godot
-    penpot-desktop
 
     # Art / 3D Modeling
     krita
@@ -39,6 +31,7 @@
     # kdePackages.kdenlive
 
     # Games
+    eden
     (prismlauncher.override {
       additionalPrograms = [ vlc ];
       additionalLibs = [ vlc ];
@@ -52,19 +45,18 @@
       ];
     })
     (callPackage ./custom-packages/hyprism { })
-    parsec-bin
     r2modman
     hydralauncher
-    vintagestoryPackages.rustique
+    # vintagestoryPackages.rustique
     vintagestoryPackages.vs-launcher
     mindustry
-    clonehero
     heroic
 
     # Daily Utils
-    # vesktop
-    (discord.override { withVencord = true; })
-    libreoffice-qt-fresh
+    equibop
+    (discord-canary.override {
+      withEquicord = true;
+    })
     (pkgs.wrapFirefox
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
       {

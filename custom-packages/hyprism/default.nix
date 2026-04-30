@@ -23,7 +23,7 @@ appimageTools.wrapType2 {
   extraPkgs =
     pkgs: with pkgs; [
       icu
-      openssl
+      # openssl
       zlib
       libunwind
       libuuid

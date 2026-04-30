@@ -155,7 +155,7 @@
       ];
     };
   };
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = false;
 
   system.stateVersion = "25.05"; # WARN: DO NOT CHANGE! NO NEED TO!
 }
