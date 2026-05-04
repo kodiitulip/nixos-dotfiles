@@ -21,6 +21,7 @@
     catt
     croc
     ethtool
+    icu
     inputs.agenix.packages."x86_64-linux".default
     # inputs.playit-nixos-module.packages."x86_64-linux".playit-cli
   ];
