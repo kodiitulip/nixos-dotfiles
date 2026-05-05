@@ -66,6 +66,7 @@ in
     # Editors / IDEs
     kdePackages.kate
     godot
+    godsvg
 
     # Art / 3D Modeling
     krita

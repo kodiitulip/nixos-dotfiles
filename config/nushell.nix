@@ -38,8 +38,6 @@
 
       julia-join = "sudo zerotier-cli join bb720a5aaedee869";
       julia-leave = "sudo zerotier-cli leave bb720a5aaedee869";
-
-      ztls = "sudo zerotier-cli listnetworks";
     };
 
     environmentVariables = {
@@ -104,6 +102,10 @@
       }
 
       def c [] {clear; greeter}
+
+      def ztls [] {
+        sudo zerotier-cli listnetworks | str replace -m -r -a '200 listnetworks ' "" | lines | skip 1 | split column ' ' 'id' 'name' 'mac' 'status' 'type' 'dev' 'ip'
+      }
 
       print (greeter)
 
