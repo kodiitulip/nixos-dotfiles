@@ -8,6 +8,23 @@
   modulesPath,
   ...
 }:
+let
+  sakura-plymouth =
+    { stdenv }:
+    stdenv.mkDerivation {
+      pname = "sakura-plymouth";
+      version = "1.0.0";
+      src = ./plymouth;
+
+      sourceRoot = ".";
+
+      installPhase = ''
+        mkdir -pv $out/share/plymouth/themes
+        mv plymouth $out/share/plymouth/themes/sakura
+        find $out/share/plymouth/themes/ -name \*.plymouth -exec sed -i "s@\/usr\/@$out\/@" {} \;
+      '';
+    };
+in
 
 {
   imports = [
@@ -50,11 +67,12 @@
 
     plymouth = {
       enable = true;
-      theme = "pixels";
+      theme = "sakura";
       themePackages = with pkgs; [
         (adi1090x-plymouth-themes.override {
           selected_themes = [ "pixels" ];
         })
+        (callPackage sakura-plymouth { })
       ];
     };
     consoleLogLevel = 3;
@@ -62,6 +80,12 @@
       verbose = false;
       kernelModules = [ "amdgpu" ];
     };
+  };
+  systemd.services."display-manager" = {
+    conflicts = [ "plymouth-quit.service" ];
+    preStart = "${pkgs.plymouth}/bin/plymouth deactivate";
+    postStart = "/bin/sh -c 'sleep 5 && ${pkgs.plymouth}/bin/plymouth quit --retain-splash'";
+    enable = true;
   };
 
   fileSystems."/" = {
@@ -88,7 +112,7 @@
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
     useDHCP = lib.mkDefault true;
 
-    # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
+    interfaces.enp6s0.useDHCP = lib.mkDefault true;
     interfaces.wlp10s0u4.useDHCP = lib.mkDefault true;
   };
 

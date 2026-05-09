@@ -67,10 +67,11 @@ in
     kdePackages.kate
     godot
     godsvg
+    lorien
 
     # Art / 3D Modeling
     krita
-    aseprite # TODO: enable when not bugged
+    aseprite
     blockbench
     blender
     # kdePackages.kdenlive
