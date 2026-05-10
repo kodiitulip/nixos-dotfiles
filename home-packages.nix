@@ -62,12 +62,12 @@ in
     yt-dlp
     pear-desktop
     easyeffects
+    steam-art-manager
 
     # Editors / IDEs
     kdePackages.kate
     godot
     godsvg
-    lorien
 
     # Art / 3D Modeling
     krita

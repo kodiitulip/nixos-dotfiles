@@ -166,9 +166,6 @@
             end
           '';
         };
-        gdscript-formatter.args = [
-          "--reorder-code"
-        ];
         injected.options.ignore_errors = true;
       };
     };
