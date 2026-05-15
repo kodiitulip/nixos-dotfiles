@@ -36,6 +36,36 @@
       desc = "Toggle autoformat-on-save",
       bang = true,
     })
+
+    vim.api.nvim_create_user_command("FormatReorderDisable", function(args)
+       if args.bang then
+        -- FormatDisable! will disable formatting just for this buffer
+        vim.b.disable_format_reorder = true
+      else
+        vim.g.disable_format_reorder = true
+      end
+    end, {
+      desc = "Disable format-reorder-on-save",
+      bang = true,
+    })
+    vim.api.nvim_create_user_command("FormatReorderEnable", function()
+      vim.b.disable_format_reorder = false
+      vim.g.disable_format_reorder = false
+    end, {
+      desc = "Re-enable format-reorder-on-save",
+    })
+    vim.api.nvim_create_user_command("FormatReorderToggle", function(args)
+      if args.bang then
+        -- Toggle formatting for current buffer
+        vim.b.disable_format_reorder = not vim.b.disable_format_reorder
+      else
+        -- Toggle formatting globally
+        vim.g.disable_format_reorder = not vim.g.disable_format_reorder
+      end
+    end, {
+      desc = "Toggle format-reorder-on-save",
+      bang = true,
+    })
   '';
   plugins.conform-nvim = {
     enable = true;
@@ -166,6 +196,14 @@
             end
           '';
         };
+        gdscript-formatter.append_args.__raw = ''
+          function(self, ctx)
+            if vim.g.disable_format_reorder or vim.b[ctx.buf].disable_format_reorder then
+              return { }
+            end
+            return { "--reorder-code" }
+          end
+        '';
         injected.options.ignore_errors = true;
       };
     };

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs = {
@@ -41,7 +41,17 @@
       };
     };
     xwayland.enable = true;
-    firejail.enable = true;
+    firejail = {
+      enable = true;
+      wrappedBinaries.vesktop = {
+        executable = lib.getExe pkgs.vesktop;
+        extraArgs = [
+          "--noprofile"
+          "--net=wlp10s0u4"
+        ];
+        desktop = "${pkgs.vesktop}/share/applications/vesktop.desktop";
+      };
+    };
     appimage = {
       enable = true;
       binfmt = true;

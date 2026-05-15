@@ -99,11 +99,10 @@ in
     heroic
 
     # Daily Utils
-    # equibop
     vesktop
-    # (discord.override {
-    #   withEquicord = true;
-    # })
+    (discord.override {
+      withVencord = true;
+    })
     (pkgs.wrapFirefox
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
       {
