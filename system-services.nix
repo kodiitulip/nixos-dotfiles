@@ -55,7 +55,7 @@ in
     zerotierone.enable = true;
 
     playit = {
-      enable = false;
+      enable = true;
       secretPath = config.age.secrets.playitgg.path;
     };
   };

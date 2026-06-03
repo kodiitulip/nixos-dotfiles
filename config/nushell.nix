@@ -67,22 +67,7 @@
         enable = true;
         max_results = 200;
       };
-      keybindings = [
-        {
-          name = "lfcd";
-          modifier = "control";
-          keycode = "char_o";
-          mode = [
-            "emacs"
-            "vi_normal"
-            "vi_insert"
-          ];
-          event = {
-            send = "executehostcommand";
-            cmd = "lfcd";
-          };
-        }
-      ];
+      auto_cd_implicit = true;
     };
 
     extraConfig = ''

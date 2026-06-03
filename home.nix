@@ -109,6 +109,12 @@
         source = ./config/bat/themes;
         recursive = true;
       };
+      "direnv/direnv.toml".source = (pkgs.formats.toml { }).generate "direnv.toml" {
+        global = {
+          warn_timeout = "0s";
+          hide_env_diff = true;
+        };
+      };
     };
   };
 

@@ -61,6 +61,8 @@ in
     (with kdePackages; callPackage ./custom-packages/plasma-smart-video-wallpaper-reborn.nix { })
     yt-dlp
     pear-desktop
+    spotify
+    spicetify-cli
     easyeffects
     steam-art-manager
 
